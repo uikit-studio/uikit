@@ -1,0 +1,77 @@
+{
+  "id": "lime",
+  "name": "Lime",
+  "tagline": "Limey digital-card kit",
+  "description": "A limey product kit — warm cream + near-black ink + a vivid acid-lime accent. Heavy Hanken Grotesk display, monospace micro-labels, highlight-marker headings, a marquee and dark bento sections. Light + dark, EN/AR + RTL. Runnable React app.",
+  "version": "0.1.0",
+  "source": "community",
+  "verified": false,
+  "primaryColor": "#c8f135",
+  "accentColor": "#84a300",
+  "frameworks": ["react"],
+  "categories": ["marketing", "landing"],
+  "tags": ["lime", "cream", "grotesk", "rtl"],
+  "demoUrl": "/demos/lime/",
+  "repo": "https://github.com/kernelcode/lime-uikit",
+  "homepage": "https://uikit.studio/demos/lime/",
+  "license": "MIT",
+  "styling": "tailwind + tokens",
+  "author": { "name": "kernelcode", "github": "kernelcode", "url": null, "official": false },
+  "fonts": { "display": "Hanken Grotesk", "sans": "Inter", "mono": "JetBrains Mono" },
+  "radius": "1.1rem",
+  "brandScale": [
+    { "name": "50", "value": "#f8ffe5" },
+    { "name": "100", "value": "#eeffb8" },
+    { "name": "200", "value": "#e1ff80" },
+    { "name": "300", "value": "#d3f94d" },
+    { "name": "400", "value": "#c8f135" },
+    { "name": "500", "value": "#a8d119" },
+    { "name": "600", "value": "#84a300" },
+    { "name": "700", "value": "#5f7600" }
+  ],
+  "palette": [
+    { "name": "primary", "value": "#c8f135" },
+    { "name": "mark", "value": "#c8f135" },
+    { "name": "background", "value": "#f5f3ea" },
+    { "name": "foreground", "value": "#0f0f0c" },
+    { "name": "card", "value": "#ffffff" },
+    { "name": "muted", "value": "#ece9dd" },
+    { "name": "border", "value": "#e2ded0" }
+  ],
+  "darkPalette": [
+    { "name": "background", "value": "#0e0e0b" },
+    { "name": "foreground", "value": "#f4f3ea" },
+    { "name": "card", "value": "#18180f" },
+    { "name": "primary", "value": "#c8f135" },
+    { "name": "muted", "value": "#1f1f15" },
+    { "name": "border", "value": "#2b2b1e" }
+  ],
+  "prompt": "A limey digital-business-card kit — warm cream + near-black ink + a vivid acid-lime accent, heavy Hanken Grotesk display, monospace micro-labels, highlight-marker headings, a marquee and dark bento sections. React-first. Full dark mode and EN/AR + RTL. Ship landing, pricing, dashboard, and a components showcase.",
+  "buildSteps": [
+    "Forked an existing kit with `uikit-studio new`, then reskinned its identity.",
+    "Tokens (tokens.json) → theme.css: lime brand scale, cream/ink, dark block, [dir=rtl] Arabic font swap, Hanken Grotesk display.",
+    "i18n (en + ar): a digital-card narrative — taps, designs, NFC/QR, lead capture.",
+    "Reused the design system: cn, Button, Card, Input, Badge, Pill, Mark, Marquee, Container; Navbar/Footer/StatCards blocks.",
+    "Four pages: Landing (hero · marquee · designs grid · dark bento · CTA), Pricing, Dashboard, Components showcase. Validated with `uikit-studio validate`."
+  ],
+  "components": ["Button", "Card", "Input", "Badge", "Pill", "Mark", "Marquee", "Container"],
+  "blocks": ["Navbar", "Footer", "StatCards"],
+  "templates": [
+    { "name": "Landing", "route": "/" },
+    { "name": "Pricing", "route": "/pricing" },
+    { "name": "Dashboard", "route": "/dashboard" },
+    { "name": "Showcase", "route": "/components" }
+  ],
+  "installCmd": "npx uikit-studio add lime",
+  "skillName": "lime-ui",
+  "consumeSteps": [
+    "git clone https://github.com/kernelcode/lime-uikit my-app",
+    "cd my-app/react && pnpm install && pnpm dev",
+    "Open in Claude Code and ask: 'build a digital business card page using this kit'"
+  ],
+  "screenshots": [
+    { "kind": "landing", "url": "/kits/lime/landing.png" },
+    { "kind": "dashboard", "url": "/kits/lime/dashboard.png" },
+    { "kind": "components", "url": "/kits/lime/components.png" }
+  ]
+}
