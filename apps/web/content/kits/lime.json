@@ -18,7 +18,7 @@
   "styling": "tailwind + tokens",
   "author": { "name": "kernelcode", "github": "kernelcode", "url": null, "official": false },
   "fonts": { "display": "Bricolage Grotesque", "sans": "Inter", "mono": "JetBrains Mono" },
-  "radius": "1.1rem",
+  "radius": "1.5rem",
   "brandScale": [
     { "name": "50", "value": "#f8ffe5" },
     { "name": "100", "value": "#eeffb8" },
