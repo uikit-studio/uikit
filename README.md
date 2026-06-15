@@ -1,36 +1,66 @@
-# UIKit
+# uikit.studio
 
-A curated gallery of production-ready UI kits, design systems, and web components — so building a UI with AI stops meaning "burn tokens and pray."
+A curated gallery of **production-ready, runnable UI kits** — so building a UI
+with AI stops meaning "burn tokens and pray." Browse → clone a kit → let your AI
+build a real product **with** it.
 
-See [PLAN.md](./PLAN.md) for the full architecture.
+**[uikit.studio →](https://uikit.studio)**
 
-## Three actors, one contract
+## Pure git, no backend
 
-- **Generator** — a Claude Code skill (`uikit-standard`) that produces kits in a standardized shape.
-- **Platform** — this Turborepo monorepo: marketing site + gallery (search, listing, detail).
-- **Consumer** — clones a kit repo, runs the `uikit` CLI, and the AI builds an app *with* the kit.
+This is a **static** gallery: no database, no server, no admin. Every kit is a
+JSON entry in [`apps/web/content/kits/`](./apps/web/content/kits), baked into the
+build. Curation is **PR review**; CI validates each entry
+([`scripts/validate-content.mjs`](./scripts/validate-content.mjs)); merge to
+`main` deploys to Cloudflare Workers.
 
-The glue is **`uikit.json`** — the manifest every kit carries. It is defined once in
-[`packages/manifest`](./packages/manifest) and shared by the platform, the CLI, and the generator
-so they never drift.
+Listing a kit = adding one JSON file. See **[uikit.studio/submit](https://uikit.studio/submit)**.
 
-## Workspace
+- **Verified** kits mirror their screenshots into the repo (can't rot).
+- **Community** kits set `verified:false` and reference their own repo's assets
+  (pinned jsDelivr URLs).
 
-```text
-apps/         web (gallery) · landing · admin   — TanStack Start → Cloudflare Workers
-packages/     manifest · ingest · ui · db · preview · config
-tooling/      cli  — the `uikit` command
+## The kits
+
+### [Aurora](https://uikit.studio/kit/aurora) — glassy SaaS kit · React
+
+[![Aurora](https://uikit.studio/kits/aurora/landing.png)](https://uikit.studio/kit/aurora)
+
+Cool slate + blue, Sora display, glassmorphism, light + dark, EN/AR + RTL.
+→ [`uikit-studio/aurora-uikit`](https://github.com/uikit-studio/aurora-uikit)
+
+### [Spark](https://uikit.studio/kit/spark) — bold marketing kit · React / Vue / Web Components
+
+[![Spark](https://uikit.studio/kits/spark/landing.png)](https://uikit.studio/kit/spark)
+
+Big type, cream + ink + orange, grotesk display, light + dark, EN/AR + RTL.
+→ [`uikit-studio/spark-uikit`](https://github.com/uikit-studio/spark-uikit)
+
+## The toolchain (separate public repo)
+
+The `uikit` CLI, the `uikit.json` contract, and the `uikit-standard` generator
+live in **[uikit-studio/uikit-studio](https://github.com/uikit-studio/uikit-studio)**
+and ship to npm as **[`uikit-studio`](https://www.npmjs.com/package/uikit-studio)**:
+
+```bash
+npx uikit-studio new https://github.com/uikit-studio/aurora-uikit my-app
+cd my-app && npx uikit-studio add dashboard
 ```
 
 ## Develop
 
 ```bash
 pnpm install
-pnpm dev        # run apps
-pnpm test       # run package tests
-pnpm typecheck
+pnpm --filter @uikit/web dev        # run the gallery locally
+node scripts/validate-content.mjs   # validate the registry entries
+pnpm --filter @uikit/web deploy     # build + ship to Cloudflare
 ```
 
-## Status
+```text
+apps/web/         the gallery (TanStack Start → Cloudflare Workers)
+apps/web/content/ the registry — one JSON entry per kit
+packages/config/  shared TS config
+scripts/          content validator (the PR gate)
+```
 
-Building in phases (see PLAN.md §9). **Phase 0 — the contract (`packages/manifest`) — is first.**
+MIT © uikit.studio
