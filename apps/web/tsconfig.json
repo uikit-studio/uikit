@@ -1,0 +1,9 @@
+{
+  "extends": "@uikit/config/tsconfig/react-app.json",
+  "compilerOptions": {
+    "paths": {
+      "~/*": ["./app/*"]
+    }
+  },
+  "include": ["app/**/*.ts", "app/**/*.tsx", "vite.config.ts"]
+}

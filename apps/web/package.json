@@ -1,0 +1,36 @@
+{
+  "name": "@uikit/web",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "deploy": "pnpm build && wrangler deploy -c dist/server/wrangler.json",
+    "clean": "rm -rf dist .output .tanstack .wrangler .turbo"
+  },
+  "dependencies": {
+    "@tanstack/react-router": "^1.170.15",
+    "@tanstack/react-start": "^1.168.25",
+    "lucide-react": "^0.511.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.40.2",
+    "@cloudflare/workers-types": "^4.20250906.0",
+    "@tailwindcss/vite": "^4.1.18",
+    "@types/node": "^22.10.7",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "@uikit/config": "workspace:*",
+    "@vitejs/plugin-react": "^4.6.0",
+    "tailwindcss": "^4.1.18",
+    "typescript": "^5.7.3",
+    "vite": "^7.3.5",
+    "vite-tsconfig-paths": "^5.1.4",
+    "wrangler": "^4.100.0"
+  }
+}

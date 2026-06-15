@@ -1,0 +1,76 @@
+{
+  "id": "aurora",
+  "name": "Aurora",
+  "tagline": "Glassy SaaS dashboard kit",
+  "description": "A clean, glassy SaaS kit — cool slate + blue, Sora display, glassmorphism cards and a gradient highlight. Light + dark, EN/AR + RTL. Runnable React app with landing, pricing, dashboard and a components showcase.",
+  "version": "1.0.0",
+  "source": "official",
+  "verified": true,
+  "primaryColor": "#3b82f6",
+  "accentColor": "#6366f1",
+  "frameworks": ["react"],
+  "categories": ["saas", "dashboard", "dark-first"],
+  "tags": ["glassmorphism", "blue", "sora", "rtl"],
+  "demoUrl": "/demos/aurora/",
+  "repo": "https://github.com/uikit-studio/aurora-uikit",
+  "homepage": "https://uikit.studio/demos/aurora/",
+  "license": "MIT",
+  "styling": "tailwind + tokens",
+  "author": { "name": "UIKit Team", "github": "uikit-studio", "url": "https://uikit.studio", "official": true },
+  "fonts": { "display": "Sora", "sans": "Inter", "mono": "JetBrains Mono" },
+  "radius": "1rem",
+  "brandScale": [
+    { "name": "50", "value": "#eff6ff" },
+    { "name": "100", "value": "#dbeafe" },
+    { "name": "200", "value": "#bfdbfe" },
+    { "name": "300", "value": "#93c5fd" },
+    { "name": "400", "value": "#60a5fa" },
+    { "name": "500", "value": "#3b82f6" },
+    { "name": "600", "value": "#2563eb" },
+    { "name": "700", "value": "#1d4ed8" }
+  ],
+  "palette": [
+    { "name": "primary", "value": "#3b82f6" },
+    { "name": "accent", "value": "#6366f1" },
+    { "name": "background", "value": "#f5f8fd" },
+    { "name": "foreground", "value": "#0b1324" },
+    { "name": "card", "value": "#ffffff" },
+    { "name": "muted", "value": "#eef2fb" },
+    { "name": "border", "value": "#e2e8f5" }
+  ],
+  "darkPalette": [
+    { "name": "background", "value": "#060b16" },
+    { "name": "foreground", "value": "#e8eefb" },
+    { "name": "card", "value": "#0e1626" },
+    { "name": "primary", "value": "#60a5fa" },
+    { "name": "accent", "value": "#818cf8" },
+    { "name": "border", "value": "#1d2a44" }
+  ],
+  "prompt": "A clean SaaS kit with a glassy dashboard. Blue primary (#3b82f6), Inter body + Sora display, glassmorphism cards, soft glass shadow, light + dark. React-first. Ship a dashboard and a landing page template, with EN/AR + RTL.",
+  "buildSteps": [
+    "Derived design tokens (colors, Sora/Inter, 1rem radius, soft glass shadow) → tokens.json, theme.css (v4) and tailwind-preset.js (v3).",
+    "Built React components on a shared `cn` util: Button, Card, Input, Badge, Pill, Mark, Marquee, Container.",
+    "Composed blocks (StatCards, Footer), then assembled the Landing, Pricing, Dashboard and Showcase templates.",
+    "Wrote the bundled consumer skill (.claude/skills/aurora) so AI builds with the kit cheaply.",
+    "Emitted uikit.json, validated it against the contract, and authored screenshots."
+  ],
+  "components": ["Button", "Card", "Input", "Badge", "Pill", "Mark", "Marquee", "Container"],
+  "blocks": ["StatCards", "Footer"],
+  "templates": [
+    { "name": "Landing", "route": "/" },
+    { "name": "Pricing", "route": "/pricing" },
+    { "name": "Dashboard", "route": "/dashboard" },
+    { "name": "Showcase", "route": "/components" }
+  ],
+  "installCmd": "npx uikit-studio add aurora",
+  "skillName": "aurora-ui",
+  "consumeSteps": [
+    "git clone https://github.com/uikit-studio/aurora-uikit my-app",
+    "cd my-app/react && pnpm install && pnpm dev",
+    "Open in Claude Code and ask: 'build a billing dashboard using this kit'"
+  ],
+  "screenshots": [
+    { "kind": "landing", "url": "/kits/aurora/landing.png" },
+    { "kind": "dashboard", "url": "/kits/aurora/dashboard.png" }
+  ]
+}

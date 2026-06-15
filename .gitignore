@@ -1,0 +1,14 @@
+node_modules
+dist
+.output
+.tanstack
+.turbo
+.wrangler
+**/routeTree.gen.ts
+.dev.vars
+*.log
+.DS_Store
+coverage
+.env
+.env.*
+!.env.example

@@ -1,0 +1,25 @@
+name: validate
+
+# The PR gate. Any change to the registry is checked against the entry schema
+# (zero-dependency script, so this is fast and needs nothing installed).
+on:
+  pull_request:
+    paths:
+      - "apps/web/content/**"
+      - "apps/web/public/kits/**"
+      - "scripts/validate-content.mjs"
+  push:
+    branches: [main]
+    paths:
+      - "apps/web/content/**"
+
+jobs:
+  validate-content:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Validate gallery entries
+        run: node scripts/validate-content.mjs

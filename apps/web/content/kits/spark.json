@@ -1,0 +1,75 @@
+{
+  "id": "spark",
+  "name": "Spark",
+  "tagline": "Bold marketing & landing kit",
+  "description": "Big type, cream + ink and a vivid orange accent. Heavy grotesk display, monospace micro-labels, highlight-marker headings, marquee. Full dark mode and EN/AR + RTL. Runnable React, Vue and Web Components apps.",
+  "version": "0.2.0",
+  "source": "community",
+  "verified": false,
+  "primaryColor": "#f97316",
+  "accentColor": "#fb923c",
+  "frameworks": ["react", "vue", "web-components"],
+  "categories": ["marketing", "landing"],
+  "tags": ["bold", "orange", "grotesk", "rtl"],
+  "demoUrl": "/demos/spark/",
+  "repo": "https://github.com/acme/spark-uikit",
+  "homepage": "https://uikit.studio/demos/spark/",
+  "license": "MIT",
+  "styling": "tailwind + tokens",
+  "author": { "name": "Acme", "github": "acme", "url": null, "official": false },
+  "fonts": { "display": "Space Grotesk", "sans": "Inter", "mono": "JetBrains Mono" },
+  "radius": "1rem",
+  "brandScale": [
+    { "name": "50", "value": "#fff7ed" },
+    { "name": "100", "value": "#ffedd5" },
+    { "name": "200", "value": "#fed7aa" },
+    { "name": "300", "value": "#fdba74" },
+    { "name": "400", "value": "#fb923c" },
+    { "name": "500", "value": "#f97316" },
+    { "name": "600", "value": "#ea580c" },
+    { "name": "700", "value": "#c2410c" }
+  ],
+  "palette": [
+    { "name": "primary", "value": "#f97316" },
+    { "name": "mark", "value": "#fb923c" },
+    { "name": "background", "value": "#faf6ee" },
+    { "name": "foreground", "value": "#181410" },
+    { "name": "card", "value": "#ffffff" },
+    { "name": "muted", "value": "#f1ebe0" },
+    { "name": "border", "value": "#e7dfd2" }
+  ],
+  "darkPalette": [
+    { "name": "background", "value": "#14100b" },
+    { "name": "foreground", "value": "#f7efe2" },
+    { "name": "card", "value": "#1d1812" },
+    { "name": "primary", "value": "#fb923c" },
+    { "name": "muted", "value": "#241d15" },
+    { "name": "border", "value": "#322a1f" }
+  ],
+  "prompt": "A bold marketing kit — big type, orange, gradient accents, cream + ink, a grotesk display + monospace labels, highlight-marker headings. React-first. Full dark mode and EN/AR + RTL. Ship landing, pricing, dashboard, and a components showcase.",
+  "buildSteps": [
+    "Tokens (tokens.json) → theme.css (display/sans/mono fonts, --color-mark, dark block, [dir=rtl] Arabic font swap) → tailwind-preset.js.",
+    "i18n: en + ar dictionaries + a provider that flips dir/lang and toggles language.",
+    "Design system: cn, Button, Card, Input, Badge, Pill, Mark, Marquee, Container.",
+    "Blocks (Navbar, Footer, StatCards) → four pages: Landing, Pricing, Dashboard, Components showcase.",
+    "Consumer skill (.claude/skills/spark), registry, screenshots, validated uikit.json. Mirrored to Vue and Web Components."
+  ],
+  "components": ["Button", "Card", "Input", "Badge", "Pill", "Mark", "Marquee", "Container"],
+  "blocks": ["Navbar", "Footer", "StatCards"],
+  "templates": [
+    { "name": "Landing", "route": "/" },
+    { "name": "Pricing", "route": "/pricing" },
+    { "name": "Dashboard", "route": "/dashboard" },
+    { "name": "Showcase", "route": "/components" }
+  ],
+  "installCmd": "npx uikit-studio add spark",
+  "skillName": "spark-ui",
+  "consumeSteps": [
+    "git clone https://github.com/acme/spark-uikit my-app",
+    "cd my-app/react && pnpm install && pnpm dev",
+    "Open in Claude Code and ask: 'build a product landing page using this kit'"
+  ],
+  "screenshots": [
+    { "kind": "landing", "url": "/kits/spark/landing.png" }
+  ]
+}

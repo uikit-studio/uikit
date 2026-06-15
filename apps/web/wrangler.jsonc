@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "uikit-web",
+  "account_id": "235ce91655d794a409c54ea17f877bd1",
+  "compatibility_date": "2025-09-24",
+  "compatibility_flags": ["nodejs_compat"],
+  "main": "@tanstack/react-start/server-entry",
+  "observability": { "enabled": true },
+  // Serves uikit.studio. Pure static gallery — content is baked from
+  // apps/web/content/kits/*.json at build time. No database, no bindings.
+  "routes": [{ "pattern": "uikit.studio", "custom_domain": true }]
+}
