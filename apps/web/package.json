@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build",
+    "gen:agents": "node scripts/gen-agent-manifests.mjs",
+    "build": "node scripts/gen-agent-manifests.mjs && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "deploy": "pnpm build && wrangler deploy -c dist/server/wrangler.json",

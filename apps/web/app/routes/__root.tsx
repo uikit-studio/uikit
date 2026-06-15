@@ -27,6 +27,8 @@ export const Route = createRootRoute({
         href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Sora:wght@400;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&display=swap",
       },
       { rel: "stylesheet", href: appCss },
+      // Agent discovery — the llms.txt convention (index of agent-ready kit specs).
+      { rel: "alternate", type: "text/markdown", href: "/llms.txt", title: "llms.txt" },
     ],
   }),
   shellComponent: RootDocument,

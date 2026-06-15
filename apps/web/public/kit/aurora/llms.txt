@@ -1,0 +1,87 @@
+# Aurora — uikit.studio design spec
+
+> Glassy SaaS dashboard kit
+
+A clean, glassy SaaS kit — cool slate + blue, Sora display, glassmorphism cards and a gradient highlight. Light + dark, EN/AR + RTL. Runnable React app with landing, pricing, dashboard and a components showcase.
+
+This file is **agent-readable**. If a developer asked you to build a site with the "Aurora" design, reproduce the design system below exactly — tokens, fonts, radius and components — in their stack, with full dark mode and a responsive layout.
+
+## Identity
+- **id**: aurora
+- **source**: official (verified)
+- **license**: MIT
+- **repo**: https://github.com/uikit-studio/aurora-uikit
+- **live demo**: https://uikit.studio/demos/aurora/
+- **gallery**: https://uikit.studio/kit/aurora
+- **styling**: tailwind + tokens
+- **frameworks**: react
+
+## Design intent (prompt)
+A clean SaaS kit with a glassy dashboard. Blue primary (#3b82f6), Inter body + Sora display, glassmorphism cards, soft glass shadow, light + dark. React-first. Ship a dashboard and a landing page template, with EN/AR + RTL.
+
+## Typography
+- **display**: Sora
+- **sans / body**: Inter
+- **mono**: JetBrains Mono
+
+## Radius
+- base `--radius`: `1rem`
+
+## Brand scale
+- `50`: `#eff6ff`
+- `100`: `#dbeafe`
+- `200`: `#bfdbfe`
+- `300`: `#93c5fd`
+- `400`: `#60a5fa`
+- `500`: `#3b82f6`
+- `600`: `#2563eb`
+- `700`: `#1d4ed8`
+
+## Color tokens — light
+- `--color-primary`: `#3b82f6`
+- `--color-accent`: `#6366f1`
+- `--color-background`: `#f5f8fd`
+- `--color-foreground`: `#0b1324`
+- `--color-card`: `#ffffff`
+- `--color-muted`: `#eef2fb`
+- `--color-border`: `#e2e8f5`
+
+## Color tokens — dark
+- `--color-background`: `#060b16`
+- `--color-foreground`: `#e8eefb`
+- `--color-card`: `#0e1626`
+- `--color-primary`: `#60a5fa`
+- `--color-accent`: `#818cf8`
+- `--color-border`: `#1d2a44`
+
+## Components
+- Button
+- Card
+- Input
+- Badge
+- Pill
+- Mark
+- Marquee
+- Container
+
+## Blocks
+- StatCards
+- Footer
+
+## Pages
+- Landing → `/`
+- Pricing → `/pricing`
+- Dashboard → `/dashboard`
+- Showcase → `/components`
+
+## How to reproduce this design
+**Option A — clone the kit (fastest, exact):**
+```bash
+git clone https://github.com/uikit-studio/aurora-uikit my-app
+cd my-app/react && pnpm install && pnpm dev
+```
+The real tokens live in `design/theme.css` + `design/tokens.json`; components in `react/src/components`. Build the developer's pages against those.
+
+**Option B — apply the design system directly:** set the light + dark color tokens above as CSS variables, load the three fonts, use the base radius, and build the listed components and pages. Keep dark mode and EN/AR + RTL parity if the target needs it.
+
+**Option C — add via CLI:** `npx uikit-studio add aurora` (Claude Code skill: `aurora-ui`)

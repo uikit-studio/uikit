@@ -1,0 +1,91 @@
+{
+  "$schema": "https://uikit.studio/agent-manifest.schema.json",
+  "id": "lime",
+  "name": "Lime",
+  "tagline": "Limey digital-card kit",
+  "description": "A limey product kit — warm cream + near-black ink + a vivid acid-lime accent. Heavy Hanken Grotesk display, monospace micro-labels, highlight-marker headings, a marquee and dark bento sections. Light + dark, EN/AR + RTL. Runnable React app.",
+  "version": "0.1.0",
+  "source": "community",
+  "verified": false,
+  "license": "MIT",
+  "repo": "https://github.com/kernelcode/lime-uikit",
+  "demo": "https://uikit.studio/demos/lime/",
+  "gallery": "https://uikit.studio/kit/lime",
+  "spec": "https://uikit.studio/kit/lime/llms.txt",
+  "styling": "tailwind + tokens",
+  "frameworks": [
+    "react"
+  ],
+  "prompt": "A limey digital-business-card kit — warm cream + near-black ink + a vivid acid-lime accent, heavy Hanken Grotesk display, monospace micro-labels, highlight-marker headings, a marquee and dark bento sections. React-first. Full dark mode and EN/AR + RTL. Ship landing, pricing, dashboard, and a components showcase.",
+  "fonts": {
+    "display": "Bricolage Grotesque",
+    "sans": "Inter",
+    "mono": "JetBrains Mono"
+  },
+  "radius": "1.5rem",
+  "tokens": {
+    "light": {
+      "primary": "#c8f135",
+      "mark": "#c8f135",
+      "background": "#f5f3ea",
+      "foreground": "#0f0f0c",
+      "card": "#ffffff",
+      "muted": "#ece9dd",
+      "border": "#e2ded0"
+    },
+    "dark": {
+      "background": "#0e0e0b",
+      "foreground": "#f4f3ea",
+      "card": "#18180f",
+      "primary": "#c8f135",
+      "muted": "#1f1f15",
+      "border": "#2b2b1e"
+    }
+  },
+  "brandScale": {
+    "50": "#f8ffe5",
+    "100": "#eeffb8",
+    "200": "#e1ff80",
+    "300": "#d3f94d",
+    "400": "#c8f135",
+    "500": "#a8d119",
+    "600": "#84a300",
+    "700": "#5f7600"
+  },
+  "components": [
+    "Button",
+    "Card",
+    "Input",
+    "Badge",
+    "Pill",
+    "Mark",
+    "Marquee",
+    "Container"
+  ],
+  "blocks": [
+    "Navbar",
+    "Footer",
+    "StatCards"
+  ],
+  "templates": [
+    {
+      "name": "Landing",
+      "route": "/"
+    },
+    {
+      "name": "Pricing",
+      "route": "/pricing"
+    },
+    {
+      "name": "Dashboard",
+      "route": "/dashboard"
+    },
+    {
+      "name": "Showcase",
+      "route": "/components"
+    }
+  ],
+  "install": "npx uikit-studio add lime",
+  "skill": "lime-ui",
+  "agentPrompt": "Build me a website styled exactly like the \"Lime\" design from uikit.studio.\nDesign spec (agent-readable): https://uikit.studio/kit/lime/llms.txt\nMachine manifest: https://uikit.studio/kit/lime/manifest.json\nReference kit (clone to copy the real components/tokens): https://github.com/kernelcode/lime-uikit\nMatch its color tokens (light + dark), fonts, radius and component set. Keep full dark mode and responsive layout."
+}

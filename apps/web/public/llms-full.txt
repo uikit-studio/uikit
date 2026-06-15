@@ -1,0 +1,278 @@
+# uikit.studio — all kit design specs
+
+Generated from 3 kits. Each section is a self-contained, agent-readable design brief.
+
+
+---
+
+# Aurora — uikit.studio design spec
+
+> Glassy SaaS dashboard kit
+
+A clean, glassy SaaS kit — cool slate + blue, Sora display, glassmorphism cards and a gradient highlight. Light + dark, EN/AR + RTL. Runnable React app with landing, pricing, dashboard and a components showcase.
+
+This file is **agent-readable**. If a developer asked you to build a site with the "Aurora" design, reproduce the design system below exactly — tokens, fonts, radius and components — in their stack, with full dark mode and a responsive layout.
+
+## Identity
+- **id**: aurora
+- **source**: official (verified)
+- **license**: MIT
+- **repo**: https://github.com/uikit-studio/aurora-uikit
+- **live demo**: https://uikit.studio/demos/aurora/
+- **gallery**: https://uikit.studio/kit/aurora
+- **styling**: tailwind + tokens
+- **frameworks**: react
+
+## Design intent (prompt)
+A clean SaaS kit with a glassy dashboard. Blue primary (#3b82f6), Inter body + Sora display, glassmorphism cards, soft glass shadow, light + dark. React-first. Ship a dashboard and a landing page template, with EN/AR + RTL.
+
+## Typography
+- **display**: Sora
+- **sans / body**: Inter
+- **mono**: JetBrains Mono
+
+## Radius
+- base `--radius`: `1rem`
+
+## Brand scale
+- `50`: `#eff6ff`
+- `100`: `#dbeafe`
+- `200`: `#bfdbfe`
+- `300`: `#93c5fd`
+- `400`: `#60a5fa`
+- `500`: `#3b82f6`
+- `600`: `#2563eb`
+- `700`: `#1d4ed8`
+
+## Color tokens — light
+- `--color-primary`: `#3b82f6`
+- `--color-accent`: `#6366f1`
+- `--color-background`: `#f5f8fd`
+- `--color-foreground`: `#0b1324`
+- `--color-card`: `#ffffff`
+- `--color-muted`: `#eef2fb`
+- `--color-border`: `#e2e8f5`
+
+## Color tokens — dark
+- `--color-background`: `#060b16`
+- `--color-foreground`: `#e8eefb`
+- `--color-card`: `#0e1626`
+- `--color-primary`: `#60a5fa`
+- `--color-accent`: `#818cf8`
+- `--color-border`: `#1d2a44`
+
+## Components
+- Button
+- Card
+- Input
+- Badge
+- Pill
+- Mark
+- Marquee
+- Container
+
+## Blocks
+- StatCards
+- Footer
+
+## Pages
+- Landing → `/`
+- Pricing → `/pricing`
+- Dashboard → `/dashboard`
+- Showcase → `/components`
+
+## How to reproduce this design
+**Option A — clone the kit (fastest, exact):**
+```bash
+git clone https://github.com/uikit-studio/aurora-uikit my-app
+cd my-app/react && pnpm install && pnpm dev
+```
+The real tokens live in `design/theme.css` + `design/tokens.json`; components in `react/src/components`. Build the developer's pages against those.
+
+**Option B — apply the design system directly:** set the light + dark color tokens above as CSS variables, load the three fonts, use the base radius, and build the listed components and pages. Keep dark mode and EN/AR + RTL parity if the target needs it.
+
+**Option C — add via CLI:** `npx uikit-studio add aurora` (Claude Code skill: `aurora-ui`)
+
+
+---
+
+# Lime — uikit.studio design spec
+
+> Limey digital-card kit
+
+A limey product kit — warm cream + near-black ink + a vivid acid-lime accent. Heavy Hanken Grotesk display, monospace micro-labels, highlight-marker headings, a marquee and dark bento sections. Light + dark, EN/AR + RTL. Runnable React app.
+
+This file is **agent-readable**. If a developer asked you to build a site with the "Lime" design, reproduce the design system below exactly — tokens, fonts, radius and components — in their stack, with full dark mode and a responsive layout.
+
+## Identity
+- **id**: lime
+- **source**: community
+- **license**: MIT
+- **repo**: https://github.com/kernelcode/lime-uikit
+- **live demo**: https://uikit.studio/demos/lime/
+- **gallery**: https://uikit.studio/kit/lime
+- **styling**: tailwind + tokens
+- **frameworks**: react
+
+## Design intent (prompt)
+A limey digital-business-card kit — warm cream + near-black ink + a vivid acid-lime accent, heavy Hanken Grotesk display, monospace micro-labels, highlight-marker headings, a marquee and dark bento sections. React-first. Full dark mode and EN/AR + RTL. Ship landing, pricing, dashboard, and a components showcase.
+
+## Typography
+- **display**: Bricolage Grotesque
+- **sans / body**: Inter
+- **mono**: JetBrains Mono
+
+## Radius
+- base `--radius`: `1.5rem`
+
+## Brand scale
+- `50`: `#f8ffe5`
+- `100`: `#eeffb8`
+- `200`: `#e1ff80`
+- `300`: `#d3f94d`
+- `400`: `#c8f135`
+- `500`: `#a8d119`
+- `600`: `#84a300`
+- `700`: `#5f7600`
+
+## Color tokens — light
+- `--color-primary`: `#c8f135`
+- `--color-mark`: `#c8f135`
+- `--color-background`: `#f5f3ea`
+- `--color-foreground`: `#0f0f0c`
+- `--color-card`: `#ffffff`
+- `--color-muted`: `#ece9dd`
+- `--color-border`: `#e2ded0`
+
+## Color tokens — dark
+- `--color-background`: `#0e0e0b`
+- `--color-foreground`: `#f4f3ea`
+- `--color-card`: `#18180f`
+- `--color-primary`: `#c8f135`
+- `--color-muted`: `#1f1f15`
+- `--color-border`: `#2b2b1e`
+
+## Components
+- Button
+- Card
+- Input
+- Badge
+- Pill
+- Mark
+- Marquee
+- Container
+
+## Blocks
+- Navbar
+- Footer
+- StatCards
+
+## Pages
+- Landing → `/`
+- Pricing → `/pricing`
+- Dashboard → `/dashboard`
+- Showcase → `/components`
+
+## How to reproduce this design
+**Option A — clone the kit (fastest, exact):**
+```bash
+git clone https://github.com/kernelcode/lime-uikit my-app
+cd my-app/react && pnpm install && pnpm dev
+```
+The real tokens live in `design/theme.css` + `design/tokens.json`; components in `react/src/components`. Build the developer's pages against those.
+
+**Option B — apply the design system directly:** set the light + dark color tokens above as CSS variables, load the three fonts, use the base radius, and build the listed components and pages. Keep dark mode and EN/AR + RTL parity if the target needs it.
+
+**Option C — add via CLI:** `npx uikit-studio add lime` (Claude Code skill: `lime-ui`)
+
+
+---
+
+# Spark — uikit.studio design spec
+
+> Bold marketing & landing kit
+
+Big type, cream + ink and a vivid orange accent. Heavy grotesk display, monospace micro-labels, highlight-marker headings, marquee. Full dark mode and EN/AR + RTL. Runnable React, Vue and Web Components apps.
+
+This file is **agent-readable**. If a developer asked you to build a site with the "Spark" design, reproduce the design system below exactly — tokens, fonts, radius and components — in their stack, with full dark mode and a responsive layout.
+
+## Identity
+- **id**: spark
+- **source**: official (verified)
+- **license**: MIT
+- **repo**: https://github.com/uikit-studio/spark-uikit
+- **live demo**: https://uikit.studio/demos/spark/
+- **gallery**: https://uikit.studio/kit/spark
+- **styling**: tailwind + tokens
+- **frameworks**: react, vue, web-components
+
+## Design intent (prompt)
+A bold marketing kit — big type, orange, gradient accents, cream + ink, a grotesk display + monospace labels, highlight-marker headings. React-first. Full dark mode and EN/AR + RTL. Ship landing, pricing, dashboard, and a components showcase.
+
+## Typography
+- **display**: Space Grotesk
+- **sans / body**: Inter
+- **mono**: JetBrains Mono
+
+## Radius
+- base `--radius`: `1rem`
+
+## Brand scale
+- `50`: `#fff7ed`
+- `100`: `#ffedd5`
+- `200`: `#fed7aa`
+- `300`: `#fdba74`
+- `400`: `#fb923c`
+- `500`: `#f97316`
+- `600`: `#ea580c`
+- `700`: `#c2410c`
+
+## Color tokens — light
+- `--color-primary`: `#f97316`
+- `--color-mark`: `#fb923c`
+- `--color-background`: `#faf6ee`
+- `--color-foreground`: `#181410`
+- `--color-card`: `#ffffff`
+- `--color-muted`: `#f1ebe0`
+- `--color-border`: `#e7dfd2`
+
+## Color tokens — dark
+- `--color-background`: `#14100b`
+- `--color-foreground`: `#f7efe2`
+- `--color-card`: `#1d1812`
+- `--color-primary`: `#fb923c`
+- `--color-muted`: `#241d15`
+- `--color-border`: `#322a1f`
+
+## Components
+- Button
+- Card
+- Input
+- Badge
+- Pill
+- Mark
+- Marquee
+- Container
+
+## Blocks
+- Navbar
+- Footer
+- StatCards
+
+## Pages
+- Landing → `/`
+- Pricing → `/pricing`
+- Dashboard → `/dashboard`
+- Showcase → `/components`
+
+## How to reproduce this design
+**Option A — clone the kit (fastest, exact):**
+```bash
+git clone https://github.com/uikit-studio/spark-uikit my-app
+cd my-app/react && pnpm install && pnpm dev
+```
+The real tokens live in `design/theme.css` + `design/tokens.json`; components in `react/src/components`. Build the developer's pages against those.
+
+**Option B — apply the design system directly:** set the light + dark color tokens above as CSS variables, load the three fonts, use the base radius, and build the listed components and pages. Keep dark mode and EN/AR + RTL parity if the target needs it.
+
+**Option C — add via CLI:** `npx uikit-studio add spark` (Claude Code skill: `spark-ui`)

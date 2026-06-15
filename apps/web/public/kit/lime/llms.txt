@@ -1,0 +1,88 @@
+# Lime — uikit.studio design spec
+
+> Limey digital-card kit
+
+A limey product kit — warm cream + near-black ink + a vivid acid-lime accent. Heavy Hanken Grotesk display, monospace micro-labels, highlight-marker headings, a marquee and dark bento sections. Light + dark, EN/AR + RTL. Runnable React app.
+
+This file is **agent-readable**. If a developer asked you to build a site with the "Lime" design, reproduce the design system below exactly — tokens, fonts, radius and components — in their stack, with full dark mode and a responsive layout.
+
+## Identity
+- **id**: lime
+- **source**: community
+- **license**: MIT
+- **repo**: https://github.com/kernelcode/lime-uikit
+- **live demo**: https://uikit.studio/demos/lime/
+- **gallery**: https://uikit.studio/kit/lime
+- **styling**: tailwind + tokens
+- **frameworks**: react
+
+## Design intent (prompt)
+A limey digital-business-card kit — warm cream + near-black ink + a vivid acid-lime accent, heavy Hanken Grotesk display, monospace micro-labels, highlight-marker headings, a marquee and dark bento sections. React-first. Full dark mode and EN/AR + RTL. Ship landing, pricing, dashboard, and a components showcase.
+
+## Typography
+- **display**: Bricolage Grotesque
+- **sans / body**: Inter
+- **mono**: JetBrains Mono
+
+## Radius
+- base `--radius`: `1.5rem`
+
+## Brand scale
+- `50`: `#f8ffe5`
+- `100`: `#eeffb8`
+- `200`: `#e1ff80`
+- `300`: `#d3f94d`
+- `400`: `#c8f135`
+- `500`: `#a8d119`
+- `600`: `#84a300`
+- `700`: `#5f7600`
+
+## Color tokens — light
+- `--color-primary`: `#c8f135`
+- `--color-mark`: `#c8f135`
+- `--color-background`: `#f5f3ea`
+- `--color-foreground`: `#0f0f0c`
+- `--color-card`: `#ffffff`
+- `--color-muted`: `#ece9dd`
+- `--color-border`: `#e2ded0`
+
+## Color tokens — dark
+- `--color-background`: `#0e0e0b`
+- `--color-foreground`: `#f4f3ea`
+- `--color-card`: `#18180f`
+- `--color-primary`: `#c8f135`
+- `--color-muted`: `#1f1f15`
+- `--color-border`: `#2b2b1e`
+
+## Components
+- Button
+- Card
+- Input
+- Badge
+- Pill
+- Mark
+- Marquee
+- Container
+
+## Blocks
+- Navbar
+- Footer
+- StatCards
+
+## Pages
+- Landing → `/`
+- Pricing → `/pricing`
+- Dashboard → `/dashboard`
+- Showcase → `/components`
+
+## How to reproduce this design
+**Option A — clone the kit (fastest, exact):**
+```bash
+git clone https://github.com/kernelcode/lime-uikit my-app
+cd my-app/react && pnpm install && pnpm dev
+```
+The real tokens live in `design/theme.css` + `design/tokens.json`; components in `react/src/components`. Build the developer's pages against those.
+
+**Option B — apply the design system directly:** set the light + dark color tokens above as CSS variables, load the three fonts, use the base radius, and build the listed components and pages. Keep dark mode and EN/AR + RTL parity if the target needs it.
+
+**Option C — add via CLI:** `npx uikit-studio add lime` (Claude Code skill: `lime-ui`)

@@ -25,8 +25,9 @@ for r in pricing dashboard components; do
   if [ -d "$src/src/routes" ] || true; then mkdir -p "$demo/$r" && cp "$demo/index.html" "$demo/$r/index.html"; fi
 done
 
-echo "▸ [4/5] validate gallery entries"
+echo "▸ [4/5] validate gallery entries + regenerate agent specs"
 node "$root/scripts/validate-content.mjs"
+node "$root/apps/web/scripts/gen-agent-manifests.mjs"
 
 echo "▸ [5/5] deploy"
 pnpm --filter @uikit/web deploy

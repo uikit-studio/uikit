@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowLeft,
   BadgeCheck,
+  Bot,
   CheckCircle2,
   Copy,
   Github,
@@ -31,6 +32,7 @@ const REVIEW_CHECKS = [
   "Verified kits mirror their screenshots into the repo; community kits pin external URLs to a tag/SHA.",
   "The kit's own uikit.json is contract-valid (npx uikit-studio validate).",
   "The demo URL loads and matches the screenshots.",
+  "The repo ships AGENTS.md + llms.txt at its root (the CLI scaffolds both).",
   "License is real and permissive; no malware in install scripts.",
 ];
 
@@ -232,6 +234,25 @@ function SubmitPage() {
         <p className="mt-6 font-mono text-xs text-faint">
           Reference shape: the <Mono>spark-uikit</Mono> repo — runnable React/Vue/Web Components, the
           four pages, full design system, EN/AR + RTL.
+        </p>
+      </section>
+
+      {/* Agent-ready */}
+      <section className="mt-8 rounded-2xl border border-brand/30 bg-gradient-to-br from-brand/10 via-surface/50 to-surface/50 p-7">
+        <h2 className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-brand">
+          <Bot className="h-3.5 w-3.5" /> agent-ready by default
+        </h2>
+        <p className="mt-4 text-sm leading-relaxed text-muted">
+          When your kit merges, the gallery automatically generates its agent design spec —{" "}
+          <Mono>/kit/&lt;id&gt;/llms.txt</Mono> and <Mono>/kit/&lt;id&gt;/manifest.json</Mono> — from your
+          entry JSON, and lists it in the site‑wide <Mono>/llms.txt</Mono>. That's what lets any developer
+          say <span className="text-fg">“build me a website with this design: uikit.studio/kit/&lt;id&gt;”</span>{" "}
+          and have their agent reproduce it exactly.
+        </p>
+        <p className="mt-4 text-sm leading-relaxed text-muted">
+          Keep <Mono>AGENTS.md</Mono> and <Mono>llms.txt</Mono> at your repo root too (the{" "}
+          <Mono>uikit new</Mono> scaffold writes both) so pointing an agent at the repo works as well.
+          Rich token + component data in your JSON makes the generated spec better.
         </p>
       </section>
     </main>

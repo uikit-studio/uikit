@@ -2,10 +2,13 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import {
   ArrowLeft,
   BadgeCheck,
+  Bot,
   Boxes,
   Check,
   Copy,
   ExternalLink,
+  FileJson,
+  FileText,
   Github,
   Image as ImageIcon,
   LayoutTemplate,
@@ -16,12 +19,22 @@ import {
 import { type ReactNode, useState } from "react";
 import { getGalleryKit, type GalleryKit, type Swatch } from "~/lib/data";
 
+/** Public origin — agent prompts must use absolute URLs so they work pasted anywhere. */
+const ORIGIN = "https://uikit.studio";
+
 export const Route = createFileRoute("/kit/$id")({
   loader: async ({ params }) => {
     const kit = await getGalleryKit(params.id);
     if (!kit) throw notFound();
     return { kit };
   },
+  // Let agents that fetch this page auto-discover the machine-readable design spec.
+  head: ({ params }) => ({
+    links: [
+      { rel: "alternate", type: "text/markdown", href: `/kit/${params.id}/llms.txt`, title: "Agent design spec (llms.txt)" },
+      { rel: "alternate", type: "application/json", href: `/kit/${params.id}/manifest.json`, title: "Agent manifest (JSON)" },
+    ],
+  }),
   component: KitDetailPage,
   notFoundComponent: () => (
     <div className="mx-auto max-w-[1400px] px-5 py-32 text-center sm:px-8">
@@ -63,6 +76,9 @@ function KitDetailPage() {
                 community
               </span>
             )}
+            <span className="flex items-center gap-1 rounded-full border border-brand/40 bg-brand/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wide text-brand">
+              <Bot className="h-3 w-3" /> agent-ready
+            </span>
           </div>
           <p className="mt-4 text-lg leading-relaxed text-muted">{kit.description}</p>
           <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-xs text-faint">
@@ -97,6 +113,10 @@ function KitDetailPage() {
           )}
         </div>
       </header>
+
+      {/* Agent-ready — the headline feature: point any AI agent at this URL and it
+          reproduces the exact design from the machine-readable spec. */}
+      <AgentReady kit={kit} />
 
       {/* Live preview — embedded when a demo URL is provided. Verified kits use a
           same-origin demo; community kits embed their own (cross-origin) URL,
@@ -309,6 +329,74 @@ function demoLabel(url: string): string {
   return url.replace(/^https?:\/\//, "");
 }
 
+/** The headline feature: a copy-paste prompt + links to the machine-readable
+ * design spec, so any AI agent can rebuild this exact design in the dev's stack. */
+function AgentReady({ kit }: { kit: GalleryKit }) {
+  const url = `${ORIGIN}/kit/${kit.id}`;
+  const prompt =
+    `Build me a website styled exactly like this design: ${url} — it's agent-ready. ` +
+    `Read the spec at ${url}/llms.txt and match its color tokens (light + dark), fonts, ` +
+    `radius and components. Keep full dark mode and a responsive layout.`;
+  return (
+    <section className="mt-10">
+      <SectionLabel icon={<Bot className="h-3.5 w-3.5" />}>agent-ready</SectionLabel>
+      <div className="mt-4 overflow-hidden rounded-2xl border border-brand/30 bg-gradient-to-br from-brand/10 via-surface/40 to-surface/40">
+        <div className="grid gap-6 p-6 sm:p-7 lg:grid-cols-[1fr_300px]">
+          <div className="min-w-0">
+            <h3 className="font-display text-xl font-bold tracking-tight text-fg">
+              Build this with your AI agent
+            </h3>
+            <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted">
+              Paste this into Claude Code, Cursor or Codex. The agent reads the machine-readable
+              design spec at this URL and reproduces the exact tokens, fonts, radius and components —
+              in <em>your</em> stack.
+            </p>
+            <div className="mt-4">
+              <CopyBlock text={prompt} />
+            </div>
+          </div>
+
+          <div className="space-y-2.5">
+            <p className="font-mono text-[11px] uppercase tracking-wide text-faint">the spec</p>
+            <a
+              href={`/kit/${kit.id}/llms.txt`}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-2.5 rounded-xl border border-line bg-bg/60 px-3.5 py-3 text-sm text-fg transition-colors hover:border-line-strong"
+            >
+              <FileText className="h-4 w-4 shrink-0 text-brand" />
+              <span className="min-w-0">
+                <span className="block font-medium">llms.txt</span>
+                <span className="block truncate font-mono text-[11px] text-faint">design brief for agents</span>
+              </span>
+              <ExternalLink className="ml-auto h-3.5 w-3.5 shrink-0 text-faint" />
+            </a>
+            <a
+              href={`/kit/${kit.id}/manifest.json`}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-2.5 rounded-xl border border-line bg-bg/60 px-3.5 py-3 text-sm text-fg transition-colors hover:border-line-strong"
+            >
+              <FileJson className="h-4 w-4 shrink-0 text-brand" />
+              <span className="min-w-0">
+                <span className="block font-medium">manifest.json</span>
+                <span className="block truncate font-mono text-[11px] text-faint">tokens · fonts · components</span>
+              </span>
+              <ExternalLink className="ml-auto h-3.5 w-3.5 shrink-0 text-faint" />
+            </a>
+            <p className="pt-1 font-mono text-[10px] leading-relaxed text-faint">
+              Discoverable site-wide at{" "}
+              <a href="/llms.txt" target="_blank" rel="noreferrer" className="text-muted underline hover:text-fg">
+                /llms.txt
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function SectionLabel({ icon, children }: { icon?: ReactNode; children: ReactNode }) {
   return (
     <h2 className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-faint">
@@ -389,5 +477,29 @@ function CopyLine({ text }: { text: string }) {
       <span className="flex-1 truncate">{text}</span>
       {copied ? <Check className="h-3.5 w-3.5 text-success" /> : <Copy className="h-3.5 w-3.5 text-faint" />}
     </button>
+  );
+}
+
+/** Multi-line copyable block — for the agent prompt (too long for CopyLine). */
+function CopyBlock({ text }: { text: string }) {
+  const [copied, setCopied] = useState(false);
+  return (
+    <div className="relative rounded-xl border border-line bg-bg/70">
+      <pre className="max-h-44 overflow-auto whitespace-pre-wrap break-words p-4 pr-12 font-mono text-xs leading-relaxed text-fg">
+        {text}
+      </pre>
+      <button
+        onClick={() => {
+          navigator.clipboard?.writeText(text);
+          setCopied(true);
+          setTimeout(() => setCopied(false), 1500);
+        }}
+        aria-label="Copy prompt"
+        className="absolute right-2 top-2 inline-flex items-center gap-1.5 rounded-lg border border-line bg-surface px-2.5 py-1.5 font-mono text-[11px] text-muted transition-colors hover:border-line-strong hover:text-fg"
+      >
+        {copied ? <Check className="h-3.5 w-3.5 text-success" /> : <Copy className="h-3.5 w-3.5" />}
+        {copied ? "copied" : "copy"}
+      </button>
+    </div>
   );
 }

@@ -1,0 +1,93 @@
+{
+  "$schema": "https://uikit.studio/agent-manifest.schema.json",
+  "id": "spark",
+  "name": "Spark",
+  "tagline": "Bold marketing & landing kit",
+  "description": "Big type, cream + ink and a vivid orange accent. Heavy grotesk display, monospace micro-labels, highlight-marker headings, marquee. Full dark mode and EN/AR + RTL. Runnable React, Vue and Web Components apps.",
+  "version": "0.2.0",
+  "source": "official",
+  "verified": true,
+  "license": "MIT",
+  "repo": "https://github.com/uikit-studio/spark-uikit",
+  "demo": "https://uikit.studio/demos/spark/",
+  "gallery": "https://uikit.studio/kit/spark",
+  "spec": "https://uikit.studio/kit/spark/llms.txt",
+  "styling": "tailwind + tokens",
+  "frameworks": [
+    "react",
+    "vue",
+    "web-components"
+  ],
+  "prompt": "A bold marketing kit — big type, orange, gradient accents, cream + ink, a grotesk display + monospace labels, highlight-marker headings. React-first. Full dark mode and EN/AR + RTL. Ship landing, pricing, dashboard, and a components showcase.",
+  "fonts": {
+    "display": "Space Grotesk",
+    "sans": "Inter",
+    "mono": "JetBrains Mono"
+  },
+  "radius": "1rem",
+  "tokens": {
+    "light": {
+      "primary": "#f97316",
+      "mark": "#fb923c",
+      "background": "#faf6ee",
+      "foreground": "#181410",
+      "card": "#ffffff",
+      "muted": "#f1ebe0",
+      "border": "#e7dfd2"
+    },
+    "dark": {
+      "background": "#14100b",
+      "foreground": "#f7efe2",
+      "card": "#1d1812",
+      "primary": "#fb923c",
+      "muted": "#241d15",
+      "border": "#322a1f"
+    }
+  },
+  "brandScale": {
+    "50": "#fff7ed",
+    "100": "#ffedd5",
+    "200": "#fed7aa",
+    "300": "#fdba74",
+    "400": "#fb923c",
+    "500": "#f97316",
+    "600": "#ea580c",
+    "700": "#c2410c"
+  },
+  "components": [
+    "Button",
+    "Card",
+    "Input",
+    "Badge",
+    "Pill",
+    "Mark",
+    "Marquee",
+    "Container"
+  ],
+  "blocks": [
+    "Navbar",
+    "Footer",
+    "StatCards"
+  ],
+  "templates": [
+    {
+      "name": "Landing",
+      "route": "/"
+    },
+    {
+      "name": "Pricing",
+      "route": "/pricing"
+    },
+    {
+      "name": "Dashboard",
+      "route": "/dashboard"
+    },
+    {
+      "name": "Showcase",
+      "route": "/components"
+    }
+  ],
+  "install": "npx uikit-studio add spark",
+  "skill": "spark-ui",
+  "agentPrompt": "Build me a website styled exactly like the \"Spark\" design from uikit.studio.\nDesign spec (agent-readable): https://uikit.studio/kit/spark/llms.txt\nMachine manifest: https://uikit.studio/kit/spark/manifest.json\nReference kit (clone to copy the real components/tokens): https://github.com/uikit-studio/spark-uikit\nMatch its color tokens (light + dark), fonts, radius and component set. Keep full dark mode and responsive layout."
+}

@@ -1,0 +1,88 @@
+# Spark — uikit.studio design spec
+
+> Bold marketing & landing kit
+
+Big type, cream + ink and a vivid orange accent. Heavy grotesk display, monospace micro-labels, highlight-marker headings, marquee. Full dark mode and EN/AR + RTL. Runnable React, Vue and Web Components apps.
+
+This file is **agent-readable**. If a developer asked you to build a site with the "Spark" design, reproduce the design system below exactly — tokens, fonts, radius and components — in their stack, with full dark mode and a responsive layout.
+
+## Identity
+- **id**: spark
+- **source**: official (verified)
+- **license**: MIT
+- **repo**: https://github.com/uikit-studio/spark-uikit
+- **live demo**: https://uikit.studio/demos/spark/
+- **gallery**: https://uikit.studio/kit/spark
+- **styling**: tailwind + tokens
+- **frameworks**: react, vue, web-components
+
+## Design intent (prompt)
+A bold marketing kit — big type, orange, gradient accents, cream + ink, a grotesk display + monospace labels, highlight-marker headings. React-first. Full dark mode and EN/AR + RTL. Ship landing, pricing, dashboard, and a components showcase.
+
+## Typography
+- **display**: Space Grotesk
+- **sans / body**: Inter
+- **mono**: JetBrains Mono
+
+## Radius
+- base `--radius`: `1rem`
+
+## Brand scale
+- `50`: `#fff7ed`
+- `100`: `#ffedd5`
+- `200`: `#fed7aa`
+- `300`: `#fdba74`
+- `400`: `#fb923c`
+- `500`: `#f97316`
+- `600`: `#ea580c`
+- `700`: `#c2410c`
+
+## Color tokens — light
+- `--color-primary`: `#f97316`
+- `--color-mark`: `#fb923c`
+- `--color-background`: `#faf6ee`
+- `--color-foreground`: `#181410`
+- `--color-card`: `#ffffff`
+- `--color-muted`: `#f1ebe0`
+- `--color-border`: `#e7dfd2`
+
+## Color tokens — dark
+- `--color-background`: `#14100b`
+- `--color-foreground`: `#f7efe2`
+- `--color-card`: `#1d1812`
+- `--color-primary`: `#fb923c`
+- `--color-muted`: `#241d15`
+- `--color-border`: `#322a1f`
+
+## Components
+- Button
+- Card
+- Input
+- Badge
+- Pill
+- Mark
+- Marquee
+- Container
+
+## Blocks
+- Navbar
+- Footer
+- StatCards
+
+## Pages
+- Landing → `/`
+- Pricing → `/pricing`
+- Dashboard → `/dashboard`
+- Showcase → `/components`
+
+## How to reproduce this design
+**Option A — clone the kit (fastest, exact):**
+```bash
+git clone https://github.com/uikit-studio/spark-uikit my-app
+cd my-app/react && pnpm install && pnpm dev
+```
+The real tokens live in `design/theme.css` + `design/tokens.json`; components in `react/src/components`. Build the developer's pages against those.
+
+**Option B — apply the design system directly:** set the light + dark color tokens above as CSS variables, load the three fonts, use the base radius, and build the listed components and pages. Keep dark mode and EN/AR + RTL parity if the target needs it.
+
+**Option C — add via CLI:** `npx uikit-studio add spark` (Claude Code skill: `spark-ui`)

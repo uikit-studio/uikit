@@ -1,0 +1,13 @@
+# uikit.studio
+
+> A curated gallery of runnable, **agent-ready** UI kits. Point any AI agent (Claude Code, Cursor, Codex) at a kit URL and it can reproduce that exact design.
+
+Paste into your agent: *“build me a website with this design: https://uikit.studio/kit/<id>”*. Each kit exposes a full design spec and a machine manifest.
+
+## Kits
+- [Aurora](https://uikit.studio/kit/aurora/llms.txt): Glassy SaaS dashboard kit. Spec: https://uikit.studio/kit/aurora/llms.txt · Manifest: https://uikit.studio/kit/aurora/manifest.json · Repo: https://github.com/uikit-studio/aurora-uikit
+- [Lime](https://uikit.studio/kit/lime/llms.txt): Limey digital-card kit. Spec: https://uikit.studio/kit/lime/llms.txt · Manifest: https://uikit.studio/kit/lime/manifest.json · Repo: https://github.com/kernelcode/lime-uikit
+- [Spark](https://uikit.studio/kit/spark/llms.txt): Bold marketing & landing kit. Spec: https://uikit.studio/kit/spark/llms.txt · Manifest: https://uikit.studio/kit/spark/manifest.json · Repo: https://github.com/uikit-studio/spark-uikit
+
+## Full
+- [llms-full.txt](https://uikit.studio/llms-full.txt): every kit's design brief in one file.

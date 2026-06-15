@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, BadgeCheck, Github, Layers, Search, Sparkles } from "lucide-react";
+import { ArrowUpRight, BadgeCheck, Bot, Github, Layers, Search, Sparkles } from "lucide-react";
 import { useMemo, useState } from "react";
 import { getCategories, getGalleryKits, type GalleryCard } from "~/lib/data";
 
@@ -72,6 +72,59 @@ function GalleryHome() {
           <span className="flex items-center gap-2">
             <Sparkles className="h-3.5 w-3.5 text-brand-2" /> react · vue · web components
           </span>
+        </div>
+      </section>
+
+      {/* Agent-ready band — the headline capability. */}
+      <section className="mb-12">
+        <div className="relative overflow-hidden rounded-3xl border border-brand/30 bg-gradient-to-br from-brand/10 via-surface/50 to-surface/50 p-7 sm:p-10">
+          <div className="relative z-10 grid gap-8 lg:grid-cols-[1.1fr_1fr] lg:items-center">
+            <div>
+              <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-brand">
+                <Bot className="h-4 w-4" /> agent-ready
+              </p>
+              <h2 className="mt-4 max-w-xl font-display text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
+                Paste a kit's URL into your AI agent. Get the <span className="grad-text">exact design.</span>
+              </h2>
+              <p className="mt-4 max-w-lg text-muted">
+                Every kit publishes a machine-readable design spec — tokens, fonts, radius, components.
+                Claude Code, Cursor and Codex read it straight from the URL and build in your stack.
+              </p>
+              <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                {[
+                  { n: "1", t: "Paste the URL", d: "“build me a site with this design: uikit.studio/kit/…”" },
+                  { n: "2", t: "Agent reads the spec", d: "llms.txt + manifest.json, auto-discovered" },
+                  { n: "3", t: "Builds in your stack", d: "exact tokens, dark mode, responsive" },
+                ].map((s) => (
+                  <div key={s.n} className="rounded-xl border border-line bg-bg/50 p-3.5">
+                    <span className="font-mono text-xs text-brand">0{s.n}</span>
+                    <p className="mt-1.5 text-sm font-medium text-fg">{s.t}</p>
+                    <p className="mt-1 text-xs leading-relaxed text-faint">{s.d}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-2xl border border-line bg-bg/70 p-4 font-mono text-xs leading-relaxed shadow-lg">
+              <p className="flex items-center gap-2 text-faint">
+                <span className="h-2 w-2 rounded-full bg-brand" /> your agent
+              </p>
+              <p className="mt-3 text-fg">
+                <span className="text-brand">❯</span> build me a website styled exactly like this design:
+              </p>
+              <p className="mt-1 break-all text-accent">https://uikit.studio/kit/spark</p>
+              <p className="mt-3 text-muted">
+                reading <span className="text-fg">/kit/spark/llms.txt</span> …
+              </p>
+              <p className="text-muted">→ tokens, fonts, radius, 8 components loaded</p>
+              <p className="text-muted">→ scaffolding landing + dashboard in your stack ✓</p>
+            </div>
+          </div>
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -left-24 -bottom-24 h-72 w-72 rounded-full opacity-30 blur-3xl"
+            style={{ background: "radial-gradient(circle, var(--color-brand), transparent 70%)" }}
+          />
         </div>
       </section>
 

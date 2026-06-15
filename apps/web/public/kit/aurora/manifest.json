@@ -1,0 +1,90 @@
+{
+  "$schema": "https://uikit.studio/agent-manifest.schema.json",
+  "id": "aurora",
+  "name": "Aurora",
+  "tagline": "Glassy SaaS dashboard kit",
+  "description": "A clean, glassy SaaS kit — cool slate + blue, Sora display, glassmorphism cards and a gradient highlight. Light + dark, EN/AR + RTL. Runnable React app with landing, pricing, dashboard and a components showcase.",
+  "version": "1.0.0",
+  "source": "official",
+  "verified": true,
+  "license": "MIT",
+  "repo": "https://github.com/uikit-studio/aurora-uikit",
+  "demo": "https://uikit.studio/demos/aurora/",
+  "gallery": "https://uikit.studio/kit/aurora",
+  "spec": "https://uikit.studio/kit/aurora/llms.txt",
+  "styling": "tailwind + tokens",
+  "frameworks": [
+    "react"
+  ],
+  "prompt": "A clean SaaS kit with a glassy dashboard. Blue primary (#3b82f6), Inter body + Sora display, glassmorphism cards, soft glass shadow, light + dark. React-first. Ship a dashboard and a landing page template, with EN/AR + RTL.",
+  "fonts": {
+    "display": "Sora",
+    "sans": "Inter",
+    "mono": "JetBrains Mono"
+  },
+  "radius": "1rem",
+  "tokens": {
+    "light": {
+      "primary": "#3b82f6",
+      "accent": "#6366f1",
+      "background": "#f5f8fd",
+      "foreground": "#0b1324",
+      "card": "#ffffff",
+      "muted": "#eef2fb",
+      "border": "#e2e8f5"
+    },
+    "dark": {
+      "background": "#060b16",
+      "foreground": "#e8eefb",
+      "card": "#0e1626",
+      "primary": "#60a5fa",
+      "accent": "#818cf8",
+      "border": "#1d2a44"
+    }
+  },
+  "brandScale": {
+    "50": "#eff6ff",
+    "100": "#dbeafe",
+    "200": "#bfdbfe",
+    "300": "#93c5fd",
+    "400": "#60a5fa",
+    "500": "#3b82f6",
+    "600": "#2563eb",
+    "700": "#1d4ed8"
+  },
+  "components": [
+    "Button",
+    "Card",
+    "Input",
+    "Badge",
+    "Pill",
+    "Mark",
+    "Marquee",
+    "Container"
+  ],
+  "blocks": [
+    "StatCards",
+    "Footer"
+  ],
+  "templates": [
+    {
+      "name": "Landing",
+      "route": "/"
+    },
+    {
+      "name": "Pricing",
+      "route": "/pricing"
+    },
+    {
+      "name": "Dashboard",
+      "route": "/dashboard"
+    },
+    {
+      "name": "Showcase",
+      "route": "/components"
+    }
+  ],
+  "install": "npx uikit-studio add aurora",
+  "skill": "aurora-ui",
+  "agentPrompt": "Build me a website styled exactly like the \"Aurora\" design from uikit.studio.\nDesign spec (agent-readable): https://uikit.studio/kit/aurora/llms.txt\nMachine manifest: https://uikit.studio/kit/aurora/manifest.json\nReference kit (clone to copy the real components/tokens): https://github.com/uikit-studio/aurora-uikit\nMatch its color tokens (light + dark), fonts, radius and component set. Keep full dark mode and responsive layout."
+}
