@@ -79,28 +79,27 @@ function SubmitPage() {
           body={
             <>
               <p className="text-muted">
-                Two ways in. Generate a brand-new kit from a brief with the{" "}
-                <Mono>uikit-standard</Mono> skill in Claude Code — or fork an existing kit and reskin
-                it. Either way, <span className="text-fg">give it its own identity</span> (palette,
-                fonts, radius); never copy another kit's theme.
+                Two ways in — both give your kit its <span className="text-fg">own identity AND its
+                own structure</span>. Never recolor another kit: two kits should not be recognizable
+                as the same layout.
               </p>
               <p className="mt-4 mb-2 font-mono text-[11px] uppercase tracking-wide text-faint">
-                option a — generate from a brief
+                option a — new kit from the base canvas
               </p>
+              <Cmd>npx uikit-studio new https://github.com/uikit-studio/base-uikit my-kit</Cmd>
               <Note>
-                In Claude Code, run the <Mono>uikit-standard</Mono> skill and describe your kit:
-                <br />
-                <span className="text-accent">
-                  "a dark fintech dashboard kit — indigo, Inter, glass cards, EN/AR + RTL"
-                </span>
+                The base is neutral plumbing (routing, i18n/RTL, dark mode, a token system). Open it
+                in <Mono>Claude Code</Mono> / <Mono>Codex</Mono>, describe your kit, then point the
+                editor at <Mono>prompts/build.md</Mono> — the brief for building it the uikit way (a
+                full, original system, not a demo).
               </Note>
               <p className="mt-4 mb-2 font-mono text-[11px] uppercase tracking-wide text-faint">
-                option b — start from an existing kit
+                option b — remix an existing kit into a new one
               </p>
-              <Cmd>npx uikit-studio new ./aurora-uikit my-kit</Cmd>
+              <Cmd>npx uikit-studio remix ./aurora-uikit my-kit</Cmd>
               <p className="mt-2 text-xs text-faint">
-                Tip: <Mono>npm i -g uikit-studio</Mono> installs the <Mono>uikit</Mono> command
-                globally, so you can drop the <Mono>npx uikit-studio</Mono> prefix.
+                Drops a <Mono>REMIX.md</Mono> brief: give it a new identity <em>and</em> restructure
+                the pages. Tip: <Mono>npm i -g uikit-studio</Mono> drops the <Mono>npx</Mono> prefix.
               </p>
             </>
           }
@@ -108,20 +107,21 @@ function SubmitPage() {
 
         <Step
           n={2}
-          title="Make it runnable & rich"
+          title="Make it a full system (not a sampler)"
           icon={<Rocket className="h-4 w-4" />}
           body={
             <>
               <p className="text-muted">
-                It must run out of the box and be a full product, not a sampler.
+                It must run out of the box and read like a shipping product. The bar:
               </p>
               <Cmd>cd my-kit/react && pnpm install && pnpm dev</Cmd>
               <ul className="mt-4 space-y-2 text-sm text-muted">
                 {[
-                  "Four real pages: Landing, Pricing, Dashboard, and a Components showcase.",
-                  "A full design system — light + dark tokens, a type scale, a real component set.",
-                  "EN + AR with full RTL: a language toggle, an Arabic typeface, a layout that flips.",
-                  "Real loaded fonts: a display face, a body face, and a monospace for micro-labels.",
+                  "A full design system: a light + dark color moodboard, a type scale, and a documented radius scale — every component + its variants.",
+                  "All four pages for real — incl. a dense, full Dashboard (multiple tables, charts, users, activity, filters, empty/loading states).",
+                  "Responsive: mobile → tablet → desktop (sm/md/lg/xl). Nav collapses, grids reflow.",
+                  "EN + AR with full RTL, a dark-mode toggle, and real loaded fonts (self-host the Arabic face if needed).",
+                  "Everything defined & visible — colors, radius, fonts, breakpoints live in tokens + README + uikit.json, not magic numbers.",
                 ].map((t) => (
                   <li key={t} className="flex gap-2.5">
                     <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-success" />
