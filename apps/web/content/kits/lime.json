@@ -12,7 +12,7 @@
   "categories": ["marketing", "landing"],
   "tags": ["lime", "cream", "grotesk", "rtl"],
   "demoUrl": "/demos/lime/",
-  "repo": "https://github.com/kernelcode/lime-uikit",
+  "repo": "https://github.com/KernelCode/lime-uikit",
   "homepage": "https://uikit.studio/demos/lime/",
   "license": "MIT",
   "styling": "tailwind + tokens",
@@ -69,6 +69,7 @@
     "cd my-app/react && pnpm install && pnpm dev",
     "Open in Claude Code and ask: 'build a digital business card page using this kit'"
   ],
+  "video": "/kits/lime/preview.webm",
   "screenshots": [
     { "kind": "landing", "url": "/kits/lime/landing.png" },
     { "kind": "dashboard", "url": "/kits/lime/dashboard.png" },

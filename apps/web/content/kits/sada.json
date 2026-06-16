@@ -72,10 +72,11 @@
     "cd my-app/react && pnpm install && pnpm dev",
     "Open in Claude Code and ask: 'build a media homepage using this kit'"
   ],
+  "video": "/kits/sada/preview.webm",
   "screenshots": [
-    { "kind": "landing", "url": "https://cdn.jsdelivr.net/gh/KernelCode/sada-uikit@a5dec64545e124e94f482e9f79ccf0e46abf5119/screenshots/landing.png" },
-    { "kind": "other", "url": "https://cdn.jsdelivr.net/gh/KernelCode/sada-uikit@a5dec64545e124e94f482e9f79ccf0e46abf5119/screenshots/landing-dark.png" },
-    { "kind": "other", "url": "https://cdn.jsdelivr.net/gh/KernelCode/sada-uikit@a5dec64545e124e94f482e9f79ccf0e46abf5119/screenshots/components.png" },
-    { "kind": "other", "url": "https://cdn.jsdelivr.net/gh/KernelCode/sada-uikit@a5dec64545e124e94f482e9f79ccf0e46abf5119/screenshots/podcasts.png" }
+    { "kind": "landing", "url": "/kits/sada/landing.png" },
+    { "kind": "other", "url": "/kits/sada/landing-dark.png" },
+    { "kind": "other", "url": "/kits/sada/components.png" },
+    { "kind": "other", "url": "/kits/sada/podcasts.png" }
   ]
 }

@@ -1,0 +1,7 @@
+# Kit assets are fetched at build time from each kit's own repo (never committed).
+# See scripts/fetch-kit-assets.mjs.
+public/kits/
+
+# record-previews.mjs scratch dirs
+.preview-tmp/
+.preview-out/

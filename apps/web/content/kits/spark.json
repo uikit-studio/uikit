@@ -69,6 +69,7 @@
     "cd my-app/react && pnpm install && pnpm dev",
     "Open in Claude Code and ask: 'build a product landing page using this kit'"
   ],
+  "video": "/kits/spark/preview.webm",
   "screenshots": [
     { "kind": "landing", "url": "/kits/spark/landing.png" }
   ]

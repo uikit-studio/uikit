@@ -64,7 +64,7 @@ function GalleryHome() {
       </section>
 
       {/* Filter row */}
-      <section className="sticky top-16 z-30 -mx-5 mb-7 border-y border-line bg-bg/85 px-5 py-3 glass sm:-mx-8 sm:px-8">
+      <section className="sticky top-16 z-30 -mx-5 mb-7 border-y border-line px-5 py-3 glass sm:-mx-8 sm:px-8">
         <div className="flex items-center justify-between gap-4">
           <div className="flex flex-1 items-center gap-2 overflow-x-auto">
             <Chip label={t("filter.all")} active={active === "all"} onClick={() => setActive("all")} />
@@ -106,8 +106,11 @@ function GalleryHome() {
       <AgentBand />
 
       {/* Submit CTA */}
-      <section className="mt-16" ref={useReveal<HTMLElement>()}>
-        <div className="reveal flex flex-col items-center gap-5 rounded-4xl border border-line bg-surface px-6 py-14 text-center">
+      <section className="mt-16">
+        <div
+          ref={useReveal<HTMLDivElement>()}
+          className="reveal flex flex-col items-center gap-5 rounded-4xl border border-line bg-surface px-6 py-14 text-center"
+        >
           <h2 className="max-w-xl font-display text-3xl font-extrabold tracking-tight sm:text-4xl">
             {t("submitcta.titleA")} <span className="grad-text">{t("submitcta.titleB")}</span>
           </h2>
@@ -150,7 +153,19 @@ function KitCard({ kit, index }: { kit: GalleryCard; index: number }) {
     >
       {/* Thumbnail */}
       <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-line bg-surface card transition-shadow duration-300 group-hover:card-hover">
-        {kit.thumb ? (
+        {kit.video ? (
+          <video
+            src={kit.video}
+            poster={kit.thumb ?? undefined}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            aria-label={`${kit.name} preview`}
+            className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
+          />
+        ) : kit.thumb ? (
           <img
             src={kit.thumb}
             alt={`${kit.name} preview`}
@@ -200,10 +215,10 @@ function KitCard({ kit, index }: { kit: GalleryCard; index: number }) {
 /** Light feature band — the headline capability. */
 function AgentBand() {
   const { t } = useLocale();
-  const ref = useReveal<HTMLElement>();
+  const ref = useReveal<HTMLDivElement>();
   return (
-    <section className="mt-16" ref={ref}>
-      <div className="reveal overflow-hidden rounded-4xl border border-line bg-surface p-7 sm:p-10">
+    <section className="mt-16">
+      <div ref={ref} className="reveal overflow-hidden rounded-4xl border border-line bg-surface p-7 sm:p-10">
         <div className="grid gap-8 lg:grid-cols-[1.1fr_1fr] lg:items-center">
           <div>
             <p className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-accent">

@@ -1,9 +1,11 @@
 /**
  * Gallery data — pure git, no backend. Every kit is a JSON entry in
  * `apps/web/content/kits/*.json`, baked into the build via import.meta.glob.
- * Verified kits mirror their assets locally (/kits/<id>/…); community kits may
- * reference external (jsDelivr) URLs. Curation = PR review; CI validates the
- * shape (scripts/validate-content.mjs). Adding a kit means adding one JSON file.
+ * Assets (screenshots + the preview clip) live in each kit's own repo and are
+ * pulled into /kits/<id>/ at build time from kit.repo (scripts/fetch-kit-assets.mjs)
+ * — never committed here. JSON references them as /kits/<id>/… paths. Curation =
+ * PR review; CI validates the shape (scripts/validate-content.mjs). Adding a kit
+ * means adding one JSON file.
  */
 
 export interface Swatch {
@@ -44,6 +46,8 @@ export interface GalleryKit {
   skillName: string | null;
   consumeSteps: string[];
   screenshots: { kind: string; url: string }[];
+  /** Optional looping preview clip (webm). Falls back to the first screenshot. */
+  video?: string | null;
 }
 
 export interface GalleryCard {
@@ -58,6 +62,7 @@ export interface GalleryCard {
   categories: string[];
   tags: string[];
   thumb: string | null;
+  video: string | null;
 }
 
 // Baked at build time — each JSON file becomes a bundled module. No runtime fetch.
@@ -85,6 +90,7 @@ function toCard(k: GalleryKit): GalleryCard {
     categories: k.categories,
     tags: k.tags,
     thumb: k.screenshots[0]?.url ?? null,
+    video: k.video ?? null,
   };
 }
 
