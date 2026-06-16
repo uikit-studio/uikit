@@ -6,6 +6,7 @@
   "version": "1.0.0",
   "source": "community",
   "verified": false,
+  "demoUrl": "/demos/sada/",
   "primaryColor": "#15110c",
   "accentColor": "#fa541c",
   "frameworks": ["react"],

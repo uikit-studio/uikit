@@ -1,0 +1,89 @@
+# Sada — uikit.studio design spec
+
+> Editorial audio & video media kit
+
+A warm, Arabic-first publishing kit for media platforms — podcasts, documentaries, newsletters and longreads. Cream paper, ink-black type, a hot-orange accent and a mustard 'subscribe' gold. IBM Plex Sans Arabic for UI with the Thmanyah Sans/Serif display faces; typographic 'cover' art instead of stock photos. Full dark mode and EN/AR + RTL. Runnable React app.
+
+This file is **agent-readable**. If a developer asked you to build a site with the "Sada" design, reproduce the design system below exactly — tokens, fonts, radius and components — in their stack, with full dark mode and a responsive layout.
+
+## Identity
+- **id**: sada
+- **source**: community
+- **license**: MIT
+- **repo**: https://github.com/KernelCode/sada-uikit
+- **live demo**: https://uikit.studio/demos/sada/
+- **gallery**: https://uikit.studio/kit/sada
+- **styling**: tailwind + tokens
+- **frameworks**: react
+
+## Design intent (prompt)
+An editorial audio & video media platform — cream paper, ink-black type, a hot-orange accent and a mustard 'subscribe' gold. IBM Plex Sans Arabic for UI with the Thmanyah Sans/Serif display faces. Dense editorial card grids with typographic show 'covers' instead of stock photos. Arabic-first, full RTL, full dark mode. Ship a home feed (hero, featured, episodes, newsletters, documentaries, articles), an articles index, a podcasts page, and a components showcase.
+
+## Typography
+- **display**: Thmanyah Sans
+- **sans / body**: IBM Plex Sans Arabic
+- **mono**: IBM Plex Sans Arabic
+
+## Radius
+- base `--radius`: `0.75rem`
+
+## Brand scale
+- `50`: `#fff3ed`
+- `100`: `#ffe2d3`
+- `200`: `#ffc2a6`
+- `300`: `#ff9a6f`
+- `400`: `#fd6f3a`
+- `500`: `#fa541c`
+- `600`: `#e23d0a`
+- `700`: `#b62f09`
+- `800`: `#8f2710`
+- `900`: `#74230f`
+
+## Color tokens — light
+- `--color-primary`: `#15110c`
+- `--color-accent`: `#fa541c`
+- `--color-gold`: `#e3b23c`
+- `--color-background`: `#f6f4ee`
+- `--color-foreground`: `#15110c`
+- `--color-card`: `#ffffff`
+- `--color-muted`: `#ece8df`
+- `--color-border`: `#e2ddd2`
+
+## Color tokens — dark
+- `--color-background`: `#14110c`
+- `--color-foreground`: `#f4efe6`
+- `--color-card`: `#1d1813`
+- `--color-accent`: `#fd6f3a`
+- `--color-muted`: `#261f17`
+- `--color-border`: `#322a20`
+
+## Components
+- Button
+- Badge
+- Input
+- Card
+- Container
+- Cover
+
+## Blocks
+- Wordmark
+- SectionHeader
+- Footer
+
+## Pages
+- Home → `/`
+- Articles → `/articles`
+- Podcasts → `/podcasts`
+- Showcase → `/components`
+
+## How to reproduce this design
+**Option A — clone the kit (fastest, exact):**
+```bash
+git clone https://github.com/KernelCode/sada-uikit my-app
+cd my-app/react && pnpm install && pnpm dev
+```
+The real tokens live in `design/theme.css` + `design/tokens.json`; components in `react/src/components`. Build the developer's pages against those.
+
+**Option B — apply the design system directly:** set the light + dark color tokens above as CSS variables, load the three fonts, use the base radius, and build the listed components and pages. Keep dark mode and EN/AR + RTL parity if the target needs it.
+
+**Option C — add via CLI:** `npx uikit-studio new https://github.com/KernelCode/sada-uikit my-app` (Claude Code skill: `sada`)

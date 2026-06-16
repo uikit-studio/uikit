@@ -7,6 +7,7 @@ Paste into your agent: *“build me a website with this design: https://uikit.st
 ## Kits
 - [Aurora](https://uikit.studio/kit/aurora/llms.txt): Glassy SaaS dashboard kit. Spec: https://uikit.studio/kit/aurora/llms.txt · Manifest: https://uikit.studio/kit/aurora/manifest.json · Repo: https://github.com/uikit-studio/aurora-uikit
 - [Lime](https://uikit.studio/kit/lime/llms.txt): Limey digital-card kit. Spec: https://uikit.studio/kit/lime/llms.txt · Manifest: https://uikit.studio/kit/lime/manifest.json · Repo: https://github.com/kernelcode/lime-uikit
+- [Sada](https://uikit.studio/kit/sada/llms.txt): Editorial audio & video media kit. Spec: https://uikit.studio/kit/sada/llms.txt · Manifest: https://uikit.studio/kit/sada/manifest.json · Repo: https://github.com/KernelCode/sada-uikit
 - [Spark](https://uikit.studio/kit/spark/llms.txt): Bold marketing & landing kit. Spec: https://uikit.studio/kit/spark/llms.txt · Manifest: https://uikit.studio/kit/spark/manifest.json · Repo: https://github.com/uikit-studio/spark-uikit
 
 ## Full
