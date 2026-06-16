@@ -1,0 +1,17 @@
+{
+  // Root deploy config for Cloudflare Workers Builds, whose CI runs
+  // `npx wrangler deploy` from the monorepo root. It points at the artifact
+  // produced by `pnpm run build` (the @cloudflare/vite-plugin output in
+  // apps/web/dist). Mirrors the generated apps/web/dist/server/wrangler.json.
+  // Local/manual deploys still use `pnpm --filter @uikit/web deploy`.
+  "name": "uikit-web",
+  "account_id": "235ce91655d794a409c54ea17f877bd1",
+  "compatibility_date": "2025-09-24",
+  "compatibility_flags": ["nodejs_compat"],
+  "main": "apps/web/dist/server/index.js",
+  "no_bundle": true,
+  "rules": [{ "type": "ESModule", "globs": ["**/*.js", "**/*.mjs"] }],
+  "assets": { "directory": "apps/web/dist/client" },
+  "observability": { "enabled": true },
+  "routes": [{ "pattern": "uikit.studio", "custom_domain": true }]
+}
