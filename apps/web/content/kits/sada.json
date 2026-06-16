@@ -1,0 +1,80 @@
+{
+  "id": "sada",
+  "name": "Sada",
+  "tagline": "Editorial audio & video media kit",
+  "description": "A warm, Arabic-first publishing kit for media platforms — podcasts, documentaries, newsletters and longreads. Cream paper, ink-black type, a hot-orange accent and a mustard 'subscribe' gold. IBM Plex Sans Arabic for UI with the Thmanyah Sans/Serif display faces; typographic 'cover' art instead of stock photos. Full dark mode and EN/AR + RTL. Runnable React app.",
+  "version": "1.0.0",
+  "source": "community",
+  "verified": false,
+  "primaryColor": "#15110c",
+  "accentColor": "#fa541c",
+  "frameworks": ["react"],
+  "categories": ["marketing", "media", "editorial"],
+  "tags": ["media", "podcast", "editorial", "arabic", "rtl", "orange"],
+  "repo": "https://github.com/KernelCode/sada-uikit",
+  "homepage": "https://github.com/KernelCode/sada-uikit",
+  "license": "MIT",
+  "styling": "tailwind + tokens",
+  "author": { "name": "Abdullah Al-taheri", "github": "KernelCode", "url": "https://altaheri.me", "official": false },
+  "fonts": { "display": "Thmanyah Sans", "sans": "IBM Plex Sans Arabic", "mono": "IBM Plex Sans Arabic" },
+  "radius": "0.75rem",
+  "brandScale": [
+    { "name": "50", "value": "#fff3ed" },
+    { "name": "100", "value": "#ffe2d3" },
+    { "name": "200", "value": "#ffc2a6" },
+    { "name": "300", "value": "#ff9a6f" },
+    { "name": "400", "value": "#fd6f3a" },
+    { "name": "500", "value": "#fa541c" },
+    { "name": "600", "value": "#e23d0a" },
+    { "name": "700", "value": "#b62f09" },
+    { "name": "800", "value": "#8f2710" },
+    { "name": "900", "value": "#74230f" }
+  ],
+  "palette": [
+    { "name": "primary", "value": "#15110c" },
+    { "name": "accent", "value": "#fa541c" },
+    { "name": "gold", "value": "#e3b23c" },
+    { "name": "background", "value": "#f6f4ee" },
+    { "name": "foreground", "value": "#15110c" },
+    { "name": "card", "value": "#ffffff" },
+    { "name": "muted", "value": "#ece8df" },
+    { "name": "border", "value": "#e2ddd2" }
+  ],
+  "darkPalette": [
+    { "name": "background", "value": "#14110c" },
+    { "name": "foreground", "value": "#f4efe6" },
+    { "name": "card", "value": "#1d1813" },
+    { "name": "accent", "value": "#fd6f3a" },
+    { "name": "muted", "value": "#261f17" },
+    { "name": "border", "value": "#322a20" }
+  ],
+  "prompt": "An editorial audio & video media platform — cream paper, ink-black type, a hot-orange accent and a mustard 'subscribe' gold. IBM Plex Sans Arabic for UI with the Thmanyah Sans/Serif display faces. Dense editorial card grids with typographic show 'covers' instead of stock photos. Arabic-first, full RTL, full dark mode. Ship a home feed (hero, featured, episodes, newsletters, documentaries, articles), an articles index, a podcasts page, and a components showcase.",
+  "buildSteps": [
+    "Tokens (tokens.json) → theme.css (cream/ink/orange/gold, dark block, [dir=rtl] swap) → tailwind-preset.js; self-host fonts via design/fonts.css.",
+    "i18n: ar + en dictionaries (Arabic primary) + a provider that flips dir/lang.",
+    "Design system: cn, tones, Button, Badge, Input, Card, Container, Cover.",
+    "Blocks (Wordmark, SectionHeader, Footer) → pages: Home, Articles, Podcasts, Components showcase.",
+    "Agent-ready: uikit.json (validated), AGENTS.md, llms.txt, screenshots."
+  ],
+  "components": ["Button", "Badge", "Input", "Card", "Container", "Cover"],
+  "blocks": ["Wordmark", "SectionHeader", "Footer"],
+  "templates": [
+    { "name": "Home", "route": "/" },
+    { "name": "Articles", "route": "/articles" },
+    { "name": "Podcasts", "route": "/podcasts" },
+    { "name": "Showcase", "route": "/components" }
+  ],
+  "installCmd": "npx uikit-studio new https://github.com/KernelCode/sada-uikit my-app",
+  "skillName": "sada",
+  "consumeSteps": [
+    "git clone https://github.com/KernelCode/sada-uikit my-app",
+    "cd my-app/react && pnpm install && pnpm dev",
+    "Open in Claude Code and ask: 'build a media homepage using this kit'"
+  ],
+  "screenshots": [
+    { "kind": "landing", "url": "https://cdn.jsdelivr.net/gh/KernelCode/sada-uikit@a5dec64545e124e94f482e9f79ccf0e46abf5119/screenshots/landing.png" },
+    { "kind": "other", "url": "https://cdn.jsdelivr.net/gh/KernelCode/sada-uikit@a5dec64545e124e94f482e9f79ccf0e46abf5119/screenshots/landing-dark.png" },
+    { "kind": "other", "url": "https://cdn.jsdelivr.net/gh/KernelCode/sada-uikit@a5dec64545e124e94f482e9f79ccf0e46abf5119/screenshots/components.png" },
+    { "kind": "other", "url": "https://cdn.jsdelivr.net/gh/KernelCode/sada-uikit@a5dec64545e124e94f482e9f79ccf0e46abf5119/screenshots/podcasts.png" }
+  ]
+}
