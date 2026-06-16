@@ -195,11 +195,11 @@ const ar: Record<MsgKey, string> = {
   "footer.submit": "أضِف حزمة",
   "footer.github": "GitHub",
 
-  "home.eyebrow": "حِزَم واجهات مختارة، جاهزة للوكلاء",
-  "home.titleA": "حِزَم واجهات حقيقية،",
+  "home.eyebrow": "حِزَم واجهات مختارة، جاهزة للذكاء الاصطناعي",
+  "home.titleA": "حِزَم واجهات متكاملة،",
   "home.titleB": "يبنيها الذكاء الاصطناعي.",
   "home.subtitle":
-    "تصفّح حِزَمًا بمستوى الإنتاج — أنظمة تصميم كاملة بصفحات حقيقية، فاتح وداكن، عربي وإنجليزي. وجّه وكيلك الذكي إلى إحداها فيبني منتجك بالتصميم نفسه تمامًا — بلا حلول عامة، وباستهلاكٍ أقل بكثير.",
+    "تصفّح حِزَمًا بجودة الإنتاج — أنظمة تصميم متكاملة بصفحات جاهزة، ووضعَين فاتح وداكن، ودعمٍ كامل للعربية والإنجليزية. وجّه وكيلك الذكي إلى إحداها ليبني منتجك بالتصميم ذاته تمامًا — دون تخمينٍ ولا تصاميم عامة، وباستهلاكٍ أقل بكثير.",
   "home.searchPlaceholder": "ابحث في الحِزَم — SaaS، تسويق، لوحة تحكم، برتقالي…",
   "home.statKits": "{n} حِزَم",
   "home.statSources": "موثّقة ومن المجتمع",
@@ -367,12 +367,29 @@ const LISTS: Record<Locale, Record<string, string[]>> = {
 
 export type ListKey = keyof (typeof LISTS)["en"];
 
+// Category filter labels. Categories come from kit JSON (English keys); these
+// localize the filter chips. Unknown keys fall back to the raw value (English
+// chips are shown capitalized via CSS).
+const CATEGORY_LABELS: Record<Locale, Record<string, string>> = {
+  en: {},
+  ar: {
+    saas: "SaaS",
+    marketing: "تسويق",
+    dashboard: "لوحة تحكم",
+    landing: "صفحة هبوط",
+    media: "وسائط",
+    editorial: "تحريري",
+    "dark-first": "داكن أولًا",
+  },
+};
+
 // ── Context ────────────────────────────────────────────────────────────────
 interface LocaleCtx {
   locale: Locale;
   dir: "rtl" | "ltr";
   t: (key: MsgKey, vars?: Record<string, string | number>) => string;
   tList: (key: ListKey) => string[];
+  tCat: (category: string) => string;
   setLocale: (l: Locale) => void;
 }
 
@@ -402,6 +419,7 @@ export function LocaleProvider({ initial, children }: { initial: Locale; childre
       dir: dirFor(locale),
       t: (key, vars) => interpolate(MESSAGES[locale][key] ?? MESSAGES.en[key] ?? key, vars),
       tList: (key) => LISTS[locale][key] ?? LISTS.en[key] ?? [],
+      tCat: (category) => CATEGORY_LABELS[locale][category] ?? category,
       setLocale,
     }),
     [locale, setLocale],

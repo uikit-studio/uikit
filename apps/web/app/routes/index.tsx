@@ -19,7 +19,7 @@ export const Route = createFileRoute("/")({
 
 function GalleryHome() {
   const { cards, categories } = Route.useLoaderData();
-  const { t } = useLocale();
+  const { t, tCat } = useLocale();
   const [query, setQuery] = useState("");
   const [active, setActive] = useState<string>("all");
 
@@ -69,7 +69,7 @@ function GalleryHome() {
           <div className="flex flex-1 items-center gap-2 overflow-x-auto">
             <Chip label={t("filter.all")} active={active === "all"} onClick={() => setActive("all")} />
             {categories.map((c) => (
-              <Chip key={c} label={c} active={active === c} onClick={() => setActive(c)} />
+              <Chip key={c} label={tCat(c)} active={active === c} onClick={() => setActive(c)} />
             ))}
           </div>
           <span className="hidden shrink-0 font-mono text-xs text-faint sm:block">
