@@ -145,14 +145,10 @@ function KitCard({ kit, index }: { kit: GalleryCard; index: number }) {
   const ref = useReveal<HTMLAnchorElement>();
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Play the preview only while hovering the card; reset to the poster on leave.
+  // Show the poster (screenshot) until first hover; then play on hover and pause
+  // in place on leave, so the next hover resumes from the same frame.
   const playPreview = () => videoRef.current?.play().catch(() => {});
-  const stopPreview = () => {
-    const v = videoRef.current;
-    if (!v) return;
-    v.pause();
-    v.currentTime = 0;
-  };
+  const stopPreview = () => videoRef.current?.pause();
 
   return (
     <Link
