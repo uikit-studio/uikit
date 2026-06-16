@@ -2,7 +2,7 @@
 
 A curated gallery of **production-ready, runnable UI kits** — so building a UI
 with AI stops meaning "burn tokens and pray." Browse → clone a kit → let your AI
-build a real product **with** it.
+build a real product **with** it
 
 **[uikit.studio →](https://uikit.studio)**
 
