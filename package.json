@@ -13,6 +13,7 @@
     "test": "turbo run test",
     "typecheck": "turbo run typecheck",
     "deploy": "turbo run deploy",
+    "deploy:cf": "npx wrangler deploy -c apps/web/dist/server/wrangler.json",
     "clean": "turbo run clean && rm -rf node_modules"
   },
   "devDependencies": {
