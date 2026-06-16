@@ -69,6 +69,7 @@
     "cd my-app/react && pnpm install && pnpm dev",
     "Open in Claude Code and ask: 'build a billing dashboard using this kit'"
   ],
+  "video": "/kits/aurora/preview.webm",
   "screenshots": [
     { "kind": "landing", "url": "/kits/aurora/landing.png" },
     { "kind": "dashboard", "url": "/kits/aurora/dashboard.png" }

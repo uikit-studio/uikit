@@ -2,8 +2,9 @@
 /**
  * Validates every gallery entry in apps/web/content/kits/*.json — the PR gate.
  * Zero dependencies on purpose: CI can run `node scripts/validate-content.mjs`
- * with nothing installed. Checks shape + that VERIFIED kits mirror their assets
- * locally (so they can't rot), while COMMUNITY kits may reference external URLs.
+ * with nothing installed. Checks shape + that assets (screenshots and the
+ * optional preview video) live in the kit's own repo, referenced via pinned
+ * CDN URLs — they are never mirrored into this repo.
  */
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
@@ -30,7 +31,11 @@ function isAssetRef(v) {
 }
 function localAssetExists(url) {
   if (!url.startsWith("/")) return true; // external — not our file
+  if (url.startsWith("/kits/")) return true; // fetched at build from the kit repo
   return existsSync(join(PUBLIC_DIR, url.replace(/^\//, "")));
+}
+function parseRepo(url) {
+  return /github\.com\/[^/]+\/[^/.]+/.test(url ?? "");
 }
 
 function validateEntry(file, k) {
@@ -56,26 +61,22 @@ function validateEntry(file, k) {
   }
   check(Array.isArray(k.templates) && k.templates.every((t) => isStr(t.name)), w, "templates must be [{name, route}]");
 
-  // Assets
+  // Assets — screenshots + optional preview video live in the kit's OWN repo
+  // (its screenshots/ dir) and are pulled into /kits/<id>/ at build time by
+  // scripts/fetch-kit-assets.mjs. demoUrl points at this app's built-in /demos/.
   check(Array.isArray(k.screenshots), w, "screenshots must be an array");
+  if (k.video != null) check(isAssetRef(k.video), w, `video "${k.video}" must be a /path or http(s) URL`);
   const refs = [...(k.screenshots ?? []).map((s) => s.url)];
   if (k.demoUrl != null) refs.push(k.demoUrl);
+  if (k.video != null) refs.push(k.video);
   for (const url of refs) {
     check(isAssetRef(url), w, `asset "${url}" must be a /path or http(s) URL`);
     if (isAssetRef(url)) check(localAssetExists(url), w, `local asset not found: ${url}`);
   }
 
-  // Verified policy: every asset must be mirrored locally (a /path), never external.
-  if (k.verified === true) {
-    for (const url of refs)
-      check(typeof url === "string" && url.startsWith("/"), w, `verified kit must mirror assets locally (got "${url}")`);
-  } else {
-    // Community: external refs should be pinned (jsDelivr @<ref> or a ?ref=); warn only.
-    for (const s of k.screenshots ?? []) {
-      if (/^https?:\/\//.test(s.url) && !/@[\w.\-/]+|[?&]ref=/.test(s.url))
-        console.warn(`! ${w}: external asset not pinned to a tag/SHA: ${s.url}`);
-    }
-  }
+  // /kits/<id>/ assets are build-fetched from kit.repo, so that must be a GitHub URL.
+  const buildFetched = refs.filter((u) => typeof u === "string" && u.startsWith(`/kits/${k.id}/`));
+  if (buildFetched.length) check(parseRepo(k.repo), w, `assets under /kits/${k.id}/ need a github.com repo URL to fetch from (got "${k.repo}")`);
 }
 
 const files = existsSync(KITS_DIR) ? readdirSync(KITS_DIR).filter((f) => f.endsWith(".json")) : [];
