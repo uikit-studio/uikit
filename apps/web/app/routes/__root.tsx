@@ -1,109 +1,221 @@
 /// <reference types="vite/client" />
 import { createRootRoute, HeadContent, Link, Scripts } from "@tanstack/react-router";
-import { Github, Search } from "lucide-react";
+import { createServerFn } from "@tanstack/react-start";
+import { getCookie } from "@tanstack/react-start/server";
+import { Boxes, Github } from "lucide-react";
 import type * as React from "react";
+import { dirFor, LOCALE_COOKIE, LocaleProvider, normalizeLocale, useLocale, type Locale } from "~/lib/i18n";
 import appCss from "~/styles/app.css?url";
 
+/** Read the persisted locale on the server so SSR renders the right lang/dir
+ * with no flash. Defaults to Arabic (the site is Arabic-first). */
+const getInitialLocale = createServerFn({ method: "GET" }).handler((): Locale =>
+  normalizeLocale(getCookie(LOCALE_COOKIE)),
+);
+
+/** Public origin — absolute URLs for OG/Twitter/canonical so they work anywhere. */
+export const ORIGIN = "https://uikit.studio";
+const OG_IMAGE = `${ORIGIN}/og.png`;
+
+/** Site-wide structured data (WebSite + Organization) for rich results + GEO. */
+const SITE_JSONLD = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${ORIGIN}/#website`,
+      url: `${ORIGIN}/`,
+      name: "uikit.studio",
+      description: "A curated gallery of runnable, agent-ready UI kits your AI can build with.",
+      inLanguage: ["ar", "en"],
+      publisher: { "@id": `${ORIGIN}/#org` },
+    },
+    {
+      "@type": "Organization",
+      "@id": `${ORIGIN}/#org`,
+      name: "uikit.studio",
+      url: `${ORIGIN}/`,
+      logo: `${ORIGIN}/icon-512.png`,
+      sameAs: ["https://github.com/uikit-studio"],
+    },
+  ],
+};
+
 export const Route = createRootRoute({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1.0" },
-      { title: "uikit — production UI kits, ready to run" },
-      {
-        name: "description",
-        content:
-          "A curated gallery of runnable UI kits — tokens, components, dashboards and landing pages. Clone one and let your AI build a real product with it.",
-      },
-      { name: "theme-color", content: "#060609" },
-      { property: "og:title", content: "uikit — production UI kits, ready to run" },
-      { property: "og:type", content: "website" },
-    ],
-    links: [
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Sora:wght@400;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&display=swap",
-      },
-      { rel: "stylesheet", href: appCss },
-      // Agent discovery — the llms.txt convention (index of agent-ready kit specs).
-      { rel: "alternate", type: "text/markdown", href: "/llms.txt", title: "llms.txt" },
-    ],
-  }),
+  loader: async () => ({ locale: await getInitialLocale() }),
+  head: ({ loaderData }) => {
+    const ar = (loaderData?.locale ?? "ar") === "ar";
+    const title = ar
+      ? "uikit.studio — حِزَم واجهات حقيقية يبني بها ذكاؤك الاصطناعي"
+      : "uikit.studio — real UI kits your AI can build with";
+    const description = ar
+      ? "معرض مختار لحِزَم واجهات قابلة للتشغيل ومصمَّمة بالكامل. وجّه وكيلك الذكي إلى إحداها فيبني منتجك بنظام التصميم نفسه تمامًا — فاتح وداكن، عربي وإنجليزي، وباستهلاكٍ أقل."
+      : "A curated gallery of runnable, fully-designed UI kits. Point your AI agent at one and it builds your product in that exact design system — light & dark, EN/AR, far fewer tokens.";
+    return {
+      meta: [
+        { charSet: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1.0" },
+        { title },
+        { name: "description", content: description },
+        { name: "theme-color", content: "#fbfaf8" },
+        { name: "robots", content: "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" },
+        { name: "application-name", content: "uikit.studio" },
+        { name: "apple-mobile-web-app-title", content: "uikit.studio" },
+        // Open Graph
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "uikit.studio" },
+        { property: "og:title", content: title },
+        { property: "og:description", content: description },
+        { property: "og:image", content: OG_IMAGE },
+        { property: "og:image:width", content: "1200" },
+        { property: "og:image:height", content: "630" },
+        { property: "og:image:alt", content: "uikit.studio — real UI kits your AI can build with" },
+        { property: "og:locale", content: ar ? "ar_AR" : "en_US" },
+        { property: "og:locale:alternate", content: ar ? "en_US" : "ar_AR" },
+        // Twitter
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: title },
+        { name: "twitter:description", content: description },
+        { name: "twitter:image", content: OG_IMAGE },
+      ],
+      links: [
+        { rel: "preconnect", href: "https://fonts.googleapis.com" },
+        { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+        {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Readex+Pro:wght@300;400;500;600;700&display=swap",
+        },
+        { rel: "stylesheet", href: appCss },
+        // Icons + web app manifest
+        { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+        { rel: "icon", href: "/icon-192.png", type: "image/png", sizes: "192x192" },
+        { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
+        { rel: "manifest", href: "/site.webmanifest" },
+        // Agent discovery — the llms.txt convention (index of agent-ready kit specs).
+        { rel: "alternate", type: "text/markdown", href: "/llms.txt", title: "llms.txt" },
+      ],
+    };
+  },
   shellComponent: RootDocument,
 });
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+  const { locale } = Route.useLoaderData();
   return (
-    <html lang="en">
+    <html lang={locale} dir={dirFor(locale)}>
       <head>
         <HeadContent />
       </head>
       <body className="min-h-screen bg-bg text-fg antialiased">
-        <header className="sticky top-0 z-50 border-b border-line/70 glass">
-          <div className="mx-auto flex h-16 max-w-[1400px] items-center gap-4 px-5 sm:px-8">
-            <Link to="/" className="flex shrink-0 items-center gap-2">
-              <span className="grid h-7 w-7 place-items-center rounded-lg bg-gradient-to-br from-brand to-brand-2 text-[13px] font-bold text-white shadow-[0_0_20px_-4px_var(--color-brand)]">
-                u
-              </span>
-              <span className="font-display text-lg font-bold tracking-tight">uikit</span>
-              <span className="hidden rounded-full border border-line px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-faint sm:inline">
-                studio
-              </span>
-            </Link>
-
-            <Link
-              to="/"
-              className="group mx-auto flex h-10 w-full max-w-md items-center gap-2.5 rounded-full border border-line bg-elevated/60 px-4 text-sm text-faint transition-colors hover:border-line-strong"
-            >
-              <Search className="h-4 w-4" />
-              <span className="flex-1 truncate text-left">Search kits — saas, marketing, dashboard…</span>
-              <kbd className="hidden items-center gap-0.5 rounded border border-line px-1.5 py-0.5 font-mono text-[10px] text-faint sm:flex">
-                ⌘K
-              </kbd>
-            </Link>
-
-            <nav className="flex shrink-0 items-center gap-1 text-sm">
-              <a
-                href="https://github.com/uikit-studio"
-                target="_blank"
-                rel="noreferrer"
-                className="hidden items-center gap-1.5 rounded-full px-3 py-2 text-muted transition-colors hover:text-fg sm:flex"
-              >
-                <Github className="h-4 w-4" /> GitHub
-              </a>
-              <Link
-                to="/submit"
-                className="rounded-full border border-line-strong bg-fg px-4 py-2 font-medium text-bg transition-opacity hover:opacity-90"
-              >
-                Submit a kit
-              </Link>
-            </nav>
-          </div>
-        </header>
-
-        {children}
-
-        <footer className="mt-24 border-t border-line/70">
-          <div className="mx-auto flex max-w-[1400px] flex-col items-center justify-between gap-4 px-5 py-10 text-sm text-faint sm:flex-row sm:px-8">
-            <p className="font-mono text-xs">uikit.studio — production UI, ready to run.</p>
-            <div className="flex items-center gap-5">
-              <Link to="/" className="hover:text-fg">
-                Gallery
-              </Link>
-              <Link to="/submit" className="hover:text-fg">
-                Submit
-              </Link>
-              <a href="https://github.com/uikit-studio" target="_blank" rel="noreferrer" className="hover:text-fg">
-                GitHub
-              </a>
-            </div>
-          </div>
-        </footer>
-
+        <LocaleProvider initial={locale}>
+          <SiteHeader />
+          {children}
+          <SiteFooter />
+        </LocaleProvider>
+        <script
+          type="application/ld+json"
+          // Site-wide WebSite + Organization graph (rich results + AI/answer engines).
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(SITE_JSONLD) }}
+        />
         <Scripts />
       </body>
     </html>
+  );
+}
+
+function SiteHeader() {
+  const { t } = useLocale();
+  return (
+    <header className="sticky top-0 z-50 border-b border-line/70 glass">
+      <div className="mx-auto flex h-16 max-w-[1320px] items-center justify-between gap-4 px-5 sm:px-8">
+        <Link to="/" className="flex shrink-0 items-center gap-2.5">
+          <span
+            className="grid h-8 w-8 place-items-center rounded-xl text-white shadow-[0_5px_16px_-5px_rgba(244,63,94,0.65)]"
+            style={{ background: "linear-gradient(135deg, var(--color-brand), var(--color-brand-3))" }}
+          >
+            <Boxes className="h-5 w-5" strokeWidth={2.25} />
+          </span>
+          <span className="font-display text-xl font-bold tracking-tight text-fg">
+            uikit<span className="text-accent">.</span>
+            <span className="font-semibold text-muted">studio</span>
+          </span>
+        </Link>
+
+        <nav className="flex shrink-0 items-center gap-5 text-sm sm:gap-7">
+          <a
+            href="https://github.com/uikit-studio"
+            target="_blank"
+            rel="noreferrer"
+            className="link-underline hidden text-muted transition-colors hover:text-fg sm:inline-flex"
+          >
+            {t("nav.github")}
+          </a>
+          <LangToggle />
+          <Link
+            to="/submit"
+            className="rounded-full bg-fg px-4 py-2 font-medium text-bg transition-colors hover:bg-accent"
+          >
+            {t("nav.submit")}
+          </Link>
+        </nav>
+      </div>
+    </header>
+  );
+}
+
+/** Arabic ⇄ English — minimal editorial text toggle. Persists + flips <html>. */
+function LangToggle() {
+  const { locale, setLocale, t } = useLocale();
+  return (
+    <div role="group" aria-label={t("nav.langLabel")} className="flex items-center gap-1.5 font-mono text-xs">
+      <button
+        type="button"
+        onClick={() => setLocale("ar")}
+        aria-pressed={locale === "ar"}
+        lang="en"
+        className={locale === "ar" ? "text-fg" : "text-faint transition-colors hover:text-fg"}
+      >
+        AR
+      </button>
+      <span aria-hidden className="text-line-strong">
+        /
+      </span>
+      <button
+        type="button"
+        onClick={() => setLocale("en")}
+        aria-pressed={locale === "en"}
+        lang="en"
+        className={locale === "en" ? "text-fg" : "text-faint transition-colors hover:text-fg"}
+      >
+        EN
+      </button>
+    </div>
+  );
+}
+
+function SiteFooter() {
+  const { t } = useLocale();
+  return (
+    <footer className="mt-28 border-t border-line">
+      <div className="mx-auto flex max-w-[1320px] flex-col items-start justify-between gap-5 px-5 py-12 sm:flex-row sm:items-center sm:px-8">
+        <p className="max-w-sm font-display text-lg text-fg">{t("footer.tagline")}</p>
+        <div className="flex items-center gap-6 font-mono text-[11px] uppercase tracking-[0.16em] text-muted">
+          <Link to="/" className="link-underline hover:text-fg">
+            {t("footer.gallery")}
+          </Link>
+          <Link to="/submit" className="link-underline hover:text-fg">
+            {t("footer.submit")}
+          </Link>
+          <a
+            href="https://github.com/uikit-studio"
+            target="_blank"
+            rel="noreferrer"
+            className="link-underline hover:text-fg"
+          >
+            {t("footer.github")}
+          </a>
+        </div>
+      </div>
+    </footer>
   );
 }
