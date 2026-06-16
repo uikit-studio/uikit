@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, BadgeCheck, Bot, Search } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { getCategories, getGalleryKits, type GalleryCard } from "~/lib/data";
 import { useLocale } from "~/lib/i18n";
 import { useReveal } from "~/lib/useReveal";
@@ -143,6 +143,17 @@ function Chip({ label, active, onClick }: { label: string; active: boolean; onCl
 function KitCard({ kit, index }: { kit: GalleryCard; index: number }) {
   const { t } = useLocale();
   const ref = useReveal<HTMLAnchorElement>();
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Play the preview only while hovering the card; reset to the poster on leave.
+  const playPreview = () => videoRef.current?.play().catch(() => {});
+  const stopPreview = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.pause();
+    v.currentTime = 0;
+  };
+
   return (
     <Link
       ref={ref}
@@ -150,14 +161,16 @@ function KitCard({ kit, index }: { kit: GalleryCard; index: number }) {
       params={{ id: kit.id }}
       style={{ transitionDelay: `${Math.min(index, 8) * 60}ms` }}
       className="reveal group block"
+      onMouseEnter={kit.video ? playPreview : undefined}
+      onMouseLeave={kit.video ? stopPreview : undefined}
     >
       {/* Thumbnail */}
       <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-line bg-surface card transition-shadow duration-300 group-hover:card-hover">
         {kit.video ? (
           <video
+            ref={videoRef}
             src={kit.video}
             poster={kit.thumb ?? undefined}
-            autoPlay
             loop
             muted
             playsInline
