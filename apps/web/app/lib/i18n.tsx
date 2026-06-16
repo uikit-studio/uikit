@@ -45,7 +45,7 @@ const en = {
 
   // home / hero
   "home.eyebrow": "curated, agent-ready UI kits",
-  "home.titleA": "Real UI kits,",
+  "home.titleA": "Ready-made UI kits,",
   "home.titleB": "built by AI.",
   "home.subtitle":
     "Browse production-grade kits — complete design systems with real pages, light & dark, EN + AR. Point your AI agent at one and it builds your product in that exact design — no generic guesswork, far fewer tokens.",

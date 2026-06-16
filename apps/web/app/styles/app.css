@@ -8,10 +8,38 @@
  * accent used sparingly (search button, active states, links). Token names stay
  * stable (brand / brand-2 / accent …).
  *
- * Typography is direction-aware: Latin sets in Plus Jakarta Sans (display) +
- * Inter; Arabic swaps to IBM Plex Sans Arabic and drops letter-spacing so glyphs
- * stay joined.
+ * Typography is direction-aware: Latin sets in Outfit; Arabic swaps to Thmanyah
+ * Sans (thmanyah.com's own type, self-hosted in /public/fonts) and drops
+ * letter-spacing so glyphs stay joined.
  */
+
+/* ---- Thmanyah Sans — Arabic display + UI (self-hosted, font.thmanyah.com) -- */
+@font-face {
+  font-family: "Thmanyah Sans";
+  src: url("/fonts/thmanyah-sans-300.woff2") format("woff2");
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Thmanyah Sans";
+  src: url("/fonts/thmanyah-sans-400.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Thmanyah Sans";
+  src: url("/fonts/thmanyah-sans-500.woff2") format("woff2");
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Thmanyah Sans";
+  src: url("/fonts/thmanyah-sans-700.woff2") format("woff2");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Thmanyah Sans";
+  src: url("/fonts/thmanyah-sans-900.woff2") format("woff2");
+  font-weight: 900; font-style: normal; font-display: swap;
+}
+
 @theme {
   --font-display: "Outfit", system-ui, -apple-system, sans-serif;
   --font-sans: "Outfit", system-ui, -apple-system, sans-serif;
@@ -91,9 +119,9 @@
   }
 
   html[lang="ar"] {
-    --font-display: "Readex Pro", system-ui, sans-serif;
-    --font-sans: "Readex Pro", system-ui, sans-serif;
-    --font-mono: "Readex Pro", system-ui, sans-serif;
+    --font-display: "Thmanyah Sans", "IBM Plex Sans Arabic", system-ui, sans-serif;
+    --font-sans: "Thmanyah Sans", "IBM Plex Sans Arabic", system-ui, sans-serif;
+    --font-mono: "Thmanyah Sans", "IBM Plex Sans Arabic", system-ui, sans-serif;
   }
   html[lang="ar"] * {
     letter-spacing: 0 !important;
