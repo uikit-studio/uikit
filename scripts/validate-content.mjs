@@ -24,6 +24,10 @@ function check(cond, where, msg) {
 const isStr = (v) => typeof v === "string" && v.length > 0;
 const isStrArr = (v) => Array.isArray(v) && v.every((x) => typeof x === "string");
 const isBool = (v) => typeof v === "boolean";
+// A user-facing text field: a plain string (same in both locales) OR a bilingual
+// { en, ar? } object. `en` is required and is the canonical/fallback value.
+const isLocalized = (v) =>
+  isStr(v) || (v && typeof v === "object" && !Array.isArray(v) && isStr(v.en) && (v.ar === undefined || isStr(v.ar)));
 
 /** A screenshot/demo URL is either a same-origin path (/…) or an absolute URL. */
 function isAssetRef(v) {
@@ -43,7 +47,10 @@ function validateEntry(file, k) {
   const stem = file.replace(/\.json$/, "");
   check(k.id === stem, w, `id "${k.id}" must equal filename "${stem}"`);
   check(ID.test(k.id ?? ""), w, "id must be kebab-case");
-  for (const f of ["name", "tagline", "description", "version", "license", "styling", "prompt", "radius"])
+  // Display text may be bilingual ({en, ar?}); the rest are plain strings.
+  for (const f of ["name", "tagline", "description"])
+    check(isLocalized(k[f]), w, `${f} must be a non-empty string or {en, ar?} object`);
+  for (const f of ["version", "license", "styling", "prompt", "radius"])
     check(isStr(k[f]), w, `${f} must be a non-empty string`);
   check(k.source === "official" || k.source === "community", w, "source must be official|community");
   check(isBool(k.verified), w, "verified must be boolean");

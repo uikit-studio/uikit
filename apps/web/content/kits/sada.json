@@ -1,8 +1,11 @@
 {
   "id": "sada",
-  "name": "Sada",
-  "tagline": "Editorial audio & video media kit",
-  "description": "A warm, Arabic-first publishing kit for media platforms — podcasts, documentaries, newsletters and longreads. Cream paper, ink-black type, a hot-orange accent and a mustard 'subscribe' gold. IBM Plex Sans Arabic for UI with the Thmanyah Sans/Serif display faces; typographic 'cover' art instead of stock photos. Full dark mode and EN/AR + RTL. Runnable React app.",
+  "name": { "en": "Sada", "ar": "صدى" },
+  "tagline": { "en": "Editorial audio & video media kit", "ar": "حزمة وسائط تحريرية للصوت والفيديو" },
+  "description": {
+    "en": "A warm, Arabic-first publishing kit for media platforms — podcasts, documentaries, newsletters and longreads. Cream paper, ink-black type, a hot-orange accent and a mustard 'subscribe' gold. IBM Plex Sans Arabic for UI with the Thmanyah Sans/Serif display faces; typographic 'cover' art instead of stock photos. Full dark mode and EN/AR + RTL. Runnable React app.",
+    "ar": "حزمة نشر دافئة، عربية أولًا، لمنصّات الوسائط — بودكاست وأفلام وثائقية ونشرات بريدية وقراءات مطوّلة. ورق كريمي وحبر أسود ولمسة برتقالية حارّة وذهب خردلي لزرّ الاشتراك. خط IBM Plex Sans Arabic للواجهة مع خطّي ثمانية Sans/Serif للعناوين، وأغلفة طِباعية بدل صور المخزون. وضع داكن كامل، عربي/إنجليزي مع RTL. تطبيق React جاهز للتشغيل."
+  },
   "version": "1.0.0",
   "source": "community",
   "verified": false,

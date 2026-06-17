@@ -1,8 +1,11 @@
 {
   "id": "spark",
   "name": "Spark",
-  "tagline": "Bold marketing & landing kit",
-  "description": "Big type, cream + ink and a vivid orange accent. Heavy grotesk display, monospace micro-labels, highlight-marker headings, marquee. Full dark mode and EN/AR + RTL. Runnable React, Vue and Web Components apps.",
+  "tagline": { "en": "Bold marketing & landing kit", "ar": "حزمة تسويق وصفحات هبوط جريئة" },
+  "description": {
+    "en": "Big type, cream + ink and a vivid orange accent. Heavy grotesk display, monospace micro-labels, highlight-marker headings, marquee. Full dark mode and EN/AR + RTL. Runnable React, Vue and Web Components apps.",
+    "ar": "خطوط كبيرة، كريمي وحبر أسود ولمسة برتقالية زاهية. خط جروتسك عريض للعناوين، تسميات أحادية المسافة، عناوين بخطّ تحديد، وشريط متحرّك. وضع داكن كامل، عربي/إنجليزي مع RTL. تطبيقات React وVue وWeb Components جاهزة للتشغيل."
+  },
   "version": "0.2.0",
   "source": "official",
   "verified": true,

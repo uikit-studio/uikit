@@ -17,7 +17,7 @@ import {
   Type,
 } from "lucide-react";
 import { type ReactNode, useState } from "react";
-import { getGalleryKit, type GalleryKit, type Swatch } from "~/lib/data";
+import { enOf, getGalleryKit, L, type GalleryKit, type Swatch } from "~/lib/data";
 import { useLocale } from "~/lib/i18n";
 
 /** Public origin — agent prompts must use absolute URLs so they work pasted anywhere. */
@@ -33,8 +33,9 @@ export const Route = createFileRoute("/kit/$id")({
   head: ({ params, loaderData }) => {
     const kit = loaderData?.kit;
     const url = `${ORIGIN}/kit/${params.id}`;
-    const title = kit ? `${kit.name} — ${kit.tagline} · uikit.studio` : "uikit.studio";
-    const description = kit?.description ?? kit?.tagline ?? "";
+    // Head/meta runs without locale context — use canonical EN for stable SEO.
+    const title = kit ? `${enOf(kit.name)} — ${enOf(kit.tagline)} · uikit.studio` : "uikit.studio";
+    const description = enOf(kit?.description) || enOf(kit?.tagline);
     const shot = kit?.screenshots?.[0]?.url;
     const image = shot ? (/^https?:\/\//.test(shot) ? shot : `${ORIGIN}${shot}`) : `${ORIGIN}/og.png`;
     return {
@@ -75,7 +76,7 @@ function KitNotFound() {
 
 function KitDetailPage() {
   const { kit } = Route.useLoaderData();
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
 
   const url = `${ORIGIN}/kit/${kit.id}`;
   const shot = kit.screenshots?.[0]?.url;
@@ -86,8 +87,8 @@ function KitDetailPage() {
       {
         "@type": "SoftwareApplication",
         "@id": `${url}#app`,
-        name: kit.name,
-        description: kit.description,
+        name: enOf(kit.name),
+        description: enOf(kit.description),
         applicationCategory: "DeveloperApplication",
         operatingSystem: "Web",
         url,
@@ -105,7 +106,7 @@ function KitDetailPage() {
         "@type": "BreadcrumbList",
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "Gallery", item: `${ORIGIN}/` },
-          { "@type": "ListItem", position: 2, name: kit.name, item: url },
+          { "@type": "ListItem", position: 2, name: enOf(kit.name), item: url },
         ],
       },
     ],
@@ -129,7 +130,7 @@ function KitDetailPage() {
               className="h-8 w-8 rounded-2xl ring-1 ring-line"
               style={{ background: `linear-gradient(135deg, ${kit.primaryColor}, ${kit.accentColor})` }}
             />
-            <h1 className="font-display text-4xl font-bold tracking-tight">{kit.name}</h1>
+            <h1 className="font-display text-4xl font-bold tracking-tight">{L(kit.name, locale)}</h1>
             {kit.source === "official" ? (
               <span className="flex items-center gap-1 rounded-full bg-accent/12 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wide text-accent-ink">
                 <BadgeCheck className="h-3 w-3" /> {t("kit.official")}
@@ -143,7 +144,7 @@ function KitDetailPage() {
               <Bot className="h-3 w-3" /> {t("kit.agentReady")}
             </span>
           </div>
-          <p className="mt-4 text-lg leading-relaxed text-muted">{kit.description}</p>
+          <p className="mt-4 text-lg leading-relaxed text-muted">{L(kit.description, locale)}</p>
           <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-xs text-faint">
             <span>v{kit.version}</span>
             <span>· {kit.license}</span>
@@ -202,7 +203,7 @@ function KitDetailPage() {
             </div>
             <iframe
               src={kit.demoUrl}
-              title={`${kit.name} demo`}
+              title={`${L(kit.name, locale)} demo`}
               className="h-[560px] w-full bg-white"
               sandbox="allow-scripts allow-same-origin allow-popups"
               loading="lazy"
@@ -218,7 +219,7 @@ function KitDetailPage() {
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
             {kit.screenshots.map((s, i) => (
               <figure key={i} className="overflow-hidden rounded-2xl border border-line bg-elevated">
-                <img src={s.url} alt={`${kit.name} ${s.kind}`} loading="lazy" className="w-full" />
+                <img src={s.url} alt={`${L(kit.name, locale)} ${s.kind}`} loading="lazy" className="w-full" />
                 <figcaption className="border-t border-line bg-surface/60 px-3 py-1.5 font-mono text-[11px] capitalize text-faint">
                   {s.kind}
                 </figcaption>

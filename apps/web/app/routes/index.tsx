@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, BadgeCheck, Bot, Search } from "lucide-react";
 import { useMemo, useRef, useState } from "react";
-import { getCategories, getGalleryKits, type GalleryCard } from "~/lib/data";
+import { getCategories, getGalleryKits, L, searchOf, type GalleryCard } from "~/lib/data";
 import { useLocale } from "~/lib/i18n";
 import { useReveal } from "~/lib/useReveal";
 
@@ -29,7 +29,9 @@ function GalleryHome() {
       const inCat = active === "all" || k.categories.includes(active);
       if (!inCat) return false;
       if (!q) return true;
-      const hay = [k.name, k.tagline, ...k.tags, ...k.categories, ...k.frameworks].join(" ").toLowerCase();
+      const hay = [searchOf(k.name), searchOf(k.tagline), ...k.tags, ...k.categories, ...k.frameworks]
+        .join(" ")
+        .toLowerCase();
       return hay.includes(q);
     });
   }, [cards, query, active]);
@@ -141,7 +143,8 @@ function Chip({ label, active, onClick }: { label: string; active: boolean; onCl
 }
 
 function KitCard({ kit, index }: { kit: GalleryCard; index: number }) {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
+  const name = L(kit.name, locale);
   const ref = useReveal<HTMLAnchorElement>();
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -171,13 +174,13 @@ function KitCard({ kit, index }: { kit: GalleryCard; index: number }) {
             muted
             playsInline
             preload="metadata"
-            aria-label={`${kit.name} preview`}
+            aria-label={`${name} preview`}
             className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
           />
         ) : kit.thumb ? (
           <img
             src={kit.thumb}
-            alt={`${kit.name} preview`}
+            alt={`${name} preview`}
             loading="lazy"
             className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
           />
@@ -204,7 +207,7 @@ function KitCard({ kit, index }: { kit: GalleryCard; index: number }) {
           style={{ background: `linear-gradient(135deg, ${kit.primaryColor}, ${kit.accentColor})` }}
         />
         <div className="min-w-0">
-          <h3 className="truncate font-display text-base font-bold tracking-tight">{kit.name}</h3>
+          <h3 className="truncate font-display text-base font-bold tracking-tight">{name}</h3>
           <p className="truncate font-mono text-[11px] text-faint">{kit.frameworks.join(" · ")}</p>
         </div>
         {kit.source === "official" ? (

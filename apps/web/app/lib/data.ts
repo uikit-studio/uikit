@@ -8,16 +8,45 @@
  * means adding one JSON file.
  */
 
+import type { Locale } from "./i18n";
+
 export interface Swatch {
   name: string;
   value: string;
 }
 
+/**
+ * A user-facing text field that may be authored in both languages. A bare
+ * string is treated as the same text in EN and AR; an object localizes it.
+ * Used for `name`, `tagline` and `description` so an Arabic visitor reads the
+ * kit's own Arabic copy, not the English source. See `prompts/build.md`.
+ */
+export type Localized = string | { en: string; ar?: string };
+
+/** Resolve a localized field for display (AR falls back to EN; string → itself). */
+export function L(value: Localized | undefined | null, locale: Locale): string {
+  if (value == null) return "";
+  if (typeof value === "string") return value;
+  return (locale === "ar" ? value.ar : value.en) || value.en || value.ar || "";
+}
+
+/** Canonical EN form — for machine surfaces (SEO meta, JSON-LD, agent specs) and sorting. */
+export function enOf(value: Localized | undefined | null): string {
+  if (value == null) return "";
+  return typeof value === "string" ? value : value.en || value.ar || "";
+}
+
+/** Both locales flattened, so search matches whichever language the user types. */
+export function searchOf(value: Localized | undefined | null): string {
+  if (value == null) return "";
+  return typeof value === "string" ? value : [value.en, value.ar].filter(Boolean).join(" ");
+}
+
 export interface GalleryKit {
   id: string;
-  name: string;
-  tagline: string;
-  description: string;
+  name: Localized;
+  tagline: Localized;
+  description: Localized;
   version: string;
   source: "official" | "community";
   verified: boolean;
@@ -52,8 +81,8 @@ export interface GalleryKit {
 
 export interface GalleryCard {
   id: string;
-  name: string;
-  tagline: string;
+  name: Localized;
+  tagline: Localized;
   source: "official" | "community";
   verified: boolean;
   primaryColor: string;
@@ -72,9 +101,9 @@ const modules = import.meta.glob<GalleryKit>("../../content/kits/*.json", {
 });
 
 const GALLERY: GalleryKit[] = Object.values(modules).sort((a, b) => {
-  // Verified/official first, then alphabetical.
+  // Verified/official first, then alphabetical (by canonical EN name).
   if (a.verified !== b.verified) return a.verified ? -1 : 1;
-  return a.name.localeCompare(b.name);
+  return enOf(a.name).localeCompare(enOf(b.name));
 });
 
 function toCard(k: GalleryKit): GalleryCard {

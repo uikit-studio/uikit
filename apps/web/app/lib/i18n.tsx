@@ -5,10 +5,12 @@
  * header toggle. The choice is persisted to a cookie (`uikit_locale`, read on the
  * server so SSR renders the right `lang`/`dir` with no flash) plus localStorage.
  *
- * Only the gallery's UI strings live here — kit-authored content (name, tagline,
- * description in content/kits/*.json) is shown as authored. Code artifacts (shell
- * commands, the copy-paste agent prompt, font samples that demonstrate a Latin
- * typeface) stay literal in both locales and are kept in the components.
+ * Only the gallery's UI strings live here. Kit-authored content (name, tagline,
+ * description in content/kits/*.json) may itself be bilingual — those fields
+ * accept a `{ en, ar }` object (see `Localized` in lib/data.ts) and are resolved
+ * to the active locale at render; a plain string means the same in both. Code
+ * artifacts (shell commands, the copy-paste agent prompt, font samples that
+ * demonstrate a Latin typeface) stay literal in both locales, in the components.
  *
  * Arabic copy is written to read naturally (confident, concise product voice) —
  * "حزمة" for a UI kit, no literal calques.

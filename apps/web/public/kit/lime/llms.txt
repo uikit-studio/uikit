@@ -10,7 +10,7 @@ This file is **agent-readable**. If a developer asked you to build a site with t
 - **id**: lime
 - **source**: community
 - **license**: MIT
-- **repo**: https://github.com/kernelcode/lime-uikit
+- **repo**: https://github.com/KernelCode/lime-uikit
 - **live demo**: https://uikit.studio/demos/lime/
 - **gallery**: https://uikit.studio/kit/lime
 - **styling**: tailwind + tokens
@@ -78,7 +78,7 @@ A limey digital-business-card kit — warm cream + near-black ink + a vivid acid
 ## How to reproduce this design
 **Option A — clone the kit (fastest, exact):**
 ```bash
-git clone https://github.com/kernelcode/lime-uikit my-app
+git clone https://github.com/KernelCode/lime-uikit my-app
 cd my-app/react && pnpm install && pnpm dev
 ```
 The real tokens live in `design/theme.css` + `design/tokens.json`; components in `react/src/components`. Build the developer's pages against those.

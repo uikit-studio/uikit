@@ -29,13 +29,16 @@ const kits = readdirSync(KITS_DIR)
   .sort((a, b) => a.id.localeCompare(b.id));
 
 const abs = (u) => (!u ? u : /^https?:\/\//.test(u) ? u : SITE + u);
+// name/tagline/description may be bilingual ({en, ar}); the agent spec is
+// canonical English (LLMs read it; EN is the registry's source of truth).
+const en = (v) => (v && typeof v === "object" ? (v.en ?? v.ar ?? "") : (v ?? ""));
 const swatches = (arr) => (arr ?? []).map((s) => `- \`--color-${s.name}\`: \`${s.value}\``).join("\n");
 const tokenObj = (arr) => Object.fromEntries((arr ?? []).map((s) => [s.name, s.value]));
 
 /** The copy-paste prompt a developer hands to their agent. */
 function agentPrompt(k) {
   return (
-    `Build me a website styled exactly like the "${k.name}" design from uikit.studio.\n` +
+    `Build me a website styled exactly like the "${en(k.name)}" design from uikit.studio.\n` +
     `Design spec (agent-readable): ${SITE}/kit/${k.id}/llms.txt\n` +
     `Machine manifest: ${SITE}/kit/${k.id}/manifest.json\n` +
     (k.repo ? `Reference kit (clone to copy the real components/tokens): ${k.repo}\n` : "") +
@@ -47,14 +50,14 @@ function agentPrompt(k) {
 function kitLlms(k) {
   const fonts = k.fonts ?? {};
   const lines = [];
-  lines.push(`# ${k.name} — uikit.studio design spec`);
+  lines.push(`# ${en(k.name)} — uikit.studio design spec`);
   lines.push("");
-  lines.push(`> ${k.tagline}`);
+  lines.push(`> ${en(k.tagline)}`);
   lines.push("");
-  lines.push(k.description ?? "");
+  lines.push(en(k.description));
   lines.push("");
   lines.push(
-    `This file is **agent-readable**. If a developer asked you to build a site with the "${k.name}" ` +
+    `This file is **agent-readable**. If a developer asked you to build a site with the "${en(k.name)}" ` +
       `design, reproduce the design system below exactly — tokens, fonts, radius and components — ` +
       `in their stack, with full dark mode and a responsive layout.`,
   );
@@ -134,9 +137,9 @@ function kitManifest(k) {
   return {
     $schema: `${SITE}/agent-manifest.schema.json`,
     id: k.id,
-    name: k.name,
-    tagline: k.tagline,
-    description: k.description,
+    name: en(k.name),
+    tagline: en(k.tagline),
+    description: en(k.description),
     version: k.version,
     source: k.source,
     verified: k.verified,
@@ -181,7 +184,7 @@ const index = [
   "## Kits",
   ...kits.map(
     (k) =>
-      `- [${k.name}](${SITE}/kit/${k.id}/llms.txt): ${k.tagline}. ` +
+      `- [${en(k.name)}](${SITE}/kit/${k.id}/llms.txt): ${en(k.tagline)}. ` +
       `Spec: ${SITE}/kit/${k.id}/llms.txt · Manifest: ${SITE}/kit/${k.id}/manifest.json` +
       (k.repo ? ` · Repo: ${k.repo}` : ""),
   ),
