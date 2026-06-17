@@ -25,16 +25,61 @@ const FALLBACK = join(ROOT, ".preview-out");
 
 // Each kit's named shots. `route` is relative to /demos/<id>/; `dark` seeds the
 // theme. `lang` (optional) seeds the demo locale for Arabic-first kits.
+// `langKey` is the kit's own localStorage locale key (each kit namespaces it);
+// `viewport`/`scale`/`fullPage` default to a full-page 1200px @2x shot but are
+// overridable per kit to match its existing assets.
 const KITS = [
   {
     id: "sada",
     repo: "thamanayh-uikit/my-kit", // KernelCode/sada-uikit checkout
     lang: "ar",
+    langKey: "base-lang",
+    viewport: { width: 1200, height: 900 },
+    scale: 2,
+    fullPage: true,
     shots: [
       { file: "landing.png", route: "" },
       { file: "landing-dark.png", route: "", dark: true },
       { file: "components.png", route: "components/" },
       { file: "podcasts.png", route: "podcasts/" },
+    ],
+  },
+  // aurora/spark/lime use 1280×784 above-the-fold viewport shots (not full-page).
+  {
+    id: "aurora",
+    repo: "aurora-uikit",
+    lang: "ar",
+    langKey: "aurora-lang",
+    viewport: { width: 1280, height: 784 },
+    scale: 1,
+    fullPage: false,
+    shots: [
+      { file: "landing.png", route: "" },
+      { file: "dashboard.png", route: "dashboard/" },
+    ],
+  },
+  {
+    id: "spark",
+    repo: "spark-uikit",
+    lang: "ar",
+    langKey: "spark-lang",
+    viewport: { width: 1280, height: 784 },
+    scale: 1,
+    fullPage: false,
+    shots: [{ file: "landing.png", route: "" }],
+  },
+  {
+    id: "lime",
+    repo: "lime-uikit",
+    lang: "ar",
+    langKey: "lime-lang",
+    viewport: { width: 1280, height: 784 },
+    scale: 1,
+    fullPage: false,
+    shots: [
+      { file: "landing.png", route: "" },
+      { file: "dashboard.png", route: "dashboard/" },
+      { file: "components.png", route: "components/" },
     ],
   },
 ];
@@ -92,32 +137,36 @@ async function shootKit(browser, port, kit) {
   const outDir = outDirFor(kit);
   await mkdir(outDir, { recursive: true });
 
-  // 1200 CSS px @2x → 2400px-wide PNGs, matching the existing assets.
-  const context = await browser.newContext({
-    viewport: { width: 1200, height: 900 },
-    deviceScaleFactor: 2,
-  });
-  // Seed locale (Arabic-first kits) before any app JS runs.
+  const viewport = kit.viewport ?? { width: 1200, height: 900 };
+  const scale = kit.scale ?? 2;
+  const fullPage = kit.fullPage ?? true;
+  const langKey = kit.langKey ?? "base-lang";
+  const themeKey = kit.themeKey ?? "base-theme";
+  const context = await browser.newContext({ viewport, deviceScaleFactor: scale });
+  // Seed locale before any app JS runs (each kit namespaces its locale key).
   if (kit.lang) {
-    await context.addInitScript((lang) => {
-      try {
-        localStorage.setItem("base-lang", lang);
-      } catch {
-        /* storage unavailable */
-      }
-    }, kit.lang);
+    await context.addInitScript(
+      ({ key, lang }) => {
+        try {
+          localStorage.setItem(key, lang);
+        } catch {
+          /* storage unavailable */
+        }
+      },
+      { key: langKey, lang: kit.lang },
+    );
   }
 
   for (const shot of kit.shots) {
     const page = await context.newPage();
     if (shot.dark) {
-      await page.addInitScript(() => {
+      await page.addInitScript((key) => {
         try {
-          localStorage.setItem("base-theme", "dark");
+          localStorage.setItem(key, "dark");
         } catch {
           /* storage unavailable */
         }
-      });
+      }, themeKey);
     }
     const target = `http://127.0.0.1:${port}/demos/${id}/${shot.route}`;
     await page.goto(target, { waitUntil: "networkidle", timeout: 60000 });
@@ -128,7 +177,7 @@ async function shootKit(browser, port, kit) {
     });
     await page.waitForTimeout(900); // settle fonts/animations
     const outPath = join(outDir, shot.file);
-    await page.screenshot({ path: outPath, fullPage: true });
+    await page.screenshot({ path: outPath, fullPage });
     const rel = outPath.replace(SIBLINGS + "/", "");
     console.log(`✓ ${id}: ${rel} (${(statSync(outPath).size / 1024).toFixed(0)} KB)`);
     await page.close();
