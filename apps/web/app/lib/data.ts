@@ -101,8 +101,19 @@ const modules = import.meta.glob<GalleryKit>("../../content/kits/*.json", {
   import: "default",
 });
 
+// Curated lead order — these kits are pinned to the front of the gallery, in
+// this exact sequence. Everything else follows by the default rule below.
+const PINNED = ["sada", "lime"];
+const rankOf = (id: string) => {
+  const i = PINNED.indexOf(id);
+  return i === -1 ? Number.POSITIVE_INFINITY : i;
+};
+
 const GALLERY: GalleryKit[] = Object.values(modules).sort((a, b) => {
-  // Verified/official first, then alphabetical (by canonical EN name).
+  // Pinned kits first, in PINNED order; then verified/official, then alphabetical.
+  const ra = rankOf(a.id);
+  const rb = rankOf(b.id);
+  if (ra !== rb) return ra - rb;
   if (a.verified !== b.verified) return a.verified ? -1 : 1;
   return enOf(a.name).localeCompare(enOf(b.name));
 });

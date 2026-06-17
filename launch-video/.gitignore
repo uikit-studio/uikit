@@ -1,0 +1,7 @@
+node_modules/
+out/
+assets/frames/
+assets/screenshots/
+assets/pages/
+assets/themes.json
+assets/vendor/
