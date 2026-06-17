@@ -29,7 +29,9 @@ const KITS = [
   { id: "aurora", repo: "aurora-uikit" },
   { id: "lime", repo: "lime-uikit" },
   { id: "spark", repo: "spark-uikit" },
-  { id: "sada", repo: "thamanayh-uikit/my-kit" }, // KernelCode/sada-uikit checkout
+  // Arabic-first kit: capture the preview in Arabic + RTL (the demo defaults to
+  // EN via localStorage, so `lang` seeds `base-lang` before the app mounts).
+  { id: "sada", repo: "thamanayh-uikit/my-kit", lang: "ar" }, // KernelCode/sada-uikit checkout
 ];
 
 /** Where a kit's preview.webm should land: its repo screenshots/, else fallback. */
@@ -126,9 +128,20 @@ async function recordKit(browser, port, kit) {
     deviceScaleFactor: 1,
     recordVideo: { dir: tmpDir, size: viewport },
   });
+  // Seed the kit's locale before any app JS runs, so it mounts in that language
+  // (and RTL, for Arabic). The demo reads `base-lang` from localStorage on init.
+  if (kit.lang) {
+    await context.addInitScript((lang) => {
+      try {
+        localStorage.setItem("base-lang", lang);
+      } catch {
+        /* storage unavailable — fall back to demo default */
+      }
+    }, kit.lang);
+  }
   const page = await context.newPage();
 
-  console.log(`▶ ${id}: ${demoUrl}`);
+  console.log(`▶ ${id}${kit.lang ? ` [${kit.lang}]` : ""}: ${demoUrl}`);
   await page.goto(demoUrl, { waitUntil: "networkidle", timeout: 60000 });
   // Hide the floating "back to uikit.studio" pill if present.
   await page.evaluate(() => {
