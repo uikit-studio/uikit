@@ -191,14 +191,21 @@ function KitCard({ kit, index }: { kit: GalleryCard; index: number }) {
             style={{ background: `linear-gradient(135deg, ${kit.primaryColor}, ${kit.accentColor})` }}
           />
         )}
-        {/* hover overlay */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-fg/45 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-        <span className="absolute top-3.5 grid h-9 w-9 translate-y-1 place-items-center rounded-full bg-bg/90 text-fg opacity-0 shadow-sm backdrop-blur transition-all duration-300 end-3.5 group-hover:translate-y-0 group-hover:opacity-100">
-          <ArrowUpRight className="h-4 w-4 rtl-flip" />
-        </span>
-        <span className="absolute bottom-4 inline-flex translate-y-2 items-center gap-1.5 rounded-full bg-bg px-3.5 py-1.5 text-xs font-semibold text-fg opacity-0 shadow-md transition-all duration-300 start-4 group-hover:translate-y-0 group-hover:opacity-100">
-          {t("card.view")}
-        </span>
+        {/* Hover reveal — extra detail (tagline + author) surfaces over the preview;
+            the resting footer below stays minimal. */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-col gap-1.5 bg-gradient-to-t from-fg/85 via-fg/35 to-transparent p-4 pt-12 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+          {tagline && (
+            <p className="line-clamp-2 translate-y-2 text-sm font-semibold leading-snug text-bg transition-transform duration-300 group-hover:translate-y-0">
+              {tagline}
+            </p>
+          )}
+          <p className="flex translate-y-2 items-center gap-1.5 font-mono text-[11px] text-bg/75 transition-transform delay-[40ms] duration-300 group-hover:translate-y-0">
+            {t("card.by")} {kit.author.name}
+            <span className="ms-auto inline-flex items-center gap-1 font-sans font-semibold text-bg">
+              {t("card.view")} <ArrowUpRight className="h-3.5 w-3.5 rtl-flip" />
+            </span>
+          </p>
+        </div>
       </div>
 
       {/* Footer: identity + meta */}
@@ -209,9 +216,7 @@ function KitCard({ kit, index }: { kit: GalleryCard; index: number }) {
         />
         <div className="min-w-0">
           <h3 className="truncate font-display text-base font-bold tracking-tight">{name}</h3>
-          <p className="truncate font-mono text-[11px] text-faint">
-            {t("card.by")} {kit.author.name} · {kit.frameworks.join(" · ")}
-          </p>
+          <p className="truncate font-mono text-[11px] text-faint">{kit.frameworks.join(" · ")}</p>
         </div>
         {kit.source === "official" ? (
           <span className="ms-auto flex shrink-0 items-center gap-1 rounded-full bg-accent/10 px-2.5 py-1 text-[11px] font-medium text-accent-ink">
@@ -223,9 +228,6 @@ function KitCard({ kit, index }: { kit: GalleryCard; index: number }) {
           </span>
         )}
       </div>
-
-      {/* Tagline — the kit's one-line pitch */}
-      {tagline && <p className="mt-1.5 line-clamp-1 px-1 text-[13px] leading-snug text-muted">{tagline}</p>}
     </Link>
   );
 }
