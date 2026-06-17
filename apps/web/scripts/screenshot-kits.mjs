@@ -24,38 +24,45 @@ const SIBLINGS = join(ROOT, "../../.."); // …/personal
 const FALLBACK = join(ROOT, ".preview-out");
 
 // Each kit's named shots. `route` is relative to /demos/<id>/; `dark` seeds the
-// theme. `lang` (optional) seeds the demo locale for Arabic-first kits.
-// `langKey` is the kit's own localStorage locale key (each kit namespaces it);
-// `viewport`/`scale`/`fullPage` default to a full-page 1200px @2x shot but are
-// overridable per kit to match its existing assets.
+// theme; `fullPage` overrides the kit default per shot.
+// `langKey` is the kit's own localStorage locale key (each kit namespaces it).
+//
+// SIZING CONTRACT: the gallery card and the README embed `landing.png` as the
+// poster for `preview.webm`, so the poster MUST share the video's 4:3 aspect
+// (1200×900) or `object-fit: cover` crops it — and in RTL that clips the
+// right-aligned headline. Hence every `landing.png` is a 4:3 1200×900 @2x shot
+// (2400×1800), matching the 1200×900 video. Full-page detail shots (sada's
+// editorial pages) opt in per shot with `fullPage: true`.
 const KITS = [
   {
     id: "sada",
     repo: "thamanayh-uikit/my-kit", // KernelCode/sada-uikit checkout
     lang: "ar",
     langKey: "base-lang",
-    viewport: { width: 1200, height: 900 },
+    viewport: { width: 1200, height: 900 }, // 4:3, matches preview.webm
     scale: 2,
-    fullPage: true,
+    fullPage: false,
     shots: [
-      { file: "landing.png", route: "" },
-      { file: "landing-dark.png", route: "", dark: true },
-      { file: "components.png", route: "components/" },
-      { file: "podcasts.png", route: "podcasts/" },
+      { file: "landing.png", route: "" }, // poster → 4:3
+      { file: "landing-dark.png", route: "", dark: true, fullPage: true },
+      { file: "components.png", route: "components/", fullPage: true },
+      { file: "podcasts.png", route: "podcasts/", fullPage: true },
     ],
   },
-  // aurora/spark/lime use 1280×784 above-the-fold viewport shots (not full-page).
+  // aurora/spark/lime: 4:3 above-the-fold shots so the landing poster matches
+  // the 4:3 video (was 16:10, which cropped the RTL headline on the card).
   {
     id: "aurora",
     repo: "aurora-uikit",
     lang: "ar",
     langKey: "aurora-lang",
-    viewport: { width: 1280, height: 784 },
-    scale: 1,
+    viewport: { width: 1200, height: 900 },
+    scale: 2,
     fullPage: false,
     shots: [
       { file: "landing.png", route: "" },
       { file: "dashboard.png", route: "dashboard/" },
+      { file: "components.png", route: "components/" },
     ],
   },
   {
@@ -63,18 +70,22 @@ const KITS = [
     repo: "spark-uikit",
     lang: "ar",
     langKey: "spark-lang",
-    viewport: { width: 1280, height: 784 },
-    scale: 1,
+    viewport: { width: 1200, height: 900 },
+    scale: 2,
     fullPage: false,
-    shots: [{ file: "landing.png", route: "" }],
+    shots: [
+      { file: "landing.png", route: "" },
+      { file: "dashboard.png", route: "dashboard/" },
+      { file: "components.png", route: "components/" },
+    ],
   },
   {
     id: "lime",
     repo: "lime-uikit",
     lang: "ar",
     langKey: "lime-lang",
-    viewport: { width: 1280, height: 784 },
-    scale: 1,
+    viewport: { width: 1200, height: 900 },
+    scale: 2,
     fullPage: false,
     shots: [
       { file: "landing.png", route: "" },
@@ -177,7 +188,7 @@ async function shootKit(browser, port, kit) {
     });
     await page.waitForTimeout(900); // settle fonts/animations
     const outPath = join(outDir, shot.file);
-    await page.screenshot({ path: outPath, fullPage });
+    await page.screenshot({ path: outPath, fullPage: shot.fullPage ?? fullPage });
     const rel = outPath.replace(SIBLINGS + "/", "");
     console.log(`✓ ${id}: ${rel} (${(statSync(outPath).size / 1024).toFixed(0)} KB)`);
     await page.close();
