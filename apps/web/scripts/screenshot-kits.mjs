@@ -186,7 +186,10 @@ async function shootKit(browser, port, kit) {
       const el = document.getElementById("uikit-back");
       if (el) el.style.display = "none";
     });
-    await page.waitForTimeout(900); // settle fonts/animations
+    // Don't shoot until webfonts are loaded AND applied, or the PNG captures a
+    // flash of unstyled text (FOUT) instead of the kit's real type.
+    await page.evaluate(() => document.fonts.ready);
+    await page.waitForTimeout(700); // settle animations
     const outPath = join(outDir, shot.file);
     await page.screenshot({ path: outPath, fullPage: shot.fullPage ?? fullPage });
     const rel = outPath.replace(SIBLINGS + "/", "");

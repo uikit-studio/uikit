@@ -12,7 +12,9 @@
  */
 import { createServer } from "node:http";
 import { readFile, mkdir, rm, rename, copyFile } from "node:fs/promises";
-import { existsSync, statSync } from "node:fs";
+import { existsSync, statSync, readdirSync } from "node:fs";
+import { spawnSync } from "node:child_process";
+import { homedir } from "node:os";
 import { extname, join, normalize } from "node:path";
 import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
@@ -21,6 +23,44 @@ const ROOT = fileURLToPath(new URL("..", import.meta.url)); // apps/web
 const PUBLIC = join(ROOT, "public");
 const SIBLINGS = join(ROOT, "../../.."); // …/personal (apps/web → apps → uikit → personal)
 const FALLBACK = join(ROOT, ".preview-out");
+
+// Trim the first frames off each clip: recordVideo starts at page creation, so
+// the webm opens on a blank frame while the SPA mounts. The font cache is warmed
+// before recording (no FOUT), so by ~0.15s the page is fully styled — drop the
+// lead-in so the looping card starts on the finished UI, not the load.
+const LEAD_IN_SECONDS = 0.6;
+
+/** Locate Playwright's bundled ffmpeg in the ms-playwright browser cache. */
+function findFfmpeg() {
+  const base =
+    process.env.PLAYWRIGHT_BROWSERS_PATH ||
+    (process.platform === "darwin"
+      ? join(homedir(), "Library/Caches/ms-playwright")
+      : process.platform === "win32"
+        ? join(homedir(), "AppData/Local/ms-playwright")
+        : join(homedir(), ".cache/ms-playwright"));
+  try {
+    const dir = readdirSync(base).find((d) => d.startsWith("ffmpeg-"));
+    if (!dir) return null;
+    const bin = readdirSync(join(base, dir)).find((f) => f.startsWith("ffmpeg"));
+    return bin ? join(base, dir, bin) : null;
+  } catch {
+    return null;
+  }
+}
+
+const FFMPEG = findFfmpeg();
+
+/** Re-encode `src` into `dest` dropping the first `seconds`. Returns success. */
+function trimLeadIn(src, dest, seconds) {
+  if (!FFMPEG) return false;
+  const r = spawnSync(
+    FFMPEG,
+    ["-y", "-ss", String(seconds), "-i", src, "-c:v", "libvpx", "-b:v", "1M", "-an", dest],
+    { stdio: "ignore" },
+  );
+  return r.status === 0;
+}
 
 // Each kit demo lives at /demos/<id>/. `repo` is the kit's own checkout dir
 // (sibling of this repo); the clip is written to its screenshots/. Kits with no
@@ -144,6 +184,16 @@ async function recordKit(browser, port, kit) {
       { key: kit.langKey ?? "base-lang", lang: kit.lang },
     );
   }
+  // Warm the context cache (fonts + assets) on a throw-away page first, so the
+  // RECORDED page paints fully-styled from its very first frame. Without this
+  // the clip opens on a ~1–2s flash of unstyled text (FOUT) while webfonts
+  // load — and because the gallery card loops the clip, that flash shows every
+  // loop. The warm page caches the woff2s; the record page then loads instantly.
+  const warm = await context.newPage();
+  await warm.goto(demoUrl, { waitUntil: "networkidle", timeout: 60000 });
+  await warm.evaluate(() => document.fonts.ready);
+  await warm.close();
+
   const page = await context.newPage();
 
   console.log(`▶ ${id}${kit.lang ? ` [${kit.lang}]` : ""}: ${demoUrl}`);
@@ -153,7 +203,9 @@ async function recordKit(browser, port, kit) {
     const el = document.getElementById("uikit-back");
     if (el) el.style.display = "none";
   });
-  await page.waitForTimeout(900); // settle fonts/animations
+  // Don't record until webfonts are loaded AND applied (cached → near-instant).
+  await page.evaluate(() => document.fonts.ready);
+  await page.waitForTimeout(700); // settle layout/animations
 
   await scrollThrough(page, 7000); // ~7s clip
   await page.waitForTimeout(400);
@@ -164,7 +216,11 @@ async function recordKit(browser, port, kit) {
 
   const finalPath = join(outDir, "preview.webm");
   await rm(finalPath, { force: true });
-  await rename(src, finalPath).catch(() => copyFile(src, finalPath)); // cross-device fallback
+  // Trim the blank mount lead-in; fall back to the raw clip if ffmpeg is absent.
+  if (!trimLeadIn(src, finalPath, LEAD_IN_SECONDS)) {
+    if (!FFMPEG) console.warn("  ⚠ ffmpeg not found — clip not trimmed; first frames may show the load.");
+    await rename(src, finalPath).catch(() => copyFile(src, finalPath)); // cross-device fallback
+  }
   await rm(tmpDir, { recursive: true, force: true });
   const rel = finalPath.replace(SIBLINGS + "/", "");
   console.log(`✓ ${id}: ${rel} (${(statSync(finalPath).size / 1024).toFixed(0)} KB)`);
