@@ -85,7 +85,7 @@
       "route": "/components"
     }
   ],
-  "install": "npx uikit-studio add lime",
+  "install": "npx uikit-cli add lime",
   "skill": "lime-ui",
   "agentPrompt": "Build me a website styled exactly like the \"Lime\" design from uikit.studio.\nDesign spec (agent-readable): https://uikit.studio/kit/lime/llms.txt\nMachine manifest: https://uikit.studio/kit/lime/manifest.json\nReference kit (clone to copy the real components/tokens): https://github.com/KernelCode/lime-uikit\nMatch its color tokens (light + dark), fonts, radius and component set. Keep full dark mode and responsive layout."
 }

@@ -15,7 +15,7 @@ root="$(cd "$(dirname "$0")/.." && pwd)"
 demo="$root/apps/web/public/demos/$id"
 
 echo "▸ [1/5] validate kit manifest"
-npx -y uikit-studio validate "$src/.."
+npx -y uikit-cli validate "$src/.."
 
 echo "▸ [2/5] build demo → public/demos/$id"
 ( cd "$src" && pnpm install --silent && pnpm build --base="/demos/$id/" --outDir "$demo" --emptyOutDir )

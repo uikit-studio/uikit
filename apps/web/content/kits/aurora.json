@@ -65,7 +65,7 @@
     { "name": "Dashboard", "route": "/dashboard" },
     { "name": "Showcase", "route": "/components" }
   ],
-  "installCmd": "npx uikit-studio add aurora",
+  "installCmd": "npx uikit-cli add aurora",
   "skillName": "aurora-ui",
   "consumeSteps": [
     "git clone https://github.com/uikit-studio/aurora-uikit my-app",

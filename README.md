@@ -39,12 +39,12 @@ Big type, cream + ink + orange, grotesk display, light + dark, EN/AR + RTL.
 ## The toolchain (separate public repo)
 
 The `uikit` CLI, the `uikit.json` contract, and the `uikit-standard` generator
-live in **[uikit-studio/uikit-studio](https://github.com/uikit-studio/uikit-studio)**
-and ship to npm as **[`uikit-studio`](https://www.npmjs.com/package/uikit-studio)**:
+live in **[uikit-studio/uikit-cli](https://github.com/uikit-studio/uikit-cli)**
+and ship to npm as **[`uikit-cli`](https://www.npmjs.com/package/uikit-cli)**:
 
 ```bash
-npx uikit-studio new https://github.com/uikit-studio/aurora-uikit my-app
-cd my-app && npx uikit-studio add dashboard
+npx uikit-cli new https://github.com/uikit-studio/aurora-uikit my-app
+cd my-app && npx uikit-cli add dashboard
 ```
 
 ## Develop

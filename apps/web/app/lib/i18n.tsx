@@ -150,7 +150,7 @@ const en = {
     "The base is neutral plumbing (routing, i18n/RTL, dark mode, a token system). Open it in Claude Code / Codex, describe your kit, then point the editor at prompts/build.md — the brief for building it the uikit way (a full, original system, not a demo).",
   "submit.step1.optB": "option b — remix an existing kit into a new one",
   "submit.step1.noteB":
-    "Drops a REMIX.md brief: give it a new identity and restructure the pages. Tip: npm i -g uikit-studio drops the npx prefix.",
+    "Drops a REMIX.md brief: give it a new identity and restructure the pages. Tip: npm i -g uikit-cli drops the npx prefix.",
   "submit.step2.title": "Make it a full system (not a sampler)",
   "submit.step2.lead": "It must run out of the box and read like a shipping product. The bar:",
   "submit.step3.title": "Validate against the contract",
@@ -296,7 +296,7 @@ const ar: Record<MsgKey, string> = {
     "القاعدة بنية محايدة (توجيه، وتعريب وRTL، ووضع داكن، ونظام ألوان وخطوط). افتحها في Claude Code أو Codex، وصِف حزمتك، وبعدها وجّه المحرّر لـ prompts/build.md — وهو الموجز لبنائها بأسلوب uikit (نظام أصيل كامل، مو عرض توضيحي).",
   "submit.step1.optB": "الخيار ب — أعِد مزج حزمة موجودة لحزمة جديدة",
   "submit.step1.noteB":
-    "بتلقى موجز REMIX.md: اعطها هوية جديدة وأعِد ترتيب صفحاتها. ملاحظة: ‎npm i -g uikit-studio‎ يغنيك عن بادئة npx.",
+    "بتلقى موجز REMIX.md: اعطها هوية جديدة وأعِد ترتيب صفحاتها. ملاحظة: ‎npm i -g uikit-cli‎ يغنيك عن بادئة npx.",
   "submit.step2.title": "خلّها نظامًا كاملًا، مو مجرّد عيّنة",
   "submit.step2.lead": "لازم تشتغل من أول استنساخ، وتبان كمنتج جاهز للإطلاق. وهذا هو المعيار:",
   "submit.step3.title": "تأكّد إنها تمشي مع العقد",
@@ -342,7 +342,7 @@ const LISTS: Record<Locale, Record<string, string[]>> = {
     reviewChecks: [
       "The entry JSON passes the schema (CI runs scripts/validate-content.mjs on your PR).",
       "Verified kits mirror their screenshots into the repo; community kits pin external URLs to a tag/SHA.",
-      "The kit's own uikit.json is contract-valid (npx uikit-studio validate).",
+      "The kit's own uikit.json is contract-valid (npx uikit-cli validate).",
       "The demo URL loads and matches the screenshots.",
       "The repo ships AGENTS.md + llms.txt at its root (the CLI scaffolds both).",
       "License is real and permissive; no malware in install scripts.",
@@ -359,7 +359,7 @@ const LISTS: Record<Locale, Record<string, string[]>> = {
     reviewChecks: [
       "ملف المُدخل JSON يجتاز المخطّط (الـ CI يشغّل scripts/validate-content.mjs على طلبك).",
       "الحِزَم الموثّقة تنسخ لقطاتها داخل المستودع، والمجتمعية تثبّت روابطها الخارجية على وسم أو SHA.",
-      "ملف uikit.json الخاص بالحزمة متوافق مع العقد (npx uikit-studio validate).",
+      "ملف uikit.json الخاص بالحزمة متوافق مع العقد (npx uikit-cli validate).",
       "رابط العرض المباشر يفتح ويطابق اللقطات.",
       "المستودع فيه AGENTS.md وllms.txt في جذره (الأداة تنشئهما).",
       "الرخصة حقيقية ومتساهلة، وما فيه برمجيات خبيثة في سكربتات التثبيت.",

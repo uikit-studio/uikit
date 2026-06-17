@@ -68,7 +68,7 @@
     { "name": "Podcasts", "route": "/podcasts" },
     { "name": "Showcase", "route": "/components" }
   ],
-  "installCmd": "npx uikit-studio new https://github.com/KernelCode/sada-uikit my-app",
+  "installCmd": "npx uikit-cli new https://github.com/KernelCode/sada-uikit my-app",
   "skillName": "sada",
   "consumeSteps": [
     "git clone https://github.com/KernelCode/sada-uikit my-app",

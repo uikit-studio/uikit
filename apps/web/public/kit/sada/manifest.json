@@ -86,7 +86,7 @@
       "route": "/components"
     }
   ],
-  "install": "npx uikit-studio new https://github.com/KernelCode/sada-uikit my-app",
+  "install": "npx uikit-cli new https://github.com/KernelCode/sada-uikit my-app",
   "skill": "sada",
   "agentPrompt": "Build me a website styled exactly like the \"Sada\" design from uikit.studio.\nDesign spec (agent-readable): https://uikit.studio/kit/sada/llms.txt\nMachine manifest: https://uikit.studio/kit/sada/manifest.json\nReference kit (clone to copy the real components/tokens): https://github.com/KernelCode/sada-uikit\nMatch its color tokens (light + dark), fonts, radius and component set. Keep full dark mode and responsive layout."
 }

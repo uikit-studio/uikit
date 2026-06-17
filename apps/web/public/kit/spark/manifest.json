@@ -87,7 +87,7 @@
       "route": "/components"
     }
   ],
-  "install": "npx uikit-studio add spark",
+  "install": "npx uikit-cli add spark",
   "skill": "spark-ui",
   "agentPrompt": "Build me a website styled exactly like the \"Spark\" design from uikit.studio.\nDesign spec (agent-readable): https://uikit.studio/kit/spark/llms.txt\nMachine manifest: https://uikit.studio/kit/spark/manifest.json\nReference kit (clone to copy the real components/tokens): https://github.com/uikit-studio/spark-uikit\nMatch its color tokens (light + dark), fonts, radius and component set. Keep full dark mode and responsive layout."
 }

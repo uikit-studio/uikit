@@ -84,12 +84,12 @@ function SubmitPage() {
               <p className="mt-4 mb-2 font-mono text-[11px] uppercase tracking-wide text-faint">
                 {t("submit.step1.optA")}
               </p>
-              <Cmd>npx uikit-studio new https://github.com/uikit-studio/base-uikit my-kit</Cmd>
+              <Cmd>npx uikit-cli new https://github.com/uikit-studio/base-uikit my-kit</Cmd>
               <Note>{t("submit.step1.noteA")}</Note>
               <p className="mt-4 mb-2 font-mono text-[11px] uppercase tracking-wide text-faint">
                 {t("submit.step1.optB")}
               </p>
-              <Cmd>npx uikit-studio remix ./aurora-uikit my-kit</Cmd>
+              <Cmd>npx uikit-cli remix ./aurora-uikit my-kit</Cmd>
               <p className="mt-2 text-xs text-faint">{t("submit.step1.noteB")}</p>
             </>
           }
@@ -122,8 +122,8 @@ function SubmitPage() {
           body={
             <>
               <p className="text-muted">{t("submit.step3.lead")}</p>
-              <Cmd>npx uikit-studio validate</Cmd>
-              <Cmd>npx uikit-studio info</Cmd>
+              <Cmd>npx uikit-cli validate</Cmd>
+              <Cmd>npx uikit-cli info</Cmd>
             </>
           }
         />

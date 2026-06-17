@@ -65,7 +65,7 @@
     { "name": "Dashboard", "route": "/dashboard" },
     { "name": "Showcase", "route": "/components" }
   ],
-  "installCmd": "npx uikit-studio add spark",
+  "installCmd": "npx uikit-cli add spark",
   "skillName": "spark-ui",
   "consumeSteps": [
     "git clone https://github.com/uikit-studio/spark-uikit my-app",

@@ -86,4 +86,4 @@ The real tokens live in `design/theme.css` + `design/tokens.json`; components in
 
 **Option B — apply the design system directly:** set the light + dark color tokens above as CSS variables, load the three fonts, use the base radius, and build the listed components and pages. Keep dark mode and EN/AR + RTL parity if the target needs it.
 
-**Option C — add via CLI:** `npx uikit-studio new https://github.com/KernelCode/sada-uikit my-app` (Claude Code skill: `sada`)
+**Option C — add via CLI:** `npx uikit-cli new https://github.com/KernelCode/sada-uikit my-app` (Claude Code skill: `sada`)

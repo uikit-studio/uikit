@@ -84,7 +84,7 @@
       "route": "/components"
     }
   ],
-  "install": "npx uikit-studio add aurora",
+  "install": "npx uikit-cli add aurora",
   "skill": "aurora-ui",
   "agentPrompt": "Build me a website styled exactly like the \"Aurora\" design from uikit.studio.\nDesign spec (agent-readable): https://uikit.studio/kit/aurora/llms.txt\nMachine manifest: https://uikit.studio/kit/aurora/manifest.json\nReference kit (clone to copy the real components/tokens): https://github.com/uikit-studio/aurora-uikit\nMatch its color tokens (light + dark), fonts, radius and component set. Keep full dark mode and responsive layout."
 }

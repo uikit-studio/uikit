@@ -51,11 +51,11 @@
   ],
   "prompt": "A limey digital-business-card kit — warm cream + near-black ink + a vivid acid-lime accent, heavy Hanken Grotesk display, monospace micro-labels, highlight-marker headings, a marquee and dark bento sections. React-first. Full dark mode and EN/AR + RTL. Ship landing, pricing, dashboard, and a components showcase.",
   "buildSteps": [
-    "Forked an existing kit with `uikit-studio new`, then reskinned its identity.",
+    "Forked an existing kit with `uikit-cli new`, then reskinned its identity.",
     "Tokens (tokens.json) → theme.css: lime brand scale, cream/ink, dark block, [dir=rtl] Arabic font swap, Hanken Grotesk display.",
     "i18n (en + ar): a digital-card narrative — taps, designs, NFC/QR, lead capture.",
     "Reused the design system: cn, Button, Card, Input, Badge, Pill, Mark, Marquee, Container; Navbar/Footer/StatCards blocks.",
-    "Four pages: Landing (hero · marquee · designs grid · dark bento · CTA), Pricing, Dashboard, Components showcase. Validated with `uikit-studio validate`."
+    "Four pages: Landing (hero · marquee · designs grid · dark bento · CTA), Pricing, Dashboard, Components showcase. Validated with `uikit-cli validate`."
   ],
   "components": ["Button", "Card", "Input", "Badge", "Pill", "Mark", "Marquee", "Container"],
   "blocks": ["Navbar", "Footer", "StatCards"],
@@ -65,7 +65,7 @@
     { "name": "Dashboard", "route": "/dashboard" },
     { "name": "Showcase", "route": "/components" }
   ],
-  "installCmd": "npx uikit-studio add lime",
+  "installCmd": "npx uikit-cli add lime",
   "skillName": "lime-ui",
   "consumeSteps": [
     "git clone https://github.com/kernelcode/lime-uikit my-app",
