@@ -25,13 +25,15 @@ const FALLBACK = join(ROOT, ".preview-out");
 // Each kit demo lives at /demos/<id>/. `repo` is the kit's own checkout dir
 // (sibling of this repo); the clip is written to its screenshots/. Kits with no
 // local repo (e.g. sada lives in KernelCode/sada-uikit) record to FALLBACK.
+// `lang` records the clip in that locale (the demos default to EN); `langKey`
+// is the kit's own localStorage locale key (each kit namespaces it), seeded
+// before the app mounts. uikit.studio is an Arabic-first gallery, so all clips
+// are recorded in Arabic + RTL.
 const KITS = [
-  { id: "aurora", repo: "aurora-uikit" },
-  { id: "lime", repo: "lime-uikit" },
-  { id: "spark", repo: "spark-uikit" },
-  // Arabic-first kit: capture the preview in Arabic + RTL (the demo defaults to
-  // EN via localStorage, so `lang` seeds `base-lang` before the app mounts).
-  { id: "sada", repo: "thamanayh-uikit/my-kit", lang: "ar" }, // KernelCode/sada-uikit checkout
+  { id: "aurora", repo: "aurora-uikit", lang: "ar", langKey: "aurora-lang" },
+  { id: "lime", repo: "lime-uikit", lang: "ar", langKey: "lime-lang" },
+  { id: "spark", repo: "spark-uikit", lang: "ar", langKey: "spark-lang" },
+  { id: "sada", repo: "thamanayh-uikit/my-kit", lang: "ar", langKey: "base-lang" }, // KernelCode/sada-uikit checkout
 ];
 
 /** Where a kit's preview.webm should land: its repo screenshots/, else fallback. */
@@ -131,13 +133,16 @@ async function recordKit(browser, port, kit) {
   // Seed the kit's locale before any app JS runs, so it mounts in that language
   // (and RTL, for Arabic). The demo reads `base-lang` from localStorage on init.
   if (kit.lang) {
-    await context.addInitScript((lang) => {
-      try {
-        localStorage.setItem("base-lang", lang);
-      } catch {
-        /* storage unavailable — fall back to demo default */
-      }
-    }, kit.lang);
+    await context.addInitScript(
+      ({ key, lang }) => {
+        try {
+          localStorage.setItem(key, lang);
+        } catch {
+          /* storage unavailable — fall back to demo default */
+        }
+      },
+      { key: kit.langKey ?? "base-lang", lang: kit.lang },
+    );
   }
   const page = await context.newPage();
 
