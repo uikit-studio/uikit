@@ -90,6 +90,7 @@ export interface GalleryCard {
   frameworks: string[];
   categories: string[];
   tags: string[];
+  author: { name: string };
   thumb: string | null;
   video: string | null;
 }
@@ -118,6 +119,7 @@ function toCard(k: GalleryKit): GalleryCard {
     frameworks: k.frameworks,
     categories: k.categories,
     tags: k.tags,
+    author: { name: k.author.name },
     thumb: k.screenshots[0]?.url ?? null,
     video: k.video ?? null,
   };

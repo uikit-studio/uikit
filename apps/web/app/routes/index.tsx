@@ -145,6 +145,7 @@ function Chip({ label, active, onClick }: { label: string; active: boolean; onCl
 function KitCard({ kit, index }: { kit: GalleryCard; index: number }) {
   const { t, locale } = useLocale();
   const name = L(kit.name, locale);
+  const tagline = L(kit.tagline, locale);
   const ref = useReveal<HTMLAnchorElement>();
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -208,7 +209,9 @@ function KitCard({ kit, index }: { kit: GalleryCard; index: number }) {
         />
         <div className="min-w-0">
           <h3 className="truncate font-display text-base font-bold tracking-tight">{name}</h3>
-          <p className="truncate font-mono text-[11px] text-faint">{kit.frameworks.join(" · ")}</p>
+          <p className="truncate font-mono text-[11px] text-faint">
+            {t("card.by")} {kit.author.name} · {kit.frameworks.join(" · ")}
+          </p>
         </div>
         {kit.source === "official" ? (
           <span className="ms-auto flex shrink-0 items-center gap-1 rounded-full bg-accent/10 px-2.5 py-1 text-[11px] font-medium text-accent-ink">
@@ -220,6 +223,9 @@ function KitCard({ kit, index }: { kit: GalleryCard; index: number }) {
           </span>
         )}
       </div>
+
+      {/* Tagline — the kit's one-line pitch */}
+      {tagline && <p className="mt-1.5 line-clamp-1 px-1 text-[13px] leading-snug text-muted">{tagline}</p>}
     </Link>
   );
 }

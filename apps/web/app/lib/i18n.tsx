@@ -83,6 +83,7 @@ const en = {
   "card.official": "official",
   "card.community": "community",
   "card.view": "View kit",
+  "card.by": "by",
 
   // home / submit CTA
   "submitcta.titleA": "Built a kit?",
@@ -232,6 +233,7 @@ const ar: Record<MsgKey, string> = {
   "card.official": "رسمية",
   "card.community": "من المجتمع",
   "card.view": "افتح الحزمة",
+  "card.by": "بواسطة",
 
   "submitcta.titleA": "عندك حزمة؟",
   "submitcta.titleB": "انشرها معنا.",
