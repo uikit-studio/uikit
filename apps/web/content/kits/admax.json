@@ -71,6 +71,7 @@
     { "name": "Components", "route": "/components" }
   ],
   "installCmd": "npx uikit-cli new https://github.com/KernelCode/admax-uikit my-app",
+  "video": "/kits/admax/preview.webm",
   "skillName": "admax",
   "consumeSteps": [
     "git clone https://github.com/KernelCode/admax-uikit my-app",
