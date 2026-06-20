@@ -1,0 +1,87 @@
+{
+  "id": "admax",
+  "name": { "en": "Admax", "ar": "أدماكس" },
+  "tagline": { "en": "Flat ads campaign manager admin kit", "ar": "حزمة لوحة تحكم مسطّحة لإدارة الحملات الإعلانية" },
+  "description": {
+    "en": "A dashboard-first admin kit for ad-campaign tooling. Truly flat — no gradients, no shadows: a sunny amber/gold brand, an orange 'spends' accent and candy status colors (green = running/income, red = paused/expense, slate = expired) over a warm off-white canvas with tight radii. Dense dashboard (KPIs + sparklines, spends banner, line/candlestick/donut charts, a sortable spending table), a campaign monitor, a social network grid, pricing and a full components showcase. EN/AR with full RTL, light + dark. Runnable React app.",
+    "ar": "حزمة لوحة تحكم أولًا لأدوات الحملات الإعلانية. تصميم مسطّح تمامًا — دون تدرّجات أو ظلال: علامة ذهبية كهرمانية مشمسة، ولمسة برتقالية للإنفاق، وألوان حالة زاهية (أخضر = نشطة/دخل، أحمر = متوقفة/مصروف، رمادي = منتهية) فوق خلفية فاتحة دافئة بزوايا ضيّقة. لوحة تحكم غنية (مؤشرات وخطوط مصغّرة، شريط الإنفاق، مخططات خطية وشمعية ودائرية، وجدول إنفاق قابل للفرز)، ومراقب حملات، وشبكة حسابات اجتماعية، وصفحة أسعار، وعرض كامل للمكوّنات. عربي/إنجليزي مع RTL كامل، وضع فاتح وداكن. تطبيق React جاهز للتشغيل."
+  },
+  "version": "1.0.0",
+  "source": "community",
+  "verified": false,
+  "demoUrl": "/demos/admax/",
+  "primaryColor": "#f59e0b",
+  "accentColor": "#ff7a45",
+  "frameworks": ["react"],
+  "categories": ["dashboard", "admin", "analytics"],
+  "tags": ["dashboard", "admin", "ads", "campaign", "analytics", "amber", "flat", "arabic", "rtl"],
+  "repo": "https://github.com/KernelCode/admax-uikit",
+  "homepage": "https://github.com/KernelCode/admax-uikit",
+  "license": "MIT",
+  "styling": "tailwind + tokens",
+  "author": { "name": "Abdullah Al-taheri", "github": "KernelCode", "url": "https://altaheri.me", "official": false },
+  "fonts": { "display": "Plus Jakarta Sans", "sans": "Plus Jakarta Sans", "mono": "JetBrains Mono" },
+  "radius": "0.75rem",
+  "brandScale": [
+    { "name": "50", "value": "#fff8e6" },
+    { "name": "100", "value": "#ffefc2" },
+    { "name": "200", "value": "#ffe095" },
+    { "name": "300", "value": "#ffcd55" },
+    { "name": "400", "value": "#fbb828" },
+    { "name": "500", "value": "#f59e0b" },
+    { "name": "600", "value": "#e2820a" },
+    { "name": "700", "value": "#b9650a" },
+    { "name": "800", "value": "#934f0e" },
+    { "name": "900", "value": "#78410f" }
+  ],
+  "palette": [
+    { "name": "primary", "value": "#f59e0b" },
+    { "name": "accent", "value": "#ff7a45" },
+    { "name": "success", "value": "#22c55e" },
+    { "name": "danger", "value": "#f7585b" },
+    { "name": "background", "value": "#f5f6f8" },
+    { "name": "foreground", "value": "#1d2231" },
+    { "name": "card", "value": "#ffffff" },
+    { "name": "muted", "value": "#eef0f4" },
+    { "name": "border", "value": "#e9ecf2" }
+  ],
+  "darkPalette": [
+    { "name": "background", "value": "#0f1117" },
+    { "name": "foreground", "value": "#eef1f7" },
+    { "name": "card", "value": "#181b23" },
+    { "name": "primary", "value": "#fbb828" },
+    { "name": "muted", "value": "#20242e" },
+    { "name": "border", "value": "#272c38" }
+  ],
+  "prompt": "A dashboard-first ads campaign manager — truly flat (no gradients, no shadows), sunny amber/gold brand with an orange 'spends' accent and green/red/slate status colors over a warm off-white canvas. Plus Jakarta Sans + Cairo for Arabic. Ship a dense dashboard (KPI cards with sparklines, an orange/slate spends banner with a diagonal seam, a multi-series line chart, candlestick + donut, a sortable spending data table), a campaign monitor, a social network grid, pricing, and a components showcase. Dashboard is the index page. Full EN/AR + RTL and dark mode.",
+  "buildSteps": [
+    "Tokens (tokens.json) → theme.css (amber scale, flat shadows:none, tight radii, type scale, dark block, [dir=rtl] swap) → tailwind-preset.js.",
+    "i18n: en + ar dictionaries + a provider that flips dir/lang.",
+    "Design system: cn, Button, Badge, Input, Card, Avatar, Switch, StatCard, Charts, Table, primitives.",
+    "Sidebar app shell (Main Menu/Others + topbar) → pages: Dashboard (index), Campaign, Social, Pricing, Components.",
+    "Agent-ready: uikit.json (validated), AGENTS.md, llms.txt, screenshots."
+  ],
+  "components": ["Button", "Badge", "Input", "Card", "Avatar", "Switch", "StatCard", "Charts", "Table", "Primitives", "Container"],
+  "blocks": ["Sidebar", "Topbar", "PageHeader", "StatCard", "SpendingTable"],
+  "templates": [
+    { "name": "Dashboard", "route": "/" },
+    { "name": "Campaign", "route": "/campaign" },
+    { "name": "Social", "route": "/social" },
+    { "name": "Pricing", "route": "/pricing" },
+    { "name": "Components", "route": "/components" }
+  ],
+  "installCmd": "npx uikit-cli new https://github.com/KernelCode/admax-uikit my-app",
+  "skillName": "admax",
+  "consumeSteps": [
+    "git clone https://github.com/KernelCode/admax-uikit my-app",
+    "cd my-app/react && pnpm install && pnpm dev",
+    "Open in Claude Code and ask: 'build an ads dashboard using this kit'"
+  ],
+  "screenshots": [
+    { "kind": "landing", "url": "/kits/admax/landing.png" },
+    { "kind": "dashboard", "url": "/kits/admax/dashboard.png" },
+    { "kind": "other", "url": "/kits/admax/dashboard-dark.png" },
+    { "kind": "other", "url": "/kits/admax/components.png" },
+    { "kind": "other", "url": "/kits/admax/social.png" }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "$schema": "https://uikit.studio/agent-manifest.schema.json",
+  "id": "admax",
+  "name": "Admax",
+  "tagline": "Flat ads campaign manager admin kit",
+  "description": "A dashboard-first admin kit for ad-campaign tooling. Truly flat — no gradients, no shadows: a sunny amber/gold brand, an orange 'spends' accent and candy status colors (green = running/income, red = paused/expense, slate = expired) over a warm off-white canvas with tight radii. Dense dashboard (KPIs + sparklines, spends banner, line/candlestick/donut charts, a sortable spending table), a campaign monitor, a social network grid, pricing and a full components showcase. EN/AR with full RTL, light + dark. Runnable React app.",
+  "version": "1.0.0",
+  "source": "community",
+  "verified": false,
+  "license": "MIT",
+  "repo": "https://github.com/KernelCode/admax-uikit",
+  "demo": "https://uikit.studio/demos/admax/",
+  "gallery": "https://uikit.studio/kit/admax",
+  "spec": "https://uikit.studio/kit/admax/llms.txt",
+  "styling": "tailwind + tokens",
+  "frameworks": [
+    "react"
+  ],
+  "prompt": "A dashboard-first ads campaign manager — truly flat (no gradients, no shadows), sunny amber/gold brand with an orange 'spends' accent and green/red/slate status colors over a warm off-white canvas. Plus Jakarta Sans + Cairo for Arabic. Ship a dense dashboard (KPI cards with sparklines, an orange/slate spends banner with a diagonal seam, a multi-series line chart, candlestick + donut, a sortable spending data table), a campaign monitor, a social network grid, pricing, and a components showcase. Dashboard is the index page. Full EN/AR + RTL and dark mode.",
+  "fonts": {
+    "display": "Plus Jakarta Sans",
+    "sans": "Plus Jakarta Sans",
+    "mono": "JetBrains Mono"
+  },
+  "radius": "0.75rem",
+  "tokens": {
+    "light": {
+      "primary": "#f59e0b",
+      "accent": "#ff7a45",
+      "success": "#22c55e",
+      "danger": "#f7585b",
+      "background": "#f5f6f8",
+      "foreground": "#1d2231",
+      "card": "#ffffff",
+      "muted": "#eef0f4",
+      "border": "#e9ecf2"
+    },
+    "dark": {
+      "background": "#0f1117",
+      "foreground": "#eef1f7",
+      "card": "#181b23",
+      "primary": "#fbb828",
+      "muted": "#20242e",
+      "border": "#272c38"
+    }
+  },
+  "brandScale": {
+    "50": "#fff8e6",
+    "100": "#ffefc2",
+    "200": "#ffe095",
+    "300": "#ffcd55",
+    "400": "#fbb828",
+    "500": "#f59e0b",
+    "600": "#e2820a",
+    "700": "#b9650a",
+    "800": "#934f0e",
+    "900": "#78410f"
+  },
+  "components": [
+    "Button",
+    "Badge",
+    "Input",
+    "Card",
+    "Avatar",
+    "Switch",
+    "StatCard",
+    "Charts",
+    "Table",
+    "Primitives",
+    "Container"
+  ],
+  "blocks": [
+    "Sidebar",
+    "Topbar",
+    "PageHeader",
+    "StatCard",
+    "SpendingTable"
+  ],
+  "templates": [
+    {
+      "name": "Dashboard",
+      "route": "/"
+    },
+    {
+      "name": "Campaign",
+      "route": "/campaign"
+    },
+    {
+      "name": "Social",
+      "route": "/social"
+    },
+    {
+      "name": "Pricing",
+      "route": "/pricing"
+    },
+    {
+      "name": "Components",
+      "route": "/components"
+    }
+  ],
+  "install": "npx uikit-cli new https://github.com/KernelCode/admax-uikit my-app",
+  "skill": "admax",
+  "agentPrompt": "Build me a website styled exactly like the \"Admax\" design from uikit.studio.\nDesign spec (agent-readable): https://uikit.studio/kit/admax/llms.txt\nMachine manifest: https://uikit.studio/kit/admax/manifest.json\nReference kit (clone to copy the real components/tokens): https://github.com/KernelCode/admax-uikit\nMatch its color tokens (light + dark), fonts, radius and component set. Keep full dark mode and responsive layout."
+}

@@ -32,9 +32,9 @@ export function normalizeLocale(value: string | null | undefined): Locale {
 // `en` is the source of truth for the key set; `ar` must mirror it (typed below).
 const en = {
   // root / chrome
-  "meta.title": "uikit — production UI kits, ready to run",
+  "meta.title": "uikit — UI kits for your AI coding agent",
   "meta.description":
-    "A curated gallery of runnable UI kits — tokens, components, dashboards and landing pages. Clone one and let your AI build a real product with it.",
+    "A curated gallery of runnable UI kits — tokens, components, dashboards and landing pages. Clone one and let your AI coding agent build a real product with it.",
   "nav.studio": "studio",
   "nav.searchPlaceholder": "Search kits — saas, marketing, dashboard…",
   "nav.github": "GitHub",
@@ -46,11 +46,11 @@ const en = {
   "footer.github": "GitHub",
 
   // home / hero
-  "home.eyebrow": "curated, agent-ready UI kits",
-  "home.titleA": "Ready-made UI kits,",
-  "home.titleB": "built by AI.",
+  "home.eyebrow": "for your AI coding agent",
+  "home.titleA": "UI kits, built by your",
+  "home.titleB": "AI coding agent.",
   "home.subtitle":
-    "Browse production-grade kits — complete design systems with real pages, light & dark, EN + AR. Point your AI agent at one and it builds your product in that exact design — no generic guesswork, far fewer tokens.",
+    "Browse complete design systems — real pages, light & dark, EN + AR. Point your AI coding agent at one and it builds your product in that exact design.",
   "home.searchPlaceholder": "Search kits — saas, marketing, dashboard, orange…",
   "home.statKits": "{n} kits",
   "home.statSources": "verified + community",
@@ -61,18 +61,18 @@ const en = {
   "home.indexLabel": "Index",
 
   // home / agent-ready band
-  "agent.eyebrow": "agent-ready",
-  "agent.titleA": "Paste a kit's URL into your AI agent. Get the",
-  "agent.titleB": "exact design.",
+  "agent.eyebrow": "built for coding agents",
+  "agent.titleA": "Hand a kit's URL to your AI coding agent.",
+  "agent.titleB": "Same design, your stack.",
   "agent.body":
-    "Every kit publishes a machine-readable design spec — tokens, fonts, radius, components. Claude Code, Cursor and Codex read it straight from the URL and build in your stack.",
+    "Every kit ships a machine-readable design spec — tokens, fonts, radius, components. Claude Code, Cursor and Codex read it from the URL and build in your stack.",
   "agent.step1.t": "Paste the URL",
   "agent.step1.d": "“build me a site with this design: uikit.studio/kit/…”",
   "agent.step2.t": "Agent reads the spec",
   "agent.step2.d": "llms.txt + manifest.json, auto-discovered",
   "agent.step3.t": "Builds in your stack",
   "agent.step3.d": "exact tokens, dark mode, responsive",
-  "agent.termYou": "your agent",
+  "agent.termYou": "your AI coding agent",
 
   // home / filters + grid + empty
   "filter.all": "All",
@@ -184,9 +184,9 @@ const en = {
 export type MsgKey = keyof typeof en;
 
 const ar: Record<MsgKey, string> = {
-  "meta.title": "uikit.studio — حِزَم واجهات جاهزة، يبنيها لك الذكاء الاصطناعي",
+  "meta.title": "uikit.studio — حِزَم واجهات لوكيل البرمجة الذكي",
   "meta.description":
-    "معرض مختار لحِزَم واجهات جاهزة للتشغيل — نظام تصميم كامل بصفحاته ومكوّناته. اختر حزمة، ووجّه إليها الذكاء الاصطناعي، يبني لك منتجك بنفس التصميم بالضبط، وباستهلاكٍ أقل.",
+    "معرض مختار لحِزَم واجهات جاهزة للتشغيل — نظام تصميم كامل بصفحاته ومكوّناته. اختر حزمة، ووجّه إليها وكيل البرمجة الذكي، يبني لك منتجك بنفس التصميم بالضبط، وباستهلاكٍ أقل.",
   "nav.studio": "studio",
   "nav.searchPlaceholder": "ابحث عن حزمة — SaaS، تسويق، لوحة تحكم…",
   "nav.github": "GitHub",
@@ -197,11 +197,11 @@ const ar: Record<MsgKey, string> = {
   "footer.submit": "أضِف حزمة",
   "footer.github": "GitHub",
 
-  "home.eyebrow": "حِزَم واجهات مختارة بعناية، جاهزة للذكاء الاصطناعي",
-  "home.titleA": "واجهات جاهزة،",
-  "home.titleB": "يبنيها لك الذكاء الاصطناعي.",
+  "home.eyebrow": "حِزَم جاهزة لوكيل البرمجة الذكي",
+  "home.titleA": "حِزَم واجهات، يبنيها",
+  "home.titleB": "وكيل البرمجة الذكي.",
   "home.subtitle":
-    "اختر حزمة جاهزة — نظام تصميم متكامل بصفحاته ومكوّناته، فاتح وداكن، عربي وإنجليزي. بعدها وجّه إليها الذكاء الاصطناعي، يبني لك منتجك بنفس التصميم بالضبط. من غير تخمين، ولا تصاميم مكرّرة، وباستهلاكٍ أقل بكثير.",
+    "تصفّح أنظمة تصميم كاملة — صفحات حقيقية، فاتح وداكن، عربي وإنجليزي. وجّه وكيل البرمجة الذكي إلى إحداها، يبني منتجك بنفس التصميم بالضبط.",
   "home.searchPlaceholder": "ابحث عن حزمة — SaaS، تسويق، لوحة تحكم، برتقالي…",
   "home.statKits": "{n} حِزَم",
   "home.statSources": "موثّقة ومن المجتمع",
@@ -211,18 +211,18 @@ const ar: Record<MsgKey, string> = {
   "home.featured": "حزمة مختارة",
   "home.indexLabel": "الفهرس",
 
-  "agent.eyebrow": "جاهزة للذكاء الاصطناعي",
-  "agent.titleA": "الصق رابط الحزمة في أداة الذكاء الاصطناعي،",
-  "agent.titleB": "وتطلع لك بالتصميم نفسه تمامًا.",
+  "agent.eyebrow": "جاهزة لوكيل البرمجة",
+  "agent.titleA": "أعطِ وكيل البرمجة الذكي رابط الحزمة.",
+  "agent.titleB": "نفس التصميم، داخل مشروعك.",
   "agent.body":
-    "كل حزمة تنشر مواصفة تصميم يفهمها الذكاء الاصطناعي — الألوان والخطوط ونصف القطر والمكوّنات. أدوات مثل Claude Code وCursor وCodex تقرؤها من الرابط مباشرة، وتبني داخل مشروعك أنت.",
+    "كل حزمة تنشر مواصفة تصميم — الألوان والخطوط ونصف القطر والمكوّنات. أدوات مثل Claude Code وCursor وCodex تقرؤها من الرابط وتبني داخل مشروعك.",
   "agent.step1.t": "الصق الرابط",
   "agent.step1.d": "«ابنِ لي موقعًا بهذا التصميم: uikit.studio/kit/…»",
   "agent.step2.t": "تقرأ الأداة المواصفة",
   "agent.step2.d": "ملفّا llms.txt وmanifest.json، يُكتشفان تلقائيًا",
   "agent.step3.t": "تبني داخل مشروعك",
   "agent.step3.d": "نفس الألوان، ووضع داكن، وتصميم متجاوب",
-  "agent.termYou": "أداتك الذكية",
+  "agent.termYou": "وكيل البرمجة الذكي",
 
   "filter.all": "الكل",
   "filter.results": "{n} نتيجة",

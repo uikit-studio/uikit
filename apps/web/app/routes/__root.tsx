@@ -26,7 +26,7 @@ const SITE_JSONLD = {
       "@id": `${ORIGIN}/#website`,
       url: `${ORIGIN}/`,
       name: "uikit.studio",
-      description: "A curated gallery of runnable, agent-ready UI kits your AI can build with.",
+      description: "A curated gallery of runnable UI kits your AI coding agent can build with.",
       inLanguage: ["ar", "en"],
       publisher: { "@id": `${ORIGIN}/#org` },
     },
@@ -46,11 +46,11 @@ export const Route = createRootRoute({
   head: ({ loaderData }) => {
     const ar = (loaderData?.locale ?? "ar") === "ar";
     const title = ar
-      ? "uikit.studio — حِزَم واجهات حقيقية يبني بها ذكاؤك الاصطناعي"
-      : "uikit.studio — real UI kits your AI can build with";
+      ? "uikit.studio — حِزَم واجهات لوكيل البرمجة الذكي"
+      : "uikit.studio — UI kits for your AI coding agent";
     const description = ar
-      ? "معرض مختار لحِزَم واجهات قابلة للتشغيل ومصمَّمة بالكامل. وجّه وكيلك الذكي إلى إحداها فيبني منتجك بنظام التصميم نفسه تمامًا — فاتح وداكن، عربي وإنجليزي، وباستهلاكٍ أقل."
-      : "A curated gallery of runnable, fully-designed UI kits. Point your AI agent at one and it builds your product in that exact design system — light & dark, EN/AR, far fewer tokens.";
+      ? "معرض حِزَم واجهات جاهزة للتشغيل. وجّه وكيل البرمجة الذكي إلى إحداها، يبني منتجك بنفس التصميم — فاتح وداكن، عربي وإنجليزي."
+      : "A gallery of runnable UI kits. Point your AI coding agent at one — it builds your product in that exact design. Light & dark, EN/AR.";
     return {
       meta: [
         { charSet: "utf-8" },
@@ -69,7 +69,7 @@ export const Route = createRootRoute({
         { property: "og:image", content: OG_IMAGE },
         { property: "og:image:width", content: "1200" },
         { property: "og:image:height", content: "630" },
-        { property: "og:image:alt", content: "uikit.studio — real UI kits your AI can build with" },
+        { property: "og:image:alt", content: "uikit.studio — UI kits for your AI coding agent" },
         { property: "og:locale", content: ar ? "ar_AR" : "en_US" },
         { property: "og:locale:alternate", content: ar ? "en_US" : "ar_AR" },
         // Twitter

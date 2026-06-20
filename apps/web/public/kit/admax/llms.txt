@@ -1,0 +1,98 @@
+# Admax — uikit.studio design spec
+
+> Flat ads campaign manager admin kit
+
+A dashboard-first admin kit for ad-campaign tooling. Truly flat — no gradients, no shadows: a sunny amber/gold brand, an orange 'spends' accent and candy status colors (green = running/income, red = paused/expense, slate = expired) over a warm off-white canvas with tight radii. Dense dashboard (KPIs + sparklines, spends banner, line/candlestick/donut charts, a sortable spending table), a campaign monitor, a social network grid, pricing and a full components showcase. EN/AR with full RTL, light + dark. Runnable React app.
+
+This file is **agent-readable**. If a developer asked you to build a site with the "Admax" design, reproduce the design system below exactly — tokens, fonts, radius and components — in their stack, with full dark mode and a responsive layout.
+
+## Identity
+- **id**: admax
+- **source**: community
+- **license**: MIT
+- **repo**: https://github.com/KernelCode/admax-uikit
+- **live demo**: https://uikit.studio/demos/admax/
+- **gallery**: https://uikit.studio/kit/admax
+- **styling**: tailwind + tokens
+- **frameworks**: react
+
+## Design intent (prompt)
+A dashboard-first ads campaign manager — truly flat (no gradients, no shadows), sunny amber/gold brand with an orange 'spends' accent and green/red/slate status colors over a warm off-white canvas. Plus Jakarta Sans + Cairo for Arabic. Ship a dense dashboard (KPI cards with sparklines, an orange/slate spends banner with a diagonal seam, a multi-series line chart, candlestick + donut, a sortable spending data table), a campaign monitor, a social network grid, pricing, and a components showcase. Dashboard is the index page. Full EN/AR + RTL and dark mode.
+
+## Typography
+- **display**: Plus Jakarta Sans
+- **sans / body**: Plus Jakarta Sans
+- **mono**: JetBrains Mono
+
+## Radius
+- base `--radius`: `0.75rem`
+
+## Brand scale
+- `50`: `#fff8e6`
+- `100`: `#ffefc2`
+- `200`: `#ffe095`
+- `300`: `#ffcd55`
+- `400`: `#fbb828`
+- `500`: `#f59e0b`
+- `600`: `#e2820a`
+- `700`: `#b9650a`
+- `800`: `#934f0e`
+- `900`: `#78410f`
+
+## Color tokens — light
+- `--color-primary`: `#f59e0b`
+- `--color-accent`: `#ff7a45`
+- `--color-success`: `#22c55e`
+- `--color-danger`: `#f7585b`
+- `--color-background`: `#f5f6f8`
+- `--color-foreground`: `#1d2231`
+- `--color-card`: `#ffffff`
+- `--color-muted`: `#eef0f4`
+- `--color-border`: `#e9ecf2`
+
+## Color tokens — dark
+- `--color-background`: `#0f1117`
+- `--color-foreground`: `#eef1f7`
+- `--color-card`: `#181b23`
+- `--color-primary`: `#fbb828`
+- `--color-muted`: `#20242e`
+- `--color-border`: `#272c38`
+
+## Components
+- Button
+- Badge
+- Input
+- Card
+- Avatar
+- Switch
+- StatCard
+- Charts
+- Table
+- Primitives
+- Container
+
+## Blocks
+- Sidebar
+- Topbar
+- PageHeader
+- StatCard
+- SpendingTable
+
+## Pages
+- Dashboard → `/`
+- Campaign → `/campaign`
+- Social → `/social`
+- Pricing → `/pricing`
+- Components → `/components`
+
+## How to reproduce this design
+**Option A — clone the kit (fastest, exact):**
+```bash
+git clone https://github.com/KernelCode/admax-uikit my-app
+cd my-app/react && pnpm install && pnpm dev
+```
+The real tokens live in `design/theme.css` + `design/tokens.json`; components in `react/src/components`. Build the developer's pages against those.
+
+**Option B — apply the design system directly:** set the light + dark color tokens above as CSS variables, load the three fonts, use the base radius, and build the listed components and pages. Keep dark mode and EN/AR + RTL parity if the target needs it.
+
+**Option C — add via CLI:** `npx uikit-cli new https://github.com/KernelCode/admax-uikit my-app` (Claude Code skill: `admax`)
