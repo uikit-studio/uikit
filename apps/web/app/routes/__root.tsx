@@ -1,17 +1,20 @@
 /// <reference types="vite/client" />
 import { createRootRoute, HeadContent, Link, Scripts } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
-import { getCookie } from "@tanstack/react-start/server";
+import { getCookie, getRequestHeader } from "@tanstack/react-start/server";
 import { Boxes, Github } from "lucide-react";
 import type * as React from "react";
-import { dirFor, LOCALE_COOKIE, LocaleProvider, normalizeLocale, useLocale, type Locale } from "~/lib/i18n";
+import { detectLocale, dirFor, LOCALE_COOKIE, LocaleProvider, normalizeLocale, useLocale, type Locale } from "~/lib/i18n";
 import appCss from "~/styles/app.css?url";
 
-/** Read the persisted locale on the server so SSR renders the right lang/dir
- * with no flash. Defaults to Arabic (the site is Arabic-first). */
-const getInitialLocale = createServerFn({ method: "GET" }).handler((): Locale =>
-  normalizeLocale(getCookie(LOCALE_COOKIE)),
-);
+/** Resolve the locale on the server so SSR renders the right lang/dir with no
+ * flash. A saved choice (cookie) always wins; on first visit we detect from the
+ * browser's Accept-Language instead of forcing Arabic. */
+const getInitialLocale = createServerFn({ method: "GET" }).handler((): Locale => {
+  const saved = getCookie(LOCALE_COOKIE);
+  if (saved) return normalizeLocale(saved);
+  return detectLocale(getRequestHeader("accept-language"));
+});
 
 /** Public origin — absolute URLs for OG/Twitter/canonical so they work anywhere. */
 export const ORIGIN = "https://uikit.studio";
@@ -46,10 +49,10 @@ export const Route = createRootRoute({
   head: ({ loaderData }) => {
     const ar = (loaderData?.locale ?? "ar") === "ar";
     const title = ar
-      ? "uikit.studio — حِزَم واجهات لوكيل البرمجة الذكي"
+      ? "uikit.studio — حُزَم واجهات لوكيل البرمجة الذكي"
       : "uikit.studio — UI kits for your AI coding agent";
     const description = ar
-      ? "معرض حِزَم واجهات جاهزة للتشغيل. وجّه وكيل البرمجة الذكي إلى إحداها، يبني منتجك بنفس التصميم — فاتح وداكن، عربي وإنجليزي."
+      ? "معرض حُزَم واجهات جاهزة للتشغيل. وجه وكيل البرمجة الذكي إلى إحداها، يبني منتجك بنفس التصميم — فاتح وداكن، عربي وإنجليزي."
       : "A gallery of runnable UI kits. Point your AI coding agent at one — it builds your product in that exact design. Light & dark, EN/AR.";
     return {
       meta: [

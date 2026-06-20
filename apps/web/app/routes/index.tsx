@@ -19,7 +19,7 @@ export const Route = createFileRoute("/")({
 
 function GalleryHome() {
   const { cards, categories } = Route.useLoaderData();
-  const { t, tCat } = useLocale();
+  const { t, tCat, locale } = useLocale();
   const [query, setQuery] = useState("");
   const [active, setActive] = useState<string>("all");
 
@@ -43,7 +43,11 @@ function GalleryHome() {
         <p className="flex items-center justify-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-accent">
           <Bot className="h-4 w-4" /> {t("home.eyebrow")}
         </p>
-        <h1 className="mx-auto mt-4 max-w-3xl font-display text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-6xl">
+        <h1
+          className={`mx-auto mt-4 max-w-3xl font-display text-4xl font-extrabold tracking-tight sm:text-6xl ${
+            locale === "ar" ? "leading-[1.25]" : "leading-[1.05]"
+          }`}
+        >
           {t("home.titleA")} <span className="grad-text">{t("home.titleB")}</span>
         </h1>
         <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-muted sm:text-lg">{t("home.subtitle")}</p>

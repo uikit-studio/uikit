@@ -4,7 +4,7 @@
   "tagline": { "en": "Glassy SaaS dashboard kit", "ar": "حزمة لوحات تحكم SaaS زجاجية" },
   "description": {
     "en": "A clean, glassy SaaS kit — cool slate + blue, Sora display, glassmorphism cards and a gradient highlight. Light + dark, EN/AR + RTL. Runnable React app with landing, pricing, dashboard and a components showcase.",
-    "ar": "حزمة SaaS أنيقة وزجاجية — رمادي بارد وأزرق، خط Sora للعناوين، بطاقات زجاجية ولمسة تدرّج لوني. فاتح وداكن، عربي/إنجليزي مع RTL كامل. تطبيق React جاهز للتشغيل بصفحة هبوط وأسعار ولوحة تحكم ومعرض مكوّنات."
+    "ar": "حزمة SaaS أنيقة وزجاجية — رمادي بارد وأزرق، خط Sora للعناوين، بطاقات زجاجية ولمسة تدرج لوني. فاتح وداكن، عربي/إنجليزي مع RTL كامل. تطبيق React جاهز للتشغيل بصفحة هبوط وأسعار ولوحة تحكم ومعرض مكونات."
   },
   "version": "1.0.0",
   "source": "official",

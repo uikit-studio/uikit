@@ -77,6 +77,9 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  /* Arabic glyphs descend below the Latin baseline; without extra room the
+     clip box cuts their tails. Pad the box (inline → no layout shift). */
+  padding-block-end: 0.3em;
 }
 
 /* Frosted bar (sticky header). */

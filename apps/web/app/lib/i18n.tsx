@@ -24,9 +24,18 @@ export const LOCALE_COOKIE = "uikit_locale";
 
 export const dirFor = (l: Locale): "rtl" | "ltr" => (l === "ar" ? "rtl" : "ltr");
 
-/** Normalize any string to a supported locale (server cookie / client storage). */
+/** Normalize a persisted choice (cookie / client storage) to a supported locale.
+ * Defaults to Arabic — only used once the visitor already has a stored locale. */
 export function normalizeLocale(value: string | null | undefined): Locale {
   return value === "en" ? "en" : "ar";
+}
+
+/** First-visit detection from the browser's `Accept-Language` (no cookie yet).
+ * Picks Arabic only when it's the visitor's top language preference; otherwise
+ * English. So we no longer force Arabic — we follow the browser. */
+export function detectLocale(acceptLanguage: string | null | undefined): Locale {
+  const top = (acceptLanguage ?? "").split(",")[0]?.trim().toLowerCase() ?? "";
+  return top.startsWith("ar") ? "ar" : "en";
 }
 
 // ── Message catalog ──────────────────────────────────────────────────────────
@@ -185,42 +194,42 @@ const en = {
 export type MsgKey = keyof typeof en;
 
 const ar: Record<MsgKey, string> = {
-  "meta.title": "uikit.studio — حِزَم واجهات لوكيل البرمجة الذكي",
+  "meta.title": "uikit.studio — حُزَم واجهات لوكيل البرمجة الذكي",
   "meta.description":
-    "معرض مختار لحِزَم واجهات جاهزة للتشغيل — نظام تصميم كامل بصفحاته ومكوّناته. اختر حزمة، ووجّه إليها وكيل البرمجة الذكي، فيبني لك منتجك بالتصميم نفسه تمامًا، وباستهلاكٍ أقل.",
+    "معرض مختار لحُزَم واجهات جاهزة للتشغيل — نظام تصميم كامل بصفحاته ومكوناته. اختر حزمة، ووجه إليها وكيل البرمجة الذكي، فيبني لك منتجك بالتصميم نفسه تماما، وباستهلاك أقل.",
   "nav.studio": "studio",
   "nav.searchPlaceholder": "ابحث عن حزمة — SaaS، تسويق، لوحة تحكم…",
   "nav.github": "GitHub",
-  "nav.submit": "أضِف حزمتك",
+  "nav.submit": "أضف حزمتك",
   "nav.langLabel": "تغيير اللغة",
-  "footer.tagline": "uikit.studio — حِزَم جاهزة، تبني بها بثقة.",
+  "footer.tagline": "uikit.studio — حُزَم جاهزة، تبني بها بثقة.",
   "footer.gallery": "المعرض",
-  "footer.submit": "أضِف حزمة",
+  "footer.submit": "أضف حزمة",
   "footer.github": "GitHub",
 
-  "home.eyebrow": "حِزَم جاهزة لوكيل البرمجة الذكي",
-  "home.titleA": "حِزَم واجهات، يبنيها",
-  "home.titleB": "وكيل البرمجة الذكي.",
+  "home.eyebrow": "حُزَم جاهزة لوكيل البرمجة الذكي",
+  "home.titleA": "حُزَم واجهات، يبنيها",
+  "home.titleB": "وكيل البرمجة الذكي",
   "home.subtitle":
-    "تصفّح أنظمة تصميم كاملة — صفحات حقيقية، فاتح وداكن، عربي وإنجليزي. وجّه وكيل البرمجة الذكي إلى إحداها، فيبني منتجك بالتصميم نفسه تمامًا.",
+    "تصفح أنظمة تصميم كاملة — صفحات حقيقية، فاتح وداكن، عربي وإنجليزي. وجه وكيل البرمجة الذكي إلى إحداها، فيبني منتجك بالتصميم نفسه تماما.",
   "home.searchPlaceholder": "ابحث عن حزمة — SaaS، تسويق، لوحة تحكم، برتقالي…",
   "home.statKits": "{n} حزمة",
-  "home.statSources": "موثّقة ومن المجتمع",
+  "home.statSources": "موثقة ومن المجتمع",
   "home.statFrameworks": "react · vue · web components",
-  "home.kitsHeading": "الحِزَم",
-  "home.kitsLede": "كل حزمة نظام تصميم متكامل جاهز للتشغيل — اختَرها وابدأ فورًا.",
+  "home.kitsHeading": "الحُزَم",
+  "home.kitsLede": "كل حزمة نظام تصميم متكامل جاهز للتشغيل — اخترها وابدأ فورا.",
   "home.featured": "حزمة مختارة",
   "home.indexLabel": "الفهرس",
 
   "agent.eyebrow": "جاهزة لوكيل البرمجة",
-  "agent.titleA": "أعطِ وكيل البرمجة الذكي رابط الحزمة.",
-  "agent.titleB": "التصميم نفسه، داخل مشروعك.",
+  "agent.titleA": "أعط وكيل البرمجة الذكي رابط الحزمة.",
+  "agent.titleB": "التصميم نفسه، داخل مشروعك",
   "agent.body":
-    "كل حزمة تنشر مواصفة تصميم — الألوان والخطوط ونصف القطر والمكوّنات. أدوات مثل Claude Code وCursor وCodex تقرؤها من الرابط وتبني داخل مشروعك.",
+    "كل حزمة تنشر مواصفة تصميم — الألوان والخطوط ونصف القطر والمكونات. أدوات مثل Claude Code وCursor وCodex تقرؤها من الرابط وتبني داخل مشروعك.",
   "agent.step1.t": "الصق الرابط",
-  "agent.step1.d": "«ابنِ لي موقعًا بهذا التصميم: uikit.studio/kit/…»",
+  "agent.step1.d": "«أنشئ لي موقعا بهذا التصميم: uikit.studio/kit/…»",
   "agent.step2.t": "يقرأ الوكيل المواصفة",
-  "agent.step2.d": "ملفّا llms.txt وmanifest.json، يُكتشفان تلقائيًا",
+  "agent.step2.d": "ملفا llms.txt وmanifest.json، يكتشفان تلقائيا",
   "agent.step3.t": "يبني داخل مشروعك",
   "agent.step3.d": "الألوان نفسها، ووضع داكن، وتصميم متجاوب",
   "agent.termYou": "وكيل البرمجة الذكي",
@@ -236,10 +245,10 @@ const ar: Record<MsgKey, string> = {
   "card.by": "بواسطة",
 
   "submitcta.titleA": "أنشأت حزمة؟",
-  "submitcta.titleB": "انشرها هنا.",
+  "submitcta.titleB": "انشرها هنا",
   "submitcta.body":
-    "أضِف ملف ‎.json‎ واحد وافتح طلب دمج. يفحصه الـ CI تلقائيًا، يراجعه أحد المشرفين، فيُنشر فورًا — git فقط، بلا حسابات ولا نماذج.",
-  "submitcta.button": "أضِف حزمتك",
+    "أضف ملف ‎.json‎ واحد وافتح طلب دمج. يفحصه ال CI تلقائيا، يراجعه أحد المشرفين، فينشر فورا — git فقط، بلا حسابات ولا نماذج.",
+  "submitcta.button": "أضف حزمتك",
 
   "kit.back": "المعرض",
   "kit.official": "رسمية",
@@ -250,28 +259,28 @@ const ar: Record<MsgKey, string> = {
   "kit.repo": "المستودع",
   "kit.notFound": "لم نعثر على هذه الحزمة.",
   "kit.backToGallery": "← العودة إلى المعرض",
-  "agentcard.title": "ابنِها بوكيل البرمجة الذكي",
+  "agentcard.title": "أنشئها بوكيل البرمجة الذكي",
   "agentcard.body":
-    "الصق هذا في Claude Code أو Cursor أو Codex. يقرأ الوكيل مواصفة التصميم من الرابط، ويعيد الألوان والخطوط ونصف القطر والمكوّنات نفسها تمامًا — داخل مشروعك أنت.",
+    "الصق هذا في Claude Code أو Cursor أو Codex. يقرأ الوكيل مواصفة التصميم من الرابط، ويعيد الألوان والخطوط ونصف القطر والمكونات نفسها تماما — داخل مشروعك أنت.",
   "agentcard.spec": "المواصفة",
   "agentcard.llmsDesc": "موجز التصميم لوكلاء البرمجة",
-  "agentcard.manifestDesc": "الألوان · الخطوط · المكوّنات",
+  "agentcard.manifestDesc": "الألوان · الخطوط · المكونات",
   "agentcard.discoverable": "متاحة في كل صفحات الموقع عبر",
   "sec.livePreview": "عرض مباشر",
   "preview.open": "افتح",
   "sec.screenshots": "لقطات",
   "sec.colors": "الألوان",
-  "colors.desc": "تدرّج لون العلامة، مع ألوان الوضعين الفاتح والداكن المرفقة مع الحزمة.",
+  "colors.desc": "تدرج لون العلامة، مع ألوان الوضعين الفاتح والداكن المرفقة مع الحزمة.",
   "colors.light": "فاتح",
   "colors.dark": "داكن",
   "sec.typography": "الخطوط",
   "type.display": "العناوين",
   "type.body": "النص",
   "type.mono": "أحادي / تسميات",
-  "sec.prompt": "الموجّه",
+  "sec.prompt": "الموجه",
   "prompt.descA": "الموجز الذي أنتج هذه الحزمة عبر",
   "sec.inside": "المحتويات",
-  "inside.components": "المكوّنات",
+  "inside.components": "المكونات",
   "inside.blocks": "الكتل",
   "inside.templates": "القوالب",
   "aside.install": "التثبيت",
@@ -279,53 +288,53 @@ const ar: Record<MsgKey, string> = {
   "aside.skill": "المهارة:",
   "aside.frameworks": "أطر العمل",
   "aside.tags": "الوسوم",
-  "aside.author": "مؤلّف الحزمة",
+  "aside.author": "مؤلف الحزمة",
   "copy.copy": "نسخ",
   "copy.copied": "تم النسخ",
 
-  "submit.eyebrow": "كن مؤلّف حِزَم",
+  "submit.eyebrow": "كن مؤلف حُزَم",
   "submit.titleA": "انشر حزمتك في",
-  "submit.titleB": "المعرض.",
-  "submit.hero": "ابنِ حزمتك، تحقّق منها، وافتح طلب دمج — كل شيء عبر git، بلا خادم.",
+  "submit.titleB": "المعرض",
+  "submit.hero": "أنشئ حزمتك، تحقق منها، وافتح طلب دمج — كل شيء عبر git، بلا خادم.",
   "submit.startBuilding": "ابدأ البناء",
-  "submit.browseRegistry": "تصفّح السجلّ",
-  "submit.step1.title": "ابنِ هيكل الحزمة",
+  "submit.browseRegistry": "تصفح السجل",
+  "submit.step1.title": "أنشئ هيكل الحزمة",
   "submit.step1.lead":
-    "طريقتان للبدء — كلتاهما تمنح حزمتك هويتها وبنيتها الخاصة. لا تكتفِ بإعادة تلوين حزمة أخرى: يجب ألّا تبدو حزمتان بالتخطيط نفسه.",
+    "طريقتان للبدء — كلتاهما تمنح حزمتك هويتها وبنيتها الخاصة. لا تكتف بإعادة تلوين حزمة أخرى: يجب ألا تبدو حزمتان بالتخطيط نفسه.",
   "submit.step1.optA": "الخيار أ — حزمة جديدة من القاعدة الأساسية",
   "submit.step1.noteA":
-    "القاعدة بنية محايدة (توجيه، وتعريب وRTL، ووضع داكن، ونظام ألوان وخطوط). افتحها في Claude Code أو Codex، وصِف حزمتك، ثم وجّه المحرّر إلى prompts/build.md — وهو الموجز لبنائها بأسلوب uikit (نظام أصيل كامل، لا مجرّد عرض توضيحي).",
-  "submit.step1.optB": "الخيار ب — أعِد مزج حزمة قائمة إلى حزمة جديدة",
+    "القاعدة بنية محايدة (توجيه، وتعريب وRTL، ووضع داكن، ونظام ألوان وخطوط). افتحها في Claude Code أو Codex، وصف حزمتك، ثم وجه المحرر إلى prompts/build.md — وهو الموجز لبنائها بأسلوب uikit (نظام أصيل كامل، لا مجرد عرض توضيحي).",
+  "submit.step1.optB": "الخيار ب — أعد مزج حزمة قائمة إلى حزمة جديدة",
   "submit.step1.noteB":
-    "ستجد موجز REMIX.md: امنحها هوية جديدة وأعِد ترتيب صفحاتها. ملاحظة: ‎npm i -g uikit-cli‎ يغنيك عن بادئة npx.",
-  "submit.step2.title": "اجعلها نظامًا كاملًا، لا مجرّد عيّنة",
+    "ستجد موجز REMIX.md: امنحها هوية جديدة وأعد ترتيب صفحاتها. ملاحظة: ‎npm i -g uikit-cli‎ يغنيك عن بادئة npx.",
+  "submit.step2.title": "اجعلها نظاما كاملا، لا مجرد عينة",
   "submit.step2.lead": "يجب أن تعمل من أول استنساخ، وأن تبدو كمنتج جاهز للإطلاق. وهذا هو المعيار:",
-  "submit.step3.title": "تأكّد من مطابقتها للعقد",
+  "submit.step3.title": "تأكد من مطابقتها للعقد",
   "submit.step3.lead":
-    "كل حزمة محكومة بمخطّط. يجب أن ينجح validate قبل الإرسال، وأمر info يعرض التقنيات والقوالب وخطوات الاستخدام مع وكيل البرمجة، لتطّلع على ما سيصل إلى المراجعين.",
+    "كل حزمة محكومة بمخطط. يجب أن ينجح validate قبل الإرسال، وأمر info يعرض التقنيات والقوالب وخطوات الاستخدام مع وكيل البرمجة، لتطلع على ما سيصل إلى المراجعين.",
   "submit.step4.title": "انشرها في مستودع عام",
   "submit.step4.lead":
-    "انشرها على GitHub مع uikit.json في جذر المستودع، ومجلّد screenshots/، ومهارة الاستخدام المرفقة ضمن ‎.claude/skills/<id>‎.",
+    "انشرها على GitHub مع uikit.json في جذر المستودع، ومجلد screenshots/، ومهارة الاستخدام المرفقة ضمن ‎.claude/skills/<id>‎.",
   "submit.step5.title": "افتح طلب دمج",
   "submit.step5.lead":
-    "المعرض يعتمد git فقط — بلا خادم ولا قاعدة بيانات. تضيف حزمتك بملف JSON واحد في السجلّ، وتفتح طلب دمج. يفحصه الـ CI، يراجعه مشرف، ثم يُنشر.",
-  "submit.step5.addEntry": "أضِف مُدخلك",
+    "المعرض يعتمد git فقط — بلا خادم ولا قاعدة بيانات. تضيف حزمتك بملف JSON واحد في السجل، وتفتح طلب دمج. يفحصه ال CI، يراجعه مشرف، ثم ينشر.",
+  "submit.step5.addEntry": "أضف مدخلك",
   "submit.step5.communityA": "من المجتمع",
   "submit.step5.communityB":
-    "(الافتراضي): اجعل \"verified\": false ووجّه screenshots/demoUrl إلى مستودعك (رابط مثبّت مثل cdn.jsdelivr.net/gh/you/kit@v1.0.0/…).",
-  "submit.step5.verifiedA": "موثّقة",
+    "(الافتراضي): اجعل \"verified\": false ووجه screenshots/demoUrl إلى مستودعك (رابط مثبت مثل cdn.jsdelivr.net/gh/you/kit@v1.0.0/…).",
+  "submit.step5.verifiedA": "موثقة",
   "submit.step5.verifiedB":
-    "(يرفّعها مشرف): تُحفظ اللقطات ومقطع المعاينة في مستودع الحزمة نفسه، وتُسحب إلى المعرض وقت البناء — لا تُحفظ هنا.",
-  "submit.step5.validateThenPr": "تحقّق، ثم افتح الطلب",
+    "(يرفعها مشرف): تحفظ اللقطات ومقطع المعاينة في مستودع الحزمة نفسه، وتسحب إلى المعرض وقت البناء — لا تحفظ هنا.",
+  "submit.step5.validateThenPr": "تحقق، ثم افتح الطلب",
   "submit.step5.openPr": "افتح طلب دمج على GitHub",
   "submit.reviewers.title": "ماذا يفحص المراجعون",
   "submit.reviewers.footer":
-    "النموذج المرجعي: مستودع spark-uikit — React/Vue/Web Components تعمل فعلًا، والصفحات الأربع، ونظام تصميم كامل، وعربي/إنجليزي مع RTL.",
-  "submit.agent.title": "جاهزة لوكيل البرمجة افتراضيًا",
+    "النموذج المرجعي: مستودع spark-uikit — React/Vue/Web Components تعمل فعلا، والصفحات الأربع، ونظام تصميم كامل، وعربي/إنجليزي مع RTL.",
+  "submit.agent.title": "جاهزة لوكيل البرمجة افتراضيا",
   "submit.agent.body1":
-    "فور دمج حزمتك، يولّد المعرض تلقائيًا مواصفة تصميمها — ‎/kit/<id>/llms.txt‎ و‎/kit/<id>/manifest.json‎ — من ملف مُدخلك، ويضيفها إلى ‎/llms.txt‎ على مستوى الموقع. وهذا ما يتيح لأي مطوّر أن يقول «ابنِ لي موقعًا بهذا التصميم: uikit.studio/kit/<id>»، فيعيد وكيله إنتاجه تمامًا.",
+    "فور دمج حزمتك، يولد المعرض تلقائيا مواصفة تصميمها — ‎/kit/<id>/llms.txt‎ و‎/kit/<id>/manifest.json‎ — من ملف مدخلك، ويضيفها إلى ‎/llms.txt‎ على مستوى الموقع. وهذا ما يتيح لأي مطور أن يقول «أنشئ لي موقعا بهذا التصميم: uikit.studio/kit/<id>»، فيعيد وكيله إنتاجه تماما.",
   "submit.agent.body2":
-    "أبقِ AGENTS.md وllms.txt في جذر مستودعك أيضًا (ينشئهما سكافولد uikit new) ليعمل توجيه الوكيل إلى المستودع كذلك. وكلما كانت بيانات الألوان والمكوّنات في ملف JSON أغنى، كانت المواصفة أفضل.",
+    "أبق AGENTS.md وllms.txt في جذر مستودعك أيضا (ينشئهما سكافولد uikit new) ليعمل توجيه الوكيل إلى المستودع كذلك. وكلما كانت بيانات الألوان والمكونات في ملف JSON أغنى، كانت المواصفة أفضل.",
 };
 
 const MESSAGES: Record<Locale, Record<MsgKey, string>> = { en, ar };
@@ -351,15 +360,15 @@ const LISTS: Record<Locale, Record<string, string[]>> = {
   },
   ar: {
     systemBar: [
-      "نظام تصميم كامل: لوحة ألوان فاتحة وداكنة، ومقياس خطوط، ومقياس نصف قطر موثّق — وكل مكوّن مع تنويعاته.",
-      "الصفحات الأربع كاملة وحقيقية — ومنها لوحة تحكم غنية (جداول ومخططات ومستخدمون ونشاط ومرشّحات وحالات فراغ وتحميل).",
-      "متجاوبة: جوال ← لوحي ← سطح مكتب (sm/md/lg/xl). شريط التنقّل ينطوي، ويُعاد ترتيب الشبكات.",
-      "عربي وإنجليزي مع RTL كامل، ومبدّل وضع داكن، وخطوط محمّلة فعليًا (استضِف الخط العربي بنفسك عند الحاجة).",
-      "كل شيء معرّف وواضح — الألوان ونصف القطر والخطوط ونقاط التوقّف، جميعها في الرموز وREADME وuikit.json، لا أرقام عشوائية.",
+      "نظام تصميم كامل: لوحة ألوان فاتحة وداكنة، ومقياس خطوط، ومقياس نصف قطر موثق — وكل مكون مع تنويعاته.",
+      "الصفحات الأربع كاملة وحقيقية — ومنها لوحة تحكم غنية (جداول ومخططات ومستخدمون ونشاط ومرشحات وحالات فراغ وتحميل).",
+      "متجاوبة: جوال ← لوحي ← سطح مكتب (sm/md/lg/xl). شريط التنقل ينطوي، ويعاد ترتيب الشبكات.",
+      "عربي وإنجليزي مع RTL كامل، ومبدل وضع داكن، وخطوط محملة فعليا (استضف الخط العربي بنفسك عند الحاجة).",
+      "كل شيء معرف وواضح — الألوان ونصف القطر والخطوط ونقاط التوقف، جميعها في الرموز وREADME وuikit.json، لا أرقام عشوائية.",
     ],
     reviewChecks: [
-      "ملف المُدخل JSON يجتاز المخطّط (الـ CI يشغّل scripts/validate-content.mjs على طلبك).",
-      "الحِزَم الموثّقة تنسخ لقطاتها داخل المستودع، والمجتمعية تثبّت روابطها الخارجية على وسم أو SHA.",
+      "ملف المدخل JSON يجتاز المخطط (ال CI يشغل scripts/validate-content.mjs على طلبك).",
+      "الحُزَم الموثقة تنسخ لقطاتها داخل المستودع، والمجتمعية تثبت روابطها الخارجية على وسم أو SHA.",
       "ملف uikit.json الخاص بالحزمة متوافق مع العقد (npx uikit-cli validate).",
       "رابط العرض المباشر يفتح ويطابق اللقطات.",
       "المستودع يحتوي AGENTS.md وllms.txt في جذره (الأداة تنشئهما).",
@@ -382,7 +391,7 @@ const CATEGORY_LABELS: Record<Locale, Record<string, string>> = {
     landing: "صفحة هبوط",
     media: "وسائط",
     editorial: "تحريري",
-    "dark-first": "داكن أولًا",
+    "dark-first": "داكن أولا",
   },
 };
 

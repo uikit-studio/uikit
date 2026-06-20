@@ -4,7 +4,7 @@
   "tagline": { "en": "Limey digital-card kit", "ar": "حزمة بطاقات رقمية بنكهة الليمون" },
   "description": {
     "en": "A limey product kit — warm cream + near-black ink + a vivid acid-lime accent. Heavy Hanken Grotesk display, monospace micro-labels, highlight-marker headings, a marquee and dark bento sections. Light + dark, EN/AR + RTL. Runnable React app.",
-    "ar": "حزمة منتج بنكهة الليمون — كريمي دافئ وحبر شبه أسود ولمسة ليمون حمضي زاهية. خط Hanken Grotesk عريض للعناوين، تسميات أحادية المسافة، عناوين بخطّ تحديد، شريط متحرّك وأقسام «بنتو» داكنة. فاتح وداكن، عربي/إنجليزي مع RTL. تطبيق React جاهز للتشغيل."
+    "ar": "حزمة منتج بنكهة الليمون — كريمي دافئ وحبر شبه أسود ولمسة ليمون حمضي زاهية. خط Hanken Grotesk عريض للعناوين، تسميات أحادية المسافة، عناوين بخط تحديد، شريط متحرك وأقسام «بنتو» داكنة. فاتح وداكن، عربي/إنجليزي مع RTL. تطبيق React جاهز للتشغيل."
   },
   "version": "0.1.0",
   "source": "community",

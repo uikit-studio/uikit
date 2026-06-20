@@ -1,10 +1,10 @@
 {
   "id": "admax",
   "name": { "en": "Admax", "ar": "أدماكس" },
-  "tagline": { "en": "Flat ads campaign manager admin kit", "ar": "حزمة لوحة تحكم مسطّحة لإدارة الحملات الإعلانية" },
+  "tagline": { "en": "Flat ads campaign manager admin kit", "ar": "حزمة لوحة تحكم مسطحة لإدارة الحملات الإعلانية" },
   "description": {
     "en": "A dashboard-first admin kit for ad-campaign tooling. Truly flat — no gradients, no shadows: a sunny amber/gold brand, an orange 'spends' accent and candy status colors (green = running/income, red = paused/expense, slate = expired) over a warm off-white canvas with tight radii. Dense dashboard (KPIs + sparklines, spends banner, line/candlestick/donut charts, a sortable spending table), a campaign monitor, a social network grid, pricing and a full components showcase. EN/AR with full RTL, light + dark. Runnable React app.",
-    "ar": "حزمة لوحة تحكم أولًا لأدوات الحملات الإعلانية. تصميم مسطّح تمامًا — دون تدرّجات أو ظلال: علامة ذهبية كهرمانية مشمسة، ولمسة برتقالية للإنفاق، وألوان حالة زاهية (أخضر = نشطة/دخل، أحمر = متوقفة/مصروف، رمادي = منتهية) فوق خلفية فاتحة دافئة بزوايا ضيّقة. لوحة تحكم غنية (مؤشرات وخطوط مصغّرة، شريط الإنفاق، مخططات خطية وشمعية ودائرية، وجدول إنفاق قابل للفرز)، ومراقب حملات، وشبكة حسابات اجتماعية، وصفحة أسعار، وعرض كامل للمكوّنات. عربي/إنجليزي مع RTL كامل، وضع فاتح وداكن. تطبيق React جاهز للتشغيل."
+    "ar": "حزمة لوحة تحكم أولا لأدوات الحملات الإعلانية. تصميم مسطح تماما — دون تدرجات أو ظلال: علامة ذهبية كهرمانية مشمسة، ولمسة برتقالية للإنفاق، وألوان حالة زاهية (أخضر = نشطة/دخل، أحمر = متوقفة/مصروف، رمادي = منتهية) فوق خلفية فاتحة دافئة بزوايا ضيقة. لوحة تحكم غنية (مؤشرات وخطوط مصغرة، شريط الإنفاق، مخططات خطية وشمعية ودائرية، وجدول إنفاق قابل للفرز)، ومراقب حملات، وشبكة حسابات اجتماعية، وصفحة أسعار، وعرض كامل للمكونات. عربي/إنجليزي مع RTL كامل، وضع فاتح وداكن. تطبيق React جاهز للتشغيل."
   },
   "version": "1.0.0",
   "source": "community",
