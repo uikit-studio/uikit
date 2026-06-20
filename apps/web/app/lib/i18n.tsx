@@ -139,8 +139,7 @@ const en = {
   "submit.eyebrow": "become a kit author",
   "submit.titleA": "Ship your kit to",
   "submit.titleB": "the gallery.",
-  "submit.hero":
-    "A kit is a runnable starter product — a full design system, real pages, and a bundled AI skill — not a bin of loose components. Scaffold it with the uikit CLI, validate it against the contract, and submit. Here's the whole path.",
+  "submit.hero": "Build a kit, validate it, open a PR. Pure git — no backend.",
   "submit.startBuilding": "Start building",
   "submit.browseRegistry": "Browse the registry",
   "submit.step1.title": "Scaffold a kit",
@@ -286,8 +285,7 @@ const ar: Record<MsgKey, string> = {
   "submit.eyebrow": "صير مؤلّف حِزَم",
   "submit.titleA": "انشر حزمتك في",
   "submit.titleB": "المعرض.",
-  "submit.hero":
-    "الحزمة منتج كامل يشتغل من أول لحظة — نظام تصميم متكامل، وصفحات حقيقية، ومهارة ذكاء اصطناعي جاهزة — مو مجرّد مكوّنات متفرّقة. ابنِها بأداة uikit، وتأكّد إنها تمشي مع العقد، وبعدها أرسِلها. وهذا المشوار كامل.",
+  "submit.hero": "ابنِ حزمتك، تحقّق منها، وافتح طلب دمج — كل شيء عبر git، بلا خادم.",
   "submit.startBuilding": "ابدأ البناء",
   "submit.browseRegistry": "تصفّح السجلّ",
   "submit.step1.title": "ابنِ هيكل الحزمة",

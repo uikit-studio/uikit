@@ -188,7 +188,7 @@
     themes.forEach((t) => dots.append(el("i", { style: { background: t.accent || t.primary } })));
     dots.append(el("span", { class: "plus", text: "+" }));
     const moreBig = el("div", { class: "more-big", dir: "rtl" });
-    const moreBigWords = fillWords(moreBig, "والمزيد قريبًا");
+    const moreBigWords = fillWords(moreBig, "والقادم أحلى");
     const moreSub = el("div", { class: "more-sub", text: "more to code →" });
     more.append(el("div", { class: "more-center" }, [dots, moreBig, moreSub]));
     Object.assign(refs, { more, moreDots: dots, moreBigWords, moreSub });
@@ -202,12 +202,20 @@
     const center = el("div", { class: "center" }, [
       makeWordmark(),
       el("div", { class: "made" }, [
-        el("div", { class: "ai-ar", dir: "rtl", text: "هذا الفيديو من صنع الذكاء الاصطناعي" }),
-        el("div", { class: "ai-en", text: "made with AI ;)" }),
+        el("div", { class: "ai-ar", dir: "rtl", text: "جاهزة للتشغيل، جاهزة لذكائك" }),
+        el("div", { class: "ai-en", text: "ready to run, ready for your AI" }),
       ]),
     ]);
     outro.append(center);
     Object.assign(refs, { outro, blades, outroCenter: center });
+
+    // INTRO — the four kit-color blades open the film, then lift like a curtain
+    const intro = layer("intro");
+    const introBlades = themes.map((t, i) =>
+      el("div", { class: "blade", style: { left: i * 25 + "%", background: t.accent || t.primary } })
+    );
+    intro.append(...introBlades);
+    Object.assign(refs, { intro, introBlades });
   }
 
   const AR_IDX = ["٠١", "٠٢", "٠٣", "٠٤", "٠٥", "٠٦"];
@@ -257,27 +265,34 @@
     const tl = gsap.timeline({ paused: true, defaults: { ease: "power3.out" } });
     const T = {};
     T.hook = 0;
-    T.promise = 3.55;  // hold the hook punch ~1.2s after it reveals
-    T.beats = 5.0;     // hold the wordmark ~1.4s
+    T.promise = 4.15;  // hold the hook punch ~1.2s after it reveals
+    T.beats = 5.6;     // hold the wordmark ~1.4s
     T.beatDur = 2.3;   // each kit dwells ~1s after its words finish
-    T.more = T.beats + themes.length * T.beatDur; // 14.2
+    T.more = T.beats + themes.length * T.beatDur; // 14.8
     T.moreDur = 2.5;   // hold "more to code" ~1.5s
-    T.outro = T.more + T.moreDur; // 16.7
-    const FIN = T.outro + 1.3; // ~18.0
+    T.outro = T.more + T.moreDur; // 17.3
+    const FIN = T.outro + 1.3; // ~18.6
+
+    const h = refs;
+
+    // INTRO — open on the four kit colors, then lift them like a curtain
+    tl.set(h.intro, { opacity: 1, zIndex: 60 }, 0);
+    tl.set(h.introBlades, { yPercent: 0 }, 0);
+    tl.to(h.introBlades, { yPercent: -101, duration: 0.55, ease: "power3.inOut", stagger: 0.07 }, 0.28);
+    tl.set(h.intro, { opacity: 0 }, 1.0);
 
     // ACT 1 — hook (Khaleeji prompt → word-by-word punch, unhurried)
-    const h = refs;
     tl.set(h.hook, { opacity: 1 }, T.hook);
     const typed = h.prompt.querySelector(".typed");
     const text = "سوّي لي واجهة حلوة";
-    tl.fromTo(h.prompt, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.3 }, 0.1);
-    tl.to({ i: 0 }, { i: text.length, duration: 0.9, ease: "none", onUpdate() { typed.textContent = text.slice(0, Math.round(this.targets()[0].i)); } }, 0.25);
-    tl.to(h.prompt.querySelector(".caret"), { opacity: 0, duration: 0.4, repeat: 4, yoyo: true, ease: "steps(1)" }, 0.3);
-    tl.to(h.prompt, { opacity: 0, y: -8, duration: 0.22 }, 1.3);
+    tl.fromTo(h.prompt, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.3 }, 0.72);
+    tl.to({ i: 0 }, { i: text.length, duration: 0.9, ease: "none", onUpdate() { typed.textContent = text.slice(0, Math.round(this.targets()[0].i)); } }, 0.85);
+    tl.to(h.prompt.querySelector(".caret"), { opacity: 0, duration: 0.4, repeat: 4, yoyo: true, ease: "steps(1)" }, 0.9);
+    tl.to(h.prompt, { opacity: 0, y: -8, duration: 0.22 }, 1.9);
     // punch reveals one word at a time (container is opacity:0 in CSS — show it first)
-    tl.set(h.punch, { opacity: 1 }, 1.28);
-    revealWords(tl, h.punchWords, 1.32, { stagger: 0.11, hideAt: 1.05 });
-    addStrike(tl, h.punch, 2.15);
+    tl.set(h.punch, { opacity: 1 }, 1.88);
+    revealWords(tl, h.punchWords, 1.92, { stagger: 0.11, hideAt: 1.65 });
+    addStrike(tl, h.punch, 2.75);
     tl.to(h.hook, { opacity: 0, y: -22, duration: 0.26 }, T.promise - 0.05);
 
     // ACT 2 — wordmark
@@ -344,9 +359,10 @@
     const viewH = view.offsetHeight || 640;
     const renderedH = d ? viewW * (d.h / d.w) : img.offsetHeight;
     const scrollable = Math.max(0, renderedH - viewH);
-    // ~10x slower than a real scroll: creep through a small slice over the whole beat
-    const dist = Math.min(scrollable, renderedH * 0.16);
-    tl.fromTo(img, { y: 0 }, { y: -dist, duration: dur + 0.5, ease: "none" }, start + 0.05);
+    // VERY slow drift: hold a near-constant ~14px/s so the demo barely creeps
+    const scrollDur = dur + 3;
+    const dist = Math.min(scrollable, 14 * scrollDur);
+    tl.fromTo(img, { y: 0 }, { y: -dist, duration: scrollDur, ease: "none" }, start + 0.05);
 
     // transition OUT: slide the other way + fade
     tl.to(inner, { xPercent: -7, duration: 0.45, ease: "power2.in" }, start + dur - 0.34);

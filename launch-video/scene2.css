@@ -1,0 +1,99 @@
+/* uikit.studio launch — v2 "gallery rail": one horizontal space the camera pans
+   through. Same brand system as the site (Outfit + Thmanyah Sans, warm canvas,
+   rose→coral). Fixed 1920x1080 / 1080x1920 stage. */
+
+@font-face { font-family: "Thmanyah Sans"; src: url("./assets/fonts/thmanyah-sans-300.woff2") format("woff2"); font-weight: 300; font-display: block; }
+@font-face { font-family: "Thmanyah Sans"; src: url("./assets/fonts/thmanyah-sans-400.woff2") format("woff2"); font-weight: 400; font-display: block; }
+@font-face { font-family: "Thmanyah Sans"; src: url("./assets/fonts/thmanyah-sans-500.woff2") format("woff2"); font-weight: 500; font-display: block; }
+@font-face { font-family: "Thmanyah Sans"; src: url("./assets/fonts/thmanyah-sans-700.woff2") format("woff2"); font-weight: 700; font-display: block; }
+@font-face { font-family: "Thmanyah Sans"; src: url("./assets/fonts/thmanyah-sans-900.woff2") format("woff2"); font-weight: 900; font-display: block; }
+
+:root {
+  --bg: #fbfaf8; --surface: #f3f1ec; --elevated: #ffffff;
+  --line: #ebe7e0; --line-strong: #d8d3c9;
+  --ink: #1a1613; --muted: #6c645b; --faint: #a49c91;
+  --accent: #f43f5e; --accent-ink: #d62a4e;
+  --brand: #fb4d68; --brand2: #ff6f54; --brand3: #ff9a4d;
+  --outfit: "Outfit", system-ui, -apple-system, sans-serif;
+  --thmanyah: "Thmanyah Sans", "IBM Plex Sans Arabic", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+  --tint: var(--brand);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: #e9e5dd; overflow: hidden; }
+body { display: grid; place-items: center; font-family: var(--outfit); -webkit-font-smoothing: antialiased; text-rendering: geometricPrecision; }
+[dir="rtl"], [dir="rtl"] * { letter-spacing: 0 !important; }
+
+#stage { position: relative; width: var(--W, 1920px); height: var(--H, 1080px); transform-origin: center center; overflow: hidden; background: var(--bg); color: var(--ink); isolation: isolate; }
+
+.bg-grid { position: absolute; inset: -10%; background-image: radial-gradient(currentColor 1.3px, transparent 1.3px); background-size: 46px 46px; color: var(--ink); opacity: 0.045; z-index: 0; }
+.w { display: inline-block; }
+
+/* ── the rail: a flex row of full-stage panels the camera translates across ── */
+#cam { position: absolute; inset: 0; z-index: 1; will-change: transform; transform-origin: center center; }
+.rail { position: absolute; top: 0; left: 0; height: 100%; display: flex; will-change: transform; }
+.panel { position: relative; width: var(--W, 1920px); height: 100%; flex: 0 0 var(--W, 1920px); display: grid; place-items: center; overflow: hidden; }
+.panel .tint { position: absolute; inset: 0; z-index: 0; background: radial-gradient(70% 80% at 80% 8%, color-mix(in oklab, var(--pt) 16%, transparent), transparent 60%); }
+
+/* intro/outro 4-color blades (overlay) */
+.blades { position: absolute; inset: 0; z-index: 60; pointer-events: none; }
+.blade { position: absolute; top: 0; width: 25%; height: 100%; }
+
+/* ── HOOK panel ─────────────────────────────────────────────────────────── */
+.h-wrap { position: relative; z-index: 2; display: grid; gap: 40px; justify-items: center; text-align: center; }
+.h-prompt { direction: rtl; font-family: var(--thmanyah); font-weight: 500; font-size: 46px; color: var(--muted); }
+.h-prompt .dim { color: var(--faint); }
+.h-caret { display: inline-block; width: 16px; height: 50px; margin: 0 8px -10px 0; background: var(--accent); border-radius: 3px; }
+.h-punch { direction: rtl; font-family: var(--thmanyah); font-weight: 700; font-size: 96px; line-height: 1.34; color: var(--ink); max-width: 1480px; opacity: 0; }
+.h-punch .strike { position: relative; white-space: nowrap; }
+.h-punch .word { background-image: linear-gradient(100deg, var(--brand), var(--brand2), var(--brand3)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.pline { display: block; }
+
+/* ── KIT panel ──────────────────────────────────────────────────────────── */
+.p-inner { position: relative; z-index: 2; width: 100%; height: 100%; display: grid; grid-template-columns: 1.05fr 1fr; align-items: center; gap: 80px; padding: 0 120px; }
+.copy { display: grid; gap: 24px; align-content: center; direction: rtl; text-align: right; }
+.eyebrow { display: inline-flex; align-items: center; gap: 14px; justify-self: start; font-family: var(--thmanyah); font-weight: 500; font-size: 28px; color: var(--accent-ink); }
+.eyebrow .dot { width: 16px; height: 16px; border-radius: 50%; background: linear-gradient(135deg, var(--brand), var(--brand3)); }
+.kit-name { font-size: 158px; line-height: 0.96; letter-spacing: -0.03em; color: var(--ink); }
+.feature { font-family: var(--thmanyah); font-weight: 500; font-size: 38px; line-height: 1.4; color: var(--muted); max-width: 19ch; }
+.pills { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 2px; }
+.pill { font-family: "Outfit", "Thmanyah Sans", "IBM Plex Sans Arabic", sans-serif; font-weight: 500; font-size: 23px; padding: 9px 18px; border-radius: 999px; color: var(--ink); background: var(--surface); box-shadow: inset 0 0 0 1px var(--line-strong); }
+.chips { display: flex; gap: 14px; margin-top: 8px; }
+.chips i { width: 50px; height: 50px; border-radius: 14px; box-shadow: inset 0 0 0 1px rgba(26, 22, 19, 0.1), 0 8px 18px -8px rgba(26, 22, 19, 0.25); }
+
+.mock { position: relative; z-index: 2; width: 100%; border-radius: 26px; background: var(--elevated); box-shadow: 0 2px 6px rgba(26, 22, 19, 0.06), 0 40px 80px -28px rgba(26, 22, 19, 0.32); border: 1px solid var(--line); overflow: hidden; }
+.mock .bar { height: 54px; display: flex; align-items: center; gap: 10px; padding: 0 22px; background: var(--surface); border-bottom: 1px solid var(--line); }
+.mock .bar b { width: 13px; height: 13px; border-radius: 50%; background: var(--line-strong); }
+.mock .bar .url { margin-right: 18px; flex: 1; height: 26px; border-radius: 8px; background: var(--bg); border: 1px solid var(--line); }
+.mock .view { position: relative; width: 100%; height: 640px; overflow: hidden; }
+.mock .view img { position: absolute; top: 0; left: 0; width: 100%; height: auto; display: block; will-change: transform; }
+
+/* ── MORE panel ─────────────────────────────────────────────────────────── */
+.more-center { position: relative; z-index: 2; display: grid; gap: 34px; justify-items: center; text-align: center; }
+.kit-dots { display: flex; gap: 18px; align-items: center; }
+.kit-dots i { width: 38px; height: 38px; border-radius: 11px; box-shadow: inset 0 0 0 1px rgba(26, 22, 19, 0.1), 0 8px 18px -8px rgba(26, 22, 19, 0.25); }
+.kit-dots .plus { font-family: var(--outfit); font-weight: 700; font-size: 46px; color: var(--faint); margin-inline-start: 4px; }
+.more-big { font-family: var(--thmanyah); font-weight: 700; font-size: 128px; line-height: 1; color: var(--ink); }
+.more-sub { font-family: var(--mono); font-size: 32px; letter-spacing: 0.06em; color: var(--accent-ink); }
+
+/* ── OUTRO panel ────────────────────────────────────────────────────────── */
+.brand { position: relative; z-index: 2; text-align: center; display: grid; gap: 28px; justify-items: center; }
+.wordmark { display: inline-flex; align-items: center; gap: 22px; }
+.wordmark .dotmark { width: 92px; height: 92px; border-radius: 26px; display: grid; place-items: center; background: linear-gradient(135deg, var(--brand), var(--brand3)); box-shadow: 0 16px 30px -12px color-mix(in oklab, var(--brand) 60%, transparent); }
+.wordmark .dotmark svg { width: 60%; height: 60%; }
+.wordmark .text { font-family: var(--outfit); font-weight: 700; letter-spacing: -0.03em; font-size: 132px; line-height: 1; color: var(--ink); }
+.wordmark .text .dotc { color: var(--accent); }
+.wordmark .text .studio { font-weight: 600; color: var(--muted); }
+.made { display: grid; gap: 6px; justify-items: center; margin-top: 6px; }
+.made .ai-ar { direction: rtl; font-family: var(--thmanyah); font-weight: 500; font-size: 40px; color: var(--ink); }
+.made .ai-en { font-family: var(--mono); font-size: 22px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); }
+
+/* ── 9:16 restack ───────────────────────────────────────────────────────── */
+.f-9x16 .h-punch { font-size: 80px; max-width: 920px; }
+.f-9x16 .h-prompt { font-size: 40px; }
+.f-9x16 .p-inner { grid-template-columns: 1fr; grid-template-rows: auto auto; align-content: center; gap: 56px; padding: 0 90px; }
+.f-9x16 .kit-name { font-size: 132px; }
+.f-9x16 .mock .view { height: 560px; }
+.f-9x16 .more-big { font-size: 104px; }
+.f-9x16 .wordmark .text { font-size: 104px; }
+.f-9x16 .wordmark .dotmark { width: 72px; height: 72px; }

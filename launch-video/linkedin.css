@@ -1,0 +1,48 @@
+/* uikit.studio — LinkedIn launch card, 1200×1200. Each kit sits FULLY VISIBLE in
+   a browser frame on a panel of its own colour; the colour fills the empty space.
+   A floating logo lockup ties it together. */
+
+@font-face { font-family: "Thmanyah Sans"; src: url("./assets/fonts/thmanyah-sans-500.woff2") format("woff2"); font-weight: 500; font-display: block; }
+@font-face { font-family: "Thmanyah Sans"; src: url("./assets/fonts/thmanyah-sans-700.woff2") format("woff2"); font-weight: 700; font-display: block; }
+
+:root {
+  --bg: #fbfaf8; --surface: #f3f1ec; --elevated: #ffffff;
+  --line: #ebe7e0; --line-strong: #d8d3c9;
+  --ink: #1a1613; --muted: #6c645b; --faint: #a49c91;
+  --accent: #f43f5e; --accent-ink: #d62a4e;
+  --brand: #fb4d68; --brand2: #ff6f54; --brand3: #ff9a4d;
+  --outfit: "Outfit", system-ui, sans-serif;
+  --thmanyah: "Thmanyah Sans", "IBM Plex Sans Arabic", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: #e9e5dd; }
+[dir="rtl"], [dir="rtl"] * { letter-spacing: 0 !important; }
+
+#card { position: relative; width: 1200px; height: 1200px; overflow: hidden; background: var(--bg); font-family: var(--outfit); -webkit-font-smoothing: antialiased; }
+
+/* 2×2 of coloured kit panels */
+.grid2 { position: absolute; inset: 0; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+.cell { position: relative; overflow: hidden; display: grid; place-items: center; padding: 56px; }
+.cell .nm { position: absolute; top: 40px; inset-inline-start: 44px; display: inline-flex; align-items: center; gap: 12px; font-family: var(--outfit); font-weight: 700; font-size: 34px; }
+.cell .nm .sw { width: 22px; height: 22px; border-radius: 7px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.12); }
+
+/* the kit shown fully in a browser frame (no cropping) */
+.mock { width: 100%; border-radius: 18px; background: var(--elevated); border: 2px solid rgba(0,0,0,.10); overflow: hidden; }
+.mock .bar { height: 40px; display: flex; align-items: center; gap: 8px; padding: 0 16px; background: rgba(255,255,255,.7); border-bottom: 1px solid rgba(0,0,0,.06); }
+.mock .bar b { width: 10px; height: 10px; border-radius: 50%; background: rgba(0,0,0,.14); }
+.mock .view { position: relative; width: 100%; aspect-ratio: 4 / 3; overflow: hidden; }
+.mock .view img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+
+/* soft darkening behind the logo so it reads on any colour */
+.scrim { position: absolute; inset: 0; background: radial-gradient(34% 34% at 50% 50%, rgba(20,18,16,.30), transparent 72%); }
+
+/* floating logo lockup */
+.center { position: absolute; inset: 0; display: grid; place-items: center; }
+.logobox { display: grid; gap: 18px; justify-items: center; padding: 48px 62px; border-radius: 40px; background: var(--bg); border: 2px solid var(--ink); }
+.wordmark { display: inline-flex; align-items: center; gap: 16px; }
+.wordmark .dotmark { width: 70px; height: 70px; border-radius: 20px; display: grid; place-items: center; background: var(--brand); }
+.wordmark .dotmark svg { width: 60%; height: 60%; }
+.wordmark .text { font-family: var(--outfit); font-weight: 700; letter-spacing: -0.03em; font-size: 76px; line-height: 1; color: var(--ink); }
+.wordmark .text .dot { color: var(--accent); }
+.wordmark .text .studio { font-weight: 600; color: var(--muted); }
+.now { font-family: var(--thmanyah); font-weight: 700; font-size: 38px; color: var(--accent-ink); direction: rtl; }

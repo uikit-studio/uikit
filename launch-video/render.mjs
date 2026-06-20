@@ -25,7 +25,9 @@ const FPS = Number(arg("fps", "60"));
 const CRF = arg("crf", "17");
 const AUDIO = arg("audio", null);
 const DIMS = FORMAT === "9x16" ? { width: 1080, height: 1920 } : { width: 1920, height: 1080 };
-const OUT = arg("out", join(here, "out", `uikit-launch-${FORMAT}.mp4`));
+const PAGE = arg("page", "scene.html");
+const BASE = PAGE === "scene2.html" ? "uikit-launch-v2" : "uikit-launch";
+const OUT = arg("out", join(here, "out", `${BASE}-${FORMAT}.mp4`));
 const framesDir = join(here, "assets", "frames");
 
 const run = (bin, args) =>
@@ -50,7 +52,7 @@ async function main() {
   });
 
   console.log(`▶ ${FORMAT} ${DIMS.width}×${DIMS.height} @ ${FPS}fps`);
-  await page.goto(`${url}/scene.html?format=${FORMAT}`, { waitUntil: "networkidle" });
+  await page.goto(`${url}/${PAGE}?format=${FORMAT}`, { waitUntil: "networkidle" });
   await page.waitForFunction("window.__ready === true", { timeout: 60000 });
   // settle webfonts one more beat
   await page.evaluate(() => document.fonts && document.fonts.ready);
