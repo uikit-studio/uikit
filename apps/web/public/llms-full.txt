@@ -1,6 +1,6 @@
 # uikit.studio — all kit design specs
 
-Generated from 5 kits. Each section is a self-contained, agent-readable design brief.
+Generated from 6 kits. Each section is a self-contained, agent-readable design brief.
 
 
 ---
@@ -471,3 +471,108 @@ The real tokens live in `design/theme.css` + `design/tokens.json`; components in
 **Option B — apply the design system directly:** set the light + dark color tokens above as CSS variables, load the three fonts, use the base radius, and build the listed components and pages. Keep dark mode and EN/AR + RTL parity if the target needs it.
 
 **Option C — add via CLI:** `npx uikit-cli add spark` (Claude Code skill: `spark-ui`)
+
+
+---
+
+# Verdant — uikit.studio design spec
+
+> Premium furniture storefront kit
+
+A calm, premium furniture storefront — chairs & lounge seating in emerald green with a warm terracotta accent on a cream canvas, near-black actions and a deep-forest hero. Plus Jakarta Sans + Space Mono with Tajawal for Arabic. Catalog with search + filters, product preview with color swatches, and a cart with VAT and local payments. Arabic-first, full RTL for the Saudi/Khaliji market. Light + dark, mobile-first, responsive to desktop. Runnable React app.
+
+This file is **agent-readable**. If a developer asked you to build a site with the "Verdant" design, reproduce the design system below exactly — tokens, fonts, radius and components — in their stack, with full dark mode and a responsive layout.
+
+## Identity
+- **id**: verdant
+- **source**: community
+- **license**: MIT
+- **repo**: https://github.com/KernelCode/verdant-uikit
+- **live demo**: https://uikit.studio/demos/verdant/
+- **gallery**: https://uikit.studio/kit/verdant
+- **styling**: tailwind + tokens
+- **frameworks**: react
+
+## Design intent (prompt)
+A premium furniture storefront — emerald green brand, warm terracotta accent, cream canvas, near-black actions and a deep-forest hero. Plus Jakarta Sans display/body + Space Mono labels, Tajawal for Arabic. Arabic-first, full RTL, full dark mode. Build storefront (hero, featured chair, bestsellers, perks, trust/payment row), a catalog with search + category pills + a price/category/sort filter rail, a product preview (gallery, color swatches, rating, price + sale, quantity, buy), a cart (line items, free-shipping bar, VAT 15%, local payments), and a components showcase. SAR pricing; payments mada/Apple Pay/Tabby/Tamara/STC Pay/COD.
+
+## Typography
+- **display**: Plus Jakarta Sans
+- **sans / body**: Plus Jakarta Sans
+- **mono**: Space Mono
+
+## Radius
+- base `--radius`: `1.5rem`
+
+## Brand scale
+- `50`: `#eef4ee`
+- `100`: `#d6e6d8`
+- `200`: `#aeceb1`
+- `300`: `#7fae85`
+- `400`: `#4d8a59`
+- `500`: `#2e7d46`
+- `600`: `#1f5c32`
+- `700`: `#17451f`
+- `800`: `#102f17`
+- `900`: `#0c2413`
+
+## Color tokens — light
+- `--color-primary`: `#181b17`
+- `--color-brand`: `#1f5c32`
+- `--color-accent`: `#cf6a1a`
+- `--color-ink`: `#17271b`
+- `--color-background`: `#f4f3ee`
+- `--color-foreground`: `#181b17`
+- `--color-card`: `#ffffff`
+- `--color-muted`: `#edebe3`
+- `--color-border`: `#e6e4db`
+
+## Color tokens — dark
+- `--color-background`: `#0e110f`
+- `--color-foreground`: `#eef1e9`
+- `--color-card`: `#161a16`
+- `--color-brand`: `#3fa063`
+- `--color-accent`: `#e0843a`
+- `--color-muted`: `#1c211c`
+- `--color-border`: `#262b25`
+
+## Components
+- Button
+- IconButton
+- Badge
+- Card
+- Input
+- Container
+- ProductCard
+- PriceTag
+- RatingStars
+- ColorSwatch
+- QuantityStepper
+- SearchBar
+- CategoryTabs
+- BottomNav
+- TrustBadges
+- PhoneFrame
+
+## Blocks
+- BottomNav
+- TrustBadges
+
+## Pages
+- Storefront → `/`
+- Catalog → `/products`
+- Product → `/product`
+- Cart → `/cart`
+- Showcase → `/components`
+
+## How to reproduce this design
+**Option A — clone the kit (fastest, exact):**
+```bash
+git clone https://github.com/KernelCode/verdant-uikit my-app
+cd my-app/react && pnpm install && pnpm dev
+```
+The real tokens live in `design/theme.css` + `design/tokens.json`; components in `react/src/components`. Build the developer's pages against those.
+
+**Option B — apply the design system directly:** set the light + dark color tokens above as CSS variables, load the three fonts, use the base radius, and build the listed components and pages. Keep dark mode and EN/AR + RTL parity if the target needs it.
+
+**Option C — add via CLI:** `npx uikit-cli new https://github.com/KernelCode/verdant-uikit my-store` (Claude Code skill: `verdant`)

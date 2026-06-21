@@ -93,6 +93,23 @@ const KITS = [
       { file: "components.png", route: "components/" },
     ],
   },
+  {
+    id: "verdant",
+    repo: "verdant-uikit",
+    lang: "ar",
+    langKey: "verdant-lang",
+    themeKey: "verdant-theme",
+    viewport: { width: 1200, height: 900 },
+    scale: 2,
+    fullPage: false,
+    shots: [
+      { file: "landing.png", route: "" }, // storefront poster → 4:3
+      { file: "landing-dark.png", route: "", dark: true, fullPage: true },
+      { file: "catalog.png", route: "products/", fullPage: true },
+      { file: "product.png", route: "product/", fullPage: true },
+      { file: "components.png", route: "components/", fullPage: true },
+    ],
+  },
 ];
 
 function outDirFor(kit) {

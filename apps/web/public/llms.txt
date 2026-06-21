@@ -10,6 +10,7 @@ Paste into your agent: *“build me a website with this design: https://uikit.st
 - [Lime](https://uikit.studio/kit/lime/llms.txt): Limey digital-card kit. Spec: https://uikit.studio/kit/lime/llms.txt · Manifest: https://uikit.studio/kit/lime/manifest.json · Repo: https://github.com/KernelCode/lime-uikit
 - [Sada](https://uikit.studio/kit/sada/llms.txt): Editorial audio & video media kit. Spec: https://uikit.studio/kit/sada/llms.txt · Manifest: https://uikit.studio/kit/sada/manifest.json · Repo: https://github.com/KernelCode/sada-uikit
 - [Spark](https://uikit.studio/kit/spark/llms.txt): Bold marketing & landing kit. Spec: https://uikit.studio/kit/spark/llms.txt · Manifest: https://uikit.studio/kit/spark/manifest.json · Repo: https://github.com/uikit-studio/spark-uikit
+- [Verdant](https://uikit.studio/kit/verdant/llms.txt): Premium furniture storefront kit. Spec: https://uikit.studio/kit/verdant/llms.txt · Manifest: https://uikit.studio/kit/verdant/manifest.json · Repo: https://github.com/KernelCode/verdant-uikit
 
 ## Full
 - [llms-full.txt](https://uikit.studio/llms-full.txt): every kit's design brief in one file.

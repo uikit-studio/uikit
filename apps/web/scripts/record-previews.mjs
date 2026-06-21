@@ -75,6 +75,7 @@ const KITS = [
   { id: "spark", repo: "spark-uikit", lang: "ar", langKey: "spark-lang" },
   { id: "sada", repo: "thamanayh-uikit/my-kit", lang: "ar", langKey: "base-lang" }, // KernelCode/sada-uikit checkout
   { id: "admax", repo: "admax-uikit", lang: "ar", langKey: "admax-lang" },
+  { id: "verdant", repo: "verdant-uikit", lang: "ar", langKey: "verdant-lang" },
 ];
 
 /** Where a kit's preview.webm should land: its repo screenshots/, else fallback. */

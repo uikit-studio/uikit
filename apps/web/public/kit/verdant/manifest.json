@@ -1,0 +1,107 @@
+{
+  "$schema": "https://uikit.studio/agent-manifest.schema.json",
+  "id": "verdant",
+  "name": "Verdant",
+  "tagline": "Premium furniture storefront kit",
+  "description": "A calm, premium furniture storefront — chairs & lounge seating in emerald green with a warm terracotta accent on a cream canvas, near-black actions and a deep-forest hero. Plus Jakarta Sans + Space Mono with Tajawal for Arabic. Catalog with search + filters, product preview with color swatches, and a cart with VAT and local payments. Arabic-first, full RTL for the Saudi/Khaliji market. Light + dark, mobile-first, responsive to desktop. Runnable React app.",
+  "version": "1.0.0",
+  "source": "community",
+  "verified": false,
+  "license": "MIT",
+  "repo": "https://github.com/KernelCode/verdant-uikit",
+  "demo": "https://uikit.studio/demos/verdant/",
+  "gallery": "https://uikit.studio/kit/verdant",
+  "spec": "https://uikit.studio/kit/verdant/llms.txt",
+  "styling": "tailwind + tokens",
+  "frameworks": [
+    "react"
+  ],
+  "prompt": "A premium furniture storefront — emerald green brand, warm terracotta accent, cream canvas, near-black actions and a deep-forest hero. Plus Jakarta Sans display/body + Space Mono labels, Tajawal for Arabic. Arabic-first, full RTL, full dark mode. Build storefront (hero, featured chair, bestsellers, perks, trust/payment row), a catalog with search + category pills + a price/category/sort filter rail, a product preview (gallery, color swatches, rating, price + sale, quantity, buy), a cart (line items, free-shipping bar, VAT 15%, local payments), and a components showcase. SAR pricing; payments mada/Apple Pay/Tabby/Tamara/STC Pay/COD.",
+  "fonts": {
+    "display": "Plus Jakarta Sans",
+    "sans": "Plus Jakarta Sans",
+    "mono": "Space Mono"
+  },
+  "radius": "1.5rem",
+  "tokens": {
+    "light": {
+      "primary": "#181b17",
+      "brand": "#1f5c32",
+      "accent": "#cf6a1a",
+      "ink": "#17271b",
+      "background": "#f4f3ee",
+      "foreground": "#181b17",
+      "card": "#ffffff",
+      "muted": "#edebe3",
+      "border": "#e6e4db"
+    },
+    "dark": {
+      "background": "#0e110f",
+      "foreground": "#eef1e9",
+      "card": "#161a16",
+      "brand": "#3fa063",
+      "accent": "#e0843a",
+      "muted": "#1c211c",
+      "border": "#262b25"
+    }
+  },
+  "brandScale": {
+    "50": "#eef4ee",
+    "100": "#d6e6d8",
+    "200": "#aeceb1",
+    "300": "#7fae85",
+    "400": "#4d8a59",
+    "500": "#2e7d46",
+    "600": "#1f5c32",
+    "700": "#17451f",
+    "800": "#102f17",
+    "900": "#0c2413"
+  },
+  "components": [
+    "Button",
+    "IconButton",
+    "Badge",
+    "Card",
+    "Input",
+    "Container",
+    "ProductCard",
+    "PriceTag",
+    "RatingStars",
+    "ColorSwatch",
+    "QuantityStepper",
+    "SearchBar",
+    "CategoryTabs",
+    "BottomNav",
+    "TrustBadges",
+    "PhoneFrame"
+  ],
+  "blocks": [
+    "BottomNav",
+    "TrustBadges"
+  ],
+  "templates": [
+    {
+      "name": "Storefront",
+      "route": "/"
+    },
+    {
+      "name": "Catalog",
+      "route": "/products"
+    },
+    {
+      "name": "Product",
+      "route": "/product"
+    },
+    {
+      "name": "Cart",
+      "route": "/cart"
+    },
+    {
+      "name": "Showcase",
+      "route": "/components"
+    }
+  ],
+  "install": "npx uikit-cli new https://github.com/KernelCode/verdant-uikit my-store",
+  "skill": "verdant",
+  "agentPrompt": "Build me a website styled exactly like the \"Verdant\" design from uikit.studio.\nDesign spec (agent-readable): https://uikit.studio/kit/verdant/llms.txt\nMachine manifest: https://uikit.studio/kit/verdant/manifest.json\nReference kit (clone to copy the real components/tokens): https://github.com/KernelCode/verdant-uikit\nMatch its color tokens (light + dark), fonts, radius and component set. Keep full dark mode and responsive layout."
+}
