@@ -479,7 +479,7 @@ The real tokens live in `design/theme.css` + `design/tokens.json`; components in
 
 > Premium furniture storefront kit
 
-A calm, premium furniture storefront — chairs & lounge seating in emerald green with a warm terracotta accent on a cream canvas, near-black actions and a deep-forest hero. Plus Jakarta Sans + Space Mono with Tajawal for Arabic. Catalog with search + filters, product preview with color swatches, and a cart with VAT and local payments. Arabic-first, full RTL for the Saudi/Khaliji market. Light + dark, mobile-first, responsive to desktop. Runnable React app.
+A calm, premium furniture storefront — chairs & lounge seating in emerald green with a warm terracotta accent on a cream canvas, near-black actions and a deep-forest hero. Plus Jakarta Sans + Space Mono with Thmanyah Sans for Arabic. Catalog with search + filters, product preview with color swatches, and a cart with VAT and local payments. Arabic-first, full RTL for the Saudi/Khaliji market. Light + dark, mobile-first, responsive to desktop. Runnable React app.
 
 This file is **agent-readable**. If a developer asked you to build a site with the "Verdant" design, reproduce the design system below exactly — tokens, fonts, radius and components — in their stack, with full dark mode and a responsive layout.
 
@@ -494,7 +494,7 @@ This file is **agent-readable**. If a developer asked you to build a site with t
 - **frameworks**: react
 
 ## Design intent (prompt)
-A premium furniture storefront — emerald green brand, warm terracotta accent, cream canvas, near-black actions and a deep-forest hero. Plus Jakarta Sans display/body + Space Mono labels, Tajawal for Arabic. Arabic-first, full RTL, full dark mode. Build storefront (hero, featured chair, bestsellers, perks, trust/payment row), a catalog with search + category pills + a price/category/sort filter rail, a product preview (gallery, color swatches, rating, price + sale, quantity, buy), a cart (line items, free-shipping bar, VAT 15%, local payments), and a components showcase. SAR pricing; payments mada/Apple Pay/Tabby/Tamara/STC Pay/COD.
+A premium furniture storefront — emerald green brand, warm terracotta accent, cream canvas, near-black actions and a deep-forest hero. Plus Jakarta Sans display/body + Space Mono labels, Thmanyah Sans for Arabic. Arabic-first, full RTL, full dark mode. Build storefront (hero, featured chair, bestsellers, perks, trust/payment row), a catalog with search + category pills + a price/category/sort filter rail, a product preview (gallery, color swatches, rating, price + sale, quantity, buy), a cart (line items, free-shipping bar, VAT 15%, local payments), and a components showcase. SAR pricing; payments mada/Apple Pay/Tabby/Tamara/STC Pay/COD.
 
 ## Typography
 - **display**: Plus Jakarta Sans

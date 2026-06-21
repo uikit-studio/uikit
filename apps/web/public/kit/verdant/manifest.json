@@ -3,7 +3,7 @@
   "id": "verdant",
   "name": "Verdant",
   "tagline": "Premium furniture storefront kit",
-  "description": "A calm, premium furniture storefront — chairs & lounge seating in emerald green with a warm terracotta accent on a cream canvas, near-black actions and a deep-forest hero. Plus Jakarta Sans + Space Mono with Tajawal for Arabic. Catalog with search + filters, product preview with color swatches, and a cart with VAT and local payments. Arabic-first, full RTL for the Saudi/Khaliji market. Light + dark, mobile-first, responsive to desktop. Runnable React app.",
+  "description": "A calm, premium furniture storefront — chairs & lounge seating in emerald green with a warm terracotta accent on a cream canvas, near-black actions and a deep-forest hero. Plus Jakarta Sans + Space Mono with Thmanyah Sans for Arabic. Catalog with search + filters, product preview with color swatches, and a cart with VAT and local payments. Arabic-first, full RTL for the Saudi/Khaliji market. Light + dark, mobile-first, responsive to desktop. Runnable React app.",
   "version": "1.0.0",
   "source": "community",
   "verified": false,
@@ -16,11 +16,12 @@
   "frameworks": [
     "react"
   ],
-  "prompt": "A premium furniture storefront — emerald green brand, warm terracotta accent, cream canvas, near-black actions and a deep-forest hero. Plus Jakarta Sans display/body + Space Mono labels, Tajawal for Arabic. Arabic-first, full RTL, full dark mode. Build storefront (hero, featured chair, bestsellers, perks, trust/payment row), a catalog with search + category pills + a price/category/sort filter rail, a product preview (gallery, color swatches, rating, price + sale, quantity, buy), a cart (line items, free-shipping bar, VAT 15%, local payments), and a components showcase. SAR pricing; payments mada/Apple Pay/Tabby/Tamara/STC Pay/COD.",
+  "prompt": "A premium furniture storefront — emerald green brand, warm terracotta accent, cream canvas, near-black actions and a deep-forest hero. Plus Jakarta Sans display/body + Space Mono labels, Thmanyah Sans for Arabic. Arabic-first, full RTL, full dark mode. Build storefront (hero, featured chair, bestsellers, perks, trust/payment row), a catalog with search + category pills + a price/category/sort filter rail, a product preview (gallery, color swatches, rating, price + sale, quantity, buy), a cart (line items, free-shipping bar, VAT 15%, local payments), and a components showcase. SAR pricing; payments mada/Apple Pay/Tabby/Tamara/STC Pay/COD.",
   "fonts": {
     "display": "Plus Jakarta Sans",
     "sans": "Plus Jakarta Sans",
-    "mono": "Space Mono"
+    "mono": "Space Mono",
+    "arabic": "Thmanyah Sans"
   },
   "radius": "1.5rem",
   "tokens": {

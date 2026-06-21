@@ -1,10 +1,16 @@
 {
   "id": "verdant",
-  "name": { "en": "Verdant", "ar": "فيردانت" },
-  "tagline": { "en": "Premium furniture storefront kit", "ar": "حزمة متجر أثاث فاخر" },
+  "name": {
+    "en": "Verdant",
+    "ar": "فيردانت"
+  },
+  "tagline": {
+    "en": "Premium furniture storefront kit",
+    "ar": "حزمة متجر أثاث فاخر"
+  },
   "description": {
-    "en": "A calm, premium furniture storefront — chairs & lounge seating in emerald green with a warm terracotta accent on a cream canvas, near-black actions and a deep-forest hero. Plus Jakarta Sans + Space Mono with Tajawal for Arabic. Catalog with search + filters, product preview with color swatches, and a cart with VAT and local payments. Arabic-first, full RTL for the Saudi/Khaliji market. Light + dark, mobile-first, responsive to desktop. Runnable React app.",
-    "ar": "متجر أثاث هادئ وفاخر — كراسي ومقاعد استرخاء بأخضر زمردي ولمسة فخارية دافئة على خلفية كريمية، أزرار شبه سوداء وواجهة بلون الغابة العميق. خطوط Plus Jakarta Sans وSpace Mono مع Tajawal للعربية. متجر فيه بحث وفلترة، ومعاينة منتج مع ألوان، وسلة فيها الضريبة ووسائل دفع محلية. عربي أولًا، RTL كامل للسوق السعودي والخليجي. وضع فاتح وداكن، تصميم للجوال أولًا ومتجاوب حتى سطح المكتب. تطبيق React جاهز للتشغيل."
+    "en": "A calm, premium furniture storefront — chairs & lounge seating in emerald green with a warm terracotta accent on a cream canvas, near-black actions and a deep-forest hero. Plus Jakarta Sans + Space Mono with Thmanyah Sans for Arabic. Catalog with search + filters, product preview with color swatches, and a cart with VAT and local payments. Arabic-first, full RTL for the Saudi/Khaliji market. Light + dark, mobile-first, responsive to desktop. Runnable React app.",
+    "ar": "متجر أثاث هادئ وفاخر — كراسي ومقاعد استرخاء بأخضر زمردي ولمسة فخارية دافئة على خلفية كريمية، أزرار شبه سوداء وواجهة بلون الغابة العميق. خطوط Plus Jakarta Sans وSpace Mono مع ثُمانية (Thmanyah) للعربية. متجر فيه بحث وفلترة، ومعاينة منتج مع ألوان، وسلة فيها الضريبة ووسائل دفع محلية. عربي أولًا، RTL كامل للسوق السعودي والخليجي. وضع فاتح وداكن، تصميم للجوال أولًا ومتجاوب حتى سطح المكتب. تطبيق React جاهز للتشغيل."
   },
   "version": "1.0.0",
   "source": "community",
@@ -12,64 +18,204 @@
   "demoUrl": "/demos/verdant/",
   "primaryColor": "#1f5c32",
   "accentColor": "#cf6a1a",
-  "frameworks": ["react"],
-  "categories": ["ecommerce", "furniture", "storefront"],
-  "tags": ["ecommerce", "store", "furniture", "chairs", "salla", "zid", "shopify", "arabic", "rtl", "green"],
+  "frameworks": [
+    "react"
+  ],
+  "categories": [
+    "ecommerce",
+    "furniture",
+    "storefront"
+  ],
+  "tags": [
+    "ecommerce",
+    "store",
+    "furniture",
+    "chairs",
+    "salla",
+    "zid",
+    "shopify",
+    "arabic",
+    "rtl",
+    "green"
+  ],
   "repo": "https://github.com/KernelCode/verdant-uikit",
   "homepage": "https://github.com/KernelCode/verdant-uikit",
   "license": "MIT",
   "styling": "tailwind + tokens",
-  "author": { "name": "Abdullah Al-taheri", "github": "KernelCode", "url": "https://altaheri.me", "official": false },
-  "fonts": { "display": "Plus Jakarta Sans", "sans": "Plus Jakarta Sans", "mono": "Space Mono" },
+  "author": {
+    "name": "Abdullah Al-taheri",
+    "github": "KernelCode",
+    "url": "https://altaheri.me",
+    "official": false
+  },
+  "fonts": {
+    "display": "Plus Jakarta Sans",
+    "sans": "Plus Jakarta Sans",
+    "mono": "Space Mono",
+    "arabic": "Thmanyah Sans"
+  },
   "radius": "1.5rem",
   "brandScale": [
-    { "name": "50", "value": "#eef4ee" },
-    { "name": "100", "value": "#d6e6d8" },
-    { "name": "200", "value": "#aeceb1" },
-    { "name": "300", "value": "#7fae85" },
-    { "name": "400", "value": "#4d8a59" },
-    { "name": "500", "value": "#2e7d46" },
-    { "name": "600", "value": "#1f5c32" },
-    { "name": "700", "value": "#17451f" },
-    { "name": "800", "value": "#102f17" },
-    { "name": "900", "value": "#0c2413" }
+    {
+      "name": "50",
+      "value": "#eef4ee"
+    },
+    {
+      "name": "100",
+      "value": "#d6e6d8"
+    },
+    {
+      "name": "200",
+      "value": "#aeceb1"
+    },
+    {
+      "name": "300",
+      "value": "#7fae85"
+    },
+    {
+      "name": "400",
+      "value": "#4d8a59"
+    },
+    {
+      "name": "500",
+      "value": "#2e7d46"
+    },
+    {
+      "name": "600",
+      "value": "#1f5c32"
+    },
+    {
+      "name": "700",
+      "value": "#17451f"
+    },
+    {
+      "name": "800",
+      "value": "#102f17"
+    },
+    {
+      "name": "900",
+      "value": "#0c2413"
+    }
   ],
   "palette": [
-    { "name": "primary", "value": "#181b17" },
-    { "name": "brand", "value": "#1f5c32" },
-    { "name": "accent", "value": "#cf6a1a" },
-    { "name": "ink", "value": "#17271b" },
-    { "name": "background", "value": "#f4f3ee" },
-    { "name": "foreground", "value": "#181b17" },
-    { "name": "card", "value": "#ffffff" },
-    { "name": "muted", "value": "#edebe3" },
-    { "name": "border", "value": "#e6e4db" }
+    {
+      "name": "primary",
+      "value": "#181b17"
+    },
+    {
+      "name": "brand",
+      "value": "#1f5c32"
+    },
+    {
+      "name": "accent",
+      "value": "#cf6a1a"
+    },
+    {
+      "name": "ink",
+      "value": "#17271b"
+    },
+    {
+      "name": "background",
+      "value": "#f4f3ee"
+    },
+    {
+      "name": "foreground",
+      "value": "#181b17"
+    },
+    {
+      "name": "card",
+      "value": "#ffffff"
+    },
+    {
+      "name": "muted",
+      "value": "#edebe3"
+    },
+    {
+      "name": "border",
+      "value": "#e6e4db"
+    }
   ],
   "darkPalette": [
-    { "name": "background", "value": "#0e110f" },
-    { "name": "foreground", "value": "#eef1e9" },
-    { "name": "card", "value": "#161a16" },
-    { "name": "brand", "value": "#3fa063" },
-    { "name": "accent", "value": "#e0843a" },
-    { "name": "muted", "value": "#1c211c" },
-    { "name": "border", "value": "#262b25" }
+    {
+      "name": "background",
+      "value": "#0e110f"
+    },
+    {
+      "name": "foreground",
+      "value": "#eef1e9"
+    },
+    {
+      "name": "card",
+      "value": "#161a16"
+    },
+    {
+      "name": "brand",
+      "value": "#3fa063"
+    },
+    {
+      "name": "accent",
+      "value": "#e0843a"
+    },
+    {
+      "name": "muted",
+      "value": "#1c211c"
+    },
+    {
+      "name": "border",
+      "value": "#262b25"
+    }
   ],
-  "prompt": "A premium furniture storefront — emerald green brand, warm terracotta accent, cream canvas, near-black actions and a deep-forest hero. Plus Jakarta Sans display/body + Space Mono labels, Tajawal for Arabic. Arabic-first, full RTL, full dark mode. Build storefront (hero, featured chair, bestsellers, perks, trust/payment row), a catalog with search + category pills + a price/category/sort filter rail, a product preview (gallery, color swatches, rating, price + sale, quantity, buy), a cart (line items, free-shipping bar, VAT 15%, local payments), and a components showcase. SAR pricing; payments mada/Apple Pay/Tabby/Tamara/STC Pay/COD.",
+  "prompt": "A premium furniture storefront — emerald green brand, warm terracotta accent, cream canvas, near-black actions and a deep-forest hero. Plus Jakarta Sans display/body + Space Mono labels, Thmanyah Sans for Arabic. Arabic-first, full RTL, full dark mode. Build storefront (hero, featured chair, bestsellers, perks, trust/payment row), a catalog with search + category pills + a price/category/sort filter rail, a product preview (gallery, color swatches, rating, price + sale, quantity, buy), a cart (line items, free-shipping bar, VAT 15%, local payments), and a components showcase. SAR pricing; payments mada/Apple Pay/Tabby/Tamara/STC Pay/COD.",
   "buildSteps": [
-    "Tokens (tokens.json) → theme.css (emerald brand, terracotta accent, cream/ink, --color-stage, dark block, [dir=rtl] Tajawal swap).",
+    "Tokens (tokens.json) → theme.css (emerald brand, terracotta accent, cream/ink, --color-stage, dark block, [dir=rtl] Thmanyah swap).",
     "i18n: ar + en dictionaries (Arabic primary) + a provider that flips dir/lang.",
     "Design system: cn, Button, IconButton, Badge, Card, Input, ProductCard, PriceTag, RatingStars, ColorSwatch, QuantityStepper, SearchBar, CategoryTabs, BottomNav, TrustBadges.",
     "Pages: Storefront, Catalog (search + filters), Product preview, Cart, Components showcase — mobile-first + desktop.",
     "Agent-ready: uikit.json (validated), AGENTS.md, llms.txt, screenshots + preview.webm."
   ],
-  "components": ["Button", "IconButton", "Badge", "Card", "Input", "Container", "ProductCard", "PriceTag", "RatingStars", "ColorSwatch", "QuantityStepper", "SearchBar", "CategoryTabs", "BottomNav", "TrustBadges", "PhoneFrame"],
-  "blocks": ["BottomNav", "TrustBadges"],
+  "components": [
+    "Button",
+    "IconButton",
+    "Badge",
+    "Card",
+    "Input",
+    "Container",
+    "ProductCard",
+    "PriceTag",
+    "RatingStars",
+    "ColorSwatch",
+    "QuantityStepper",
+    "SearchBar",
+    "CategoryTabs",
+    "BottomNav",
+    "TrustBadges",
+    "PhoneFrame"
+  ],
+  "blocks": [
+    "BottomNav",
+    "TrustBadges"
+  ],
   "templates": [
-    { "name": "Storefront", "route": "/" },
-    { "name": "Catalog", "route": "/products" },
-    { "name": "Product", "route": "/product" },
-    { "name": "Cart", "route": "/cart" },
-    { "name": "Showcase", "route": "/components" }
+    {
+      "name": "Storefront",
+      "route": "/"
+    },
+    {
+      "name": "Catalog",
+      "route": "/products"
+    },
+    {
+      "name": "Product",
+      "route": "/product"
+    },
+    {
+      "name": "Cart",
+      "route": "/cart"
+    },
+    {
+      "name": "Showcase",
+      "route": "/components"
+    }
   ],
   "installCmd": "npx uikit-cli new https://github.com/KernelCode/verdant-uikit my-store",
   "skillName": "verdant",
@@ -80,10 +226,25 @@
   ],
   "video": "/kits/verdant/preview.webm",
   "screenshots": [
-    { "kind": "landing", "url": "/kits/verdant/landing.png" },
-    { "kind": "other", "url": "/kits/verdant/landing-dark.png" },
-    { "kind": "other", "url": "/kits/verdant/catalog.png" },
-    { "kind": "other", "url": "/kits/verdant/product.png" },
-    { "kind": "other", "url": "/kits/verdant/components.png" }
+    {
+      "kind": "landing",
+      "url": "/kits/verdant/landing.png"
+    },
+    {
+      "kind": "other",
+      "url": "/kits/verdant/landing-dark.png"
+    },
+    {
+      "kind": "other",
+      "url": "/kits/verdant/catalog.png"
+    },
+    {
+      "kind": "other",
+      "url": "/kits/verdant/product.png"
+    },
+    {
+      "kind": "other",
+      "url": "/kits/verdant/components.png"
+    }
   ]
 }
