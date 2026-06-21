@@ -130,7 +130,7 @@ function SiteHeader() {
   const { t } = useLocale();
   return (
     <header className="sticky top-0 z-50 border-b border-line/70 glass">
-      <div className="mx-auto flex h-16 max-w-[1320px] items-center justify-between gap-4 px-5 sm:px-8">
+      <div className="mx-auto flex h-16 max-w-[1320px] items-center justify-between gap-3 px-3 sm:gap-4 sm:px-8">
         <Link to="/" className="flex shrink-0 items-center gap-2.5">
           <span
             className="grid h-8 w-8 place-items-center rounded-xl text-white shadow-[0_5px_16px_-5px_rgba(244,63,94,0.65)]"
@@ -140,11 +140,11 @@ function SiteHeader() {
           </span>
           <span className="font-display text-xl font-bold tracking-tight text-fg">
             uikit<span className="text-accent">.</span>
-            <span className="font-semibold text-muted">studio</span>
+            <span className="font-semibold text-muted max-[359px]:hidden">studio</span>
           </span>
         </Link>
 
-        <nav className="flex shrink-0 items-center gap-5 text-sm sm:gap-7">
+        <nav className="flex shrink-0 items-center gap-3 text-sm sm:gap-7">
           <a
             href="https://github.com/uikit-studio"
             target="_blank"
@@ -156,7 +156,7 @@ function SiteHeader() {
           <LangToggle />
           <Link
             to="/submit"
-            className="rounded-full bg-fg px-4 py-2 font-medium text-bg transition-colors hover:bg-accent"
+            className="rounded-full bg-fg px-3 py-2 font-medium text-bg transition-colors hover:bg-accent sm:px-4"
           >
             {t("nav.submit")}
           </Link>
