@@ -110,6 +110,19 @@ const KITS = [
       { file: "components.png", route: "components/", fullPage: true },
     ],
   },
+  {
+    id: "admax",
+    repo: "admax-uikit",
+    lang: "ar",
+    langKey: "admax-lang",
+    themeKey: "admax-theme",
+    viewport: { width: 1200, height: 900 }, // 4:3, matches preview.webm + card
+    scale: 2,
+    fullPage: false,
+    shots: [
+      { file: "landing.png", route: "" }, // dashboard home → 4:3 card poster
+    ],
+  },
 ];
 
 function outDirFor(kit) {
