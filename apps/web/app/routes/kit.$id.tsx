@@ -229,7 +229,7 @@ function KitDetailPage() {
         </section>
       )}
 
-      <div className="mt-12 grid gap-12 lg:grid-cols-[1fr_340px]">
+      <div className="mt-12 grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,1fr)_340px]">
         {/* Main: the design system */}
         <div className="min-w-0 space-y-14">
           {/* Colors */}
@@ -320,7 +320,7 @@ function KitDetailPage() {
         </div>
 
         {/* Aside: install + consume */}
-        <aside className="space-y-5 lg:sticky lg:top-24 lg:self-start">
+        <aside className="min-w-0 space-y-5 lg:sticky lg:top-24 lg:self-start">
           {kit.installCmd && (
             <Panel title={t("aside.install")}>
               <CopyLine text={kit.installCmd} />
