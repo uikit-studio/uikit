@@ -168,18 +168,10 @@ function KitCard({ kit, index }: { kit: GalleryCard; index: number }) {
       onMouseEnter={kit.video ? playPreview : undefined}
       onMouseLeave={kit.video ? stopPreview : undefined}
     >
-      {/* Card: palette strip on top + preview below */}
-      <div className="overflow-hidden rounded-3xl border border-line bg-surface card transition-shadow duration-300 group-hover:card-hover">
-        {/* Palette strip — the kit's colors, at the top of the card */}
-        <div className="flex h-3 w-full">
-          {kit.palette.map((s, i) => (
-            <span key={i} className="h-full flex-1" style={{ background: s.value }} title={s.name} />
-          ))}
-        </div>
-
+      {/* Card: preview with a small palette-dot cluster pinned to the top corner */}
+      <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-line bg-surface card transition-shadow duration-300 group-hover:card-hover">
         {/* Preview (screenshot / hover video) */}
-        <div className="relative aspect-[4/3] overflow-hidden">
-          {kit.video ? (
+        {kit.video ? (
             <video
               ref={videoRef}
               src={kit.video}
@@ -204,6 +196,20 @@ function KitCard({ kit, index }: { kit: GalleryCard; index: number }) {
               style={{ background: `linear-gradient(135deg, ${kit.primaryColor}, ${kit.accentColor})` }}
             />
           )}
+
+          {/* Palette dots — small rounded swatches pinned to the top corner
+              (start side, so it flips for RTL). Fades out on hover. */}
+          <div className="absolute start-3 top-3 z-10 flex items-center gap-1.5 rounded-full bg-bg/75 px-2 py-1.5 ring-1 ring-line backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-0">
+            {kit.palette.slice(0, 5).map((s, i) => (
+              <span
+                key={i}
+                className="h-2.5 w-2.5 rounded-full ring-1 ring-fg/15"
+                style={{ background: s.value }}
+                title={s.name}
+              />
+            ))}
+          </div>
+
           {/* Hover reveal — tagline + theme details + author surface over the preview */}
           <div className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-col gap-2 bg-gradient-to-t from-fg/90 via-fg/45 to-transparent p-4 pt-14 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
             {tagline && (
@@ -229,7 +235,6 @@ function KitCard({ kit, index }: { kit: GalleryCard; index: number }) {
               </span>
             </p>
           </div>
-        </div>
       </div>
 
       {/* Footer: logo + meta */}
