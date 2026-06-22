@@ -153,8 +153,8 @@ function KitCard({ kit, index }: { kit: GalleryCard; index: number }) {
   const ref = useReveal<HTMLAnchorElement>();
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Resting face shows the palette + identity; on hover it fades out and the
-  // live preview (video, else poster) plays underneath.
+  // Show the poster until first hover; then play the preview on hover and pause
+  // in place on leave, so the next hover resumes from the same frame.
   const playPreview = () => videoRef.current?.play().catch(() => {});
   const stopPreview = () => videoRef.current?.pause();
 
@@ -168,47 +168,67 @@ function KitCard({ kit, index }: { kit: GalleryCard; index: number }) {
       onMouseEnter={kit.video ? playPreview : undefined}
       onMouseLeave={kit.video ? stopPreview : undefined}
     >
-      {/* Thumbnail */}
-      <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-line bg-surface card transition-shadow duration-300 group-hover:card-hover">
-        {/* Preview layer (revealed on hover) */}
-        {kit.video ? (
-          <video
-            ref={videoRef}
-            src={kit.video}
-            poster={kit.thumb ?? undefined}
-            loop
-            muted
-            playsInline
-            preload="metadata"
-            aria-label={`${name} preview`}
-            className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
-          />
-        ) : kit.thumb ? (
-          <img
-            src={kit.thumb}
-            alt={`${name} preview`}
-            loading="lazy"
-            className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
-          />
-        ) : null}
+      {/* Card: palette strip on top + preview below */}
+      <div className="overflow-hidden rounded-3xl border border-line bg-surface card transition-shadow duration-300 group-hover:card-hover">
+        {/* Palette strip — the kit's colors, at the top of the card */}
+        <div className="flex h-3 w-full">
+          {kit.palette.map((s, i) => (
+            <span key={i} className="h-full flex-1" style={{ background: s.value }} title={s.name} />
+          ))}
+        </div>
 
-        {/* Resting face: palette band + identity. Fades out on hover. */}
-        <div className="absolute inset-0 flex flex-col bg-elevated transition-opacity duration-300 group-hover:pointer-events-none group-hover:opacity-0">
-          <div className="flex h-2/5 w-full">
-            {kit.palette.map((s, i) => (
-              <span key={i} className="h-full flex-1" style={{ background: s.value }} title={s.name} />
-            ))}
-          </div>
-          <div className="flex flex-1 flex-col justify-center gap-1.5 px-5">
-            <h3 className="font-display text-2xl font-extrabold tracking-tight">{name}</h3>
-            {tagline && <p className="line-clamp-2 text-sm leading-snug text-muted">{tagline}</p>}
-            <p className="mt-0.5 font-mono text-[11px] uppercase tracking-wide text-faint">
-              {kit.frameworks.join(" · ")}
+        {/* Preview (screenshot / hover video) */}
+        <div className="relative aspect-[4/3] overflow-hidden">
+          {kit.video ? (
+            <video
+              ref={videoRef}
+              src={kit.video}
+              poster={kit.thumb ?? undefined}
+              loop
+              muted
+              playsInline
+              preload="metadata"
+              aria-label={`${name} preview`}
+              className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
+            />
+          ) : kit.thumb ? (
+            <img
+              src={kit.thumb}
+              alt={`${name} preview`}
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
+            />
+          ) : (
+            <div
+              className="absolute inset-0"
+              style={{ background: `linear-gradient(135deg, ${kit.primaryColor}, ${kit.accentColor})` }}
+            />
+          )}
+          {/* Hover reveal — tagline + theme details + author surface over the preview */}
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-col gap-2 bg-gradient-to-t from-fg/90 via-fg/45 to-transparent p-4 pt-14 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            {tagline && (
+              <p className="line-clamp-2 translate-y-2 text-sm font-semibold leading-snug text-bg transition-transform duration-300 group-hover:translate-y-0">
+                {tagline}
+              </p>
+            )}
+            {/* theme details */}
+            <div className="flex translate-y-2 flex-wrap gap-1.5 transition-transform delay-[40ms] duration-300 group-hover:translate-y-0">
+              {[kit.font, `${t("card.radius")} ${kit.radius}`, ...kit.tags.slice(0, 2)].map((chip) => (
+                <span
+                  key={chip}
+                  className="rounded-full border border-bg/25 bg-bg/10 px-2 py-0.5 font-mono text-[10px] text-bg backdrop-blur-sm"
+                >
+                  {chip}
+                </span>
+              ))}
+            </div>
+            <p className="flex translate-y-2 items-center gap-1.5 font-mono text-[11px] text-bg/80 transition-transform delay-[80ms] duration-300 group-hover:translate-y-0">
+              {t("card.by")} {kit.author.name}
+              <span className="ms-auto inline-flex items-center gap-1 font-sans font-semibold text-bg">
+                {t("card.view")} <ArrowUpRight className="h-3.5 w-3.5 rtl-flip" />
+              </span>
             </p>
           </div>
-          <span className="pointer-events-none absolute bottom-3 end-4 inline-flex items-center gap-1 font-mono text-[11px] text-faint opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-            {t("card.view")} <ArrowUpRight className="h-3.5 w-3.5 rtl-flip" />
-          </span>
         </div>
       </div>
 

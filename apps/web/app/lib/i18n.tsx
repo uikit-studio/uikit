@@ -94,6 +94,7 @@ const en = {
   "card.community": "community",
   "card.view": "View kit",
   "card.by": "by",
+  "card.radius": "radius",
 
   // home / submit CTA
   "submitcta.titleA": "Built a kit?",
@@ -243,6 +244,7 @@ const ar: Record<MsgKey, string> = {
   "card.community": "من المجتمع",
   "card.view": "افتح الحزمة",
   "card.by": "بواسطة",
+  "card.radius": "نصف القطر",
 
   "submitcta.titleA": "أنشأت حزمة؟",
   "submitcta.titleB": "انشرها هنا",
