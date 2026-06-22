@@ -1,0 +1,79 @@
+{
+  "id": "chomp",
+  "name": "Chomp",
+  "tagline": { "en": "Retro snack-brand kit", "ar": "حزمة علامة سناك ريترو" },
+  "description": {
+    "en": "A retro snack-brand kit — warm terracotta + cream + espresso + gold with a forest-green accent. Chunky rounded Baloo 2 display, friendly Fredoka body, thick espresso borders, torn-paper edges, a marquee ticker, an ingredient wheel and SVG packaging. Light + dark, EN/AR + RTL. Runnable React app.",
+    "ar": "حزمة علامة سناك ريترو — تيراكوتا دافئ وكريمي وإسبريسو وذهبي مع لمسة أخضر غابي. خط Baloo 2 مستدير عريض للعناوين، وخط Fredoka ودود للنص، وحدود إسبريسو سميكة، وحواف ورقية ممزّقة، وشريط متحرك، وعجلة مكوّنات، وأغلفة SVG. فاتح وداكن، عربي/إنجليزي مع RTL. تطبيق React جاهز للتشغيل."
+  },
+  "version": "1.0.0",
+  "source": "community",
+  "verified": false,
+  "primaryColor": "#c24a30",
+  "accentColor": "#edc94a",
+  "frameworks": ["react"],
+  "categories": ["marketing", "landing"],
+  "tags": ["retro", "snack", "rounded", "terracotta", "warm", "rtl"],
+  "demoUrl": "/demos/chomp/",
+  "logo": "/demos/chomp/favicon.svg",
+  "repo": "https://github.com/uikit-studio/chomp-uikit",
+  "homepage": "https://uikit.studio/demos/chomp/",
+  "license": "MIT",
+  "styling": "tailwind + tokens",
+  "author": { "name": "uikit-studio", "github": "uikit-studio", "url": null, "official": false },
+  "fonts": { "display": "Baloo 2", "sans": "Fredoka", "mono": "Fredoka" },
+  "radius": "1.5rem",
+  "brandScale": [
+    { "name": "50", "value": "#fbeee7" },
+    { "name": "100", "value": "#f6d8c9" },
+    { "name": "200", "value": "#edb39c" },
+    { "name": "300", "value": "#e08e6c" },
+    { "name": "400", "value": "#d26a47" },
+    { "name": "500", "value": "#c24a30" },
+    { "name": "600", "value": "#a53c26" },
+    { "name": "700", "value": "#82301f" }
+  ],
+  "palette": [
+    { "name": "primary", "value": "#c24a30" },
+    { "name": "accent", "value": "#edc94a" },
+    { "name": "forest", "value": "#47512e" },
+    { "name": "background", "value": "#f4ecc8" },
+    { "name": "foreground", "value": "#3a2117" },
+    { "name": "card", "value": "#fcf6e3" },
+    { "name": "border", "value": "#3a2117" }
+  ],
+  "darkPalette": [
+    { "name": "background", "value": "#241410" },
+    { "name": "foreground", "value": "#f4ecc8" },
+    { "name": "card", "value": "#2f1b14" },
+    { "name": "primary", "value": "#d26a47" },
+    { "name": "muted", "value": "#361f17" },
+    { "name": "border", "value": "#4a2e22" }
+  ],
+  "prompt": "A retro snack-brand kit — warm terracotta + cream + espresso + gold with a forest-green accent, chunky rounded Baloo 2 display, friendly Fredoka body, thick espresso borders, torn-paper edges, a marquee ticker, an ingredient wheel and SVG packaging. React-first. Full dark mode and EN/AR + RTL. Ship a full landing and a components showcase.",
+  "buildSteps": [
+    "Forked the base canvas with `uikit-cli new`, then painted the Chomp identity.",
+    "Tokens (tokens.json) → theme.css: terracotta brand scale, cream/espresso/gold/forest semantics, dark block, [dir=rtl] Arabic font swap, Baloo 2 display, no monospace.",
+    "i18n (en + ar): a craft protein-snack narrative — flavors, ingredients, comparison, reviews.",
+    "Built the system: Button, Card, Badge, Inputs, Checkbox/Radio/Switch, Tabs, Accordion, Table, Tooltip/Progress/Skeleton/Avatar, Pagination; signature Marquee, ProductCard, ComparisonTable, StarRating, Footer, and all-SVG illustrations.",
+    "Two pages: Landing (torn-edge hero · marquee · best-sellers · ingredient wheel · comparison · testimonials · FAQ · footer) and a components showcase. Validated with `uikit-cli validate`."
+  ],
+  "components": ["Button", "Card", "Badge", "Input", "Tabs", "Accordion", "Table", "Pagination", "Marquee", "ProductCard", "ComparisonTable", "StarRating"],
+  "blocks": ["Navbar", "Footer", "ProductCard", "ComparisonTable", "Marquee"],
+  "templates": [
+    { "name": "Landing", "route": "/" },
+    { "name": "Showcase", "route": "/components" }
+  ],
+  "installCmd": "npx uikit-cli add chomp",
+  "skillName": "chomp-ui",
+  "consumeSteps": [
+    "git clone https://github.com/uikit-studio/chomp-uikit my-app",
+    "cd my-app/react && pnpm install && pnpm dev",
+    "Open in Claude Code and ask: 'build a snack-brand landing page using this kit'"
+  ],
+  "video": "/kits/chomp/preview.webm",
+  "screenshots": [
+    { "kind": "landing", "url": "/kits/chomp/landing.png" },
+    { "kind": "components", "url": "/kits/chomp/components.png" }
+  ]
+}

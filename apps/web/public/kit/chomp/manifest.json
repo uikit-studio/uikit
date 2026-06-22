@@ -1,0 +1,89 @@
+{
+  "$schema": "https://uikit.studio/agent-manifest.schema.json",
+  "id": "chomp",
+  "name": "Chomp",
+  "tagline": "Retro snack-brand kit",
+  "description": "A retro snack-brand kit — warm terracotta + cream + espresso + gold with a forest-green accent. Chunky rounded Baloo 2 display, friendly Fredoka body, thick espresso borders, torn-paper edges, a marquee ticker, an ingredient wheel and SVG packaging. Light + dark, EN/AR + RTL. Runnable React app.",
+  "version": "1.0.0",
+  "source": "community",
+  "verified": false,
+  "license": "MIT",
+  "repo": "https://github.com/uikit-studio/chomp-uikit",
+  "demo": "https://uikit.studio/demos/chomp/",
+  "gallery": "https://uikit.studio/kit/chomp",
+  "spec": "https://uikit.studio/kit/chomp/llms.txt",
+  "styling": "tailwind + tokens",
+  "frameworks": [
+    "react"
+  ],
+  "prompt": "A retro snack-brand kit — warm terracotta + cream + espresso + gold with a forest-green accent, chunky rounded Baloo 2 display, friendly Fredoka body, thick espresso borders, torn-paper edges, a marquee ticker, an ingredient wheel and SVG packaging. React-first. Full dark mode and EN/AR + RTL. Ship a full landing and a components showcase.",
+  "fonts": {
+    "display": "Baloo 2",
+    "sans": "Fredoka",
+    "mono": "Fredoka"
+  },
+  "radius": "1.5rem",
+  "tokens": {
+    "light": {
+      "primary": "#c24a30",
+      "accent": "#edc94a",
+      "forest": "#47512e",
+      "background": "#f4ecc8",
+      "foreground": "#3a2117",
+      "card": "#fcf6e3",
+      "border": "#3a2117"
+    },
+    "dark": {
+      "background": "#241410",
+      "foreground": "#f4ecc8",
+      "card": "#2f1b14",
+      "primary": "#d26a47",
+      "muted": "#361f17",
+      "border": "#4a2e22"
+    }
+  },
+  "brandScale": {
+    "50": "#fbeee7",
+    "100": "#f6d8c9",
+    "200": "#edb39c",
+    "300": "#e08e6c",
+    "400": "#d26a47",
+    "500": "#c24a30",
+    "600": "#a53c26",
+    "700": "#82301f"
+  },
+  "components": [
+    "Button",
+    "Card",
+    "Badge",
+    "Input",
+    "Tabs",
+    "Accordion",
+    "Table",
+    "Pagination",
+    "Marquee",
+    "ProductCard",
+    "ComparisonTable",
+    "StarRating"
+  ],
+  "blocks": [
+    "Navbar",
+    "Footer",
+    "ProductCard",
+    "ComparisonTable",
+    "Marquee"
+  ],
+  "templates": [
+    {
+      "name": "Landing",
+      "route": "/"
+    },
+    {
+      "name": "Showcase",
+      "route": "/components"
+    }
+  ],
+  "install": "npx uikit-cli add chomp",
+  "skill": "chomp-ui",
+  "agentPrompt": "Build me a website styled exactly like the \"Chomp\" design from uikit.studio.\nDesign spec (agent-readable): https://uikit.studio/kit/chomp/llms.txt\nMachine manifest: https://uikit.studio/kit/chomp/manifest.json\nReference kit (clone to copy the real components/tokens): https://github.com/uikit-studio/chomp-uikit\nMatch its color tokens (light + dark), fonts, radius and component set. Keep full dark mode and responsive layout."
+}

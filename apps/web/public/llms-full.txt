@@ -1,6 +1,6 @@
 # uikit.studio — all kit design specs
 
-Generated from 6 kits. Each section is a self-contained, agent-readable design brief.
+Generated from 7 kits. Each section is a self-contained, agent-readable design brief.
 
 
 ---
@@ -194,6 +194,102 @@ The real tokens live in `design/theme.css` + `design/tokens.json`; components in
 **Option B — apply the design system directly:** set the light + dark color tokens above as CSS variables, load the three fonts, use the base radius, and build the listed components and pages. Keep dark mode and EN/AR + RTL parity if the target needs it.
 
 **Option C — add via CLI:** `npx uikit-cli add aurora` (Claude Code skill: `aurora-ui`)
+
+
+---
+
+# Chomp — uikit.studio design spec
+
+> Retro snack-brand kit
+
+A retro snack-brand kit — warm terracotta + cream + espresso + gold with a forest-green accent. Chunky rounded Baloo 2 display, friendly Fredoka body, thick espresso borders, torn-paper edges, a marquee ticker, an ingredient wheel and SVG packaging. Light + dark, EN/AR + RTL. Runnable React app.
+
+This file is **agent-readable**. If a developer asked you to build a site with the "Chomp" design, reproduce the design system below exactly — tokens, fonts, radius and components — in their stack, with full dark mode and a responsive layout.
+
+## Identity
+- **id**: chomp
+- **source**: community
+- **license**: MIT
+- **repo**: https://github.com/uikit-studio/chomp-uikit
+- **live demo**: https://uikit.studio/demos/chomp/
+- **gallery**: https://uikit.studio/kit/chomp
+- **styling**: tailwind + tokens
+- **frameworks**: react
+
+## Design intent (prompt)
+A retro snack-brand kit — warm terracotta + cream + espresso + gold with a forest-green accent, chunky rounded Baloo 2 display, friendly Fredoka body, thick espresso borders, torn-paper edges, a marquee ticker, an ingredient wheel and SVG packaging. React-first. Full dark mode and EN/AR + RTL. Ship a full landing and a components showcase.
+
+## Typography
+- **display**: Baloo 2
+- **sans / body**: Fredoka
+- **mono**: Fredoka
+
+## Radius
+- base `--radius`: `1.5rem`
+
+## Brand scale
+- `50`: `#fbeee7`
+- `100`: `#f6d8c9`
+- `200`: `#edb39c`
+- `300`: `#e08e6c`
+- `400`: `#d26a47`
+- `500`: `#c24a30`
+- `600`: `#a53c26`
+- `700`: `#82301f`
+
+## Color tokens — light
+- `--color-primary`: `#c24a30`
+- `--color-accent`: `#edc94a`
+- `--color-forest`: `#47512e`
+- `--color-background`: `#f4ecc8`
+- `--color-foreground`: `#3a2117`
+- `--color-card`: `#fcf6e3`
+- `--color-border`: `#3a2117`
+
+## Color tokens — dark
+- `--color-background`: `#241410`
+- `--color-foreground`: `#f4ecc8`
+- `--color-card`: `#2f1b14`
+- `--color-primary`: `#d26a47`
+- `--color-muted`: `#361f17`
+- `--color-border`: `#4a2e22`
+
+## Components
+- Button
+- Card
+- Badge
+- Input
+- Tabs
+- Accordion
+- Table
+- Pagination
+- Marquee
+- ProductCard
+- ComparisonTable
+- StarRating
+
+## Blocks
+- Navbar
+- Footer
+- ProductCard
+- ComparisonTable
+- Marquee
+
+## Pages
+- Landing → `/`
+- Showcase → `/components`
+
+## How to reproduce this design
+**Option A — clone the kit (fastest, exact):**
+```bash
+git clone https://github.com/uikit-studio/chomp-uikit my-app
+cd my-app/react && pnpm install && pnpm dev
+```
+The real tokens live in `design/theme.css` + `design/tokens.json`; components in `react/src/components`. Build the developer's pages against those.
+
+**Option B — apply the design system directly:** set the light + dark color tokens above as CSS variables, load the three fonts, use the base radius, and build the listed components and pages. Keep dark mode and EN/AR + RTL parity if the target needs it.
+
+**Option C — add via CLI:** `npx uikit-cli add chomp` (Claude Code skill: `chomp-ui`)
 
 
 ---

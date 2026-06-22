@@ -153,8 +153,8 @@ function KitCard({ kit, index }: { kit: GalleryCard; index: number }) {
   const ref = useReveal<HTMLAnchorElement>();
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Show the poster (screenshot) until first hover; then play on hover and pause
-  // in place on leave, so the next hover resumes from the same frame.
+  // Resting face shows the palette + identity; on hover it fades out and the
+  // live preview (video, else poster) plays underneath.
   const playPreview = () => videoRef.current?.play().catch(() => {});
   const stopPreview = () => videoRef.current?.pause();
 
@@ -170,6 +170,7 @@ function KitCard({ kit, index }: { kit: GalleryCard; index: number }) {
     >
       {/* Thumbnail */}
       <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-line bg-surface card transition-shadow duration-300 group-hover:card-hover">
+        {/* Preview layer (revealed on hover) */}
         {kit.video ? (
           <video
             ref={videoRef}
@@ -189,38 +190,47 @@ function KitCard({ kit, index }: { kit: GalleryCard; index: number }) {
             loading="lazy"
             className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
           />
-        ) : (
-          <div
-            className="absolute inset-0"
-            style={{ background: `linear-gradient(135deg, ${kit.primaryColor}, ${kit.accentColor})` }}
-          />
-        )}
-        {/* Hover reveal — extra detail (tagline + author) surfaces over the preview;
-            the resting footer below stays minimal. */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-col gap-1.5 bg-gradient-to-t from-fg/85 via-fg/35 to-transparent p-4 pt-12 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-          {tagline && (
-            <p className="line-clamp-2 translate-y-2 text-sm font-semibold leading-snug text-bg transition-transform duration-300 group-hover:translate-y-0">
-              {tagline}
+        ) : null}
+
+        {/* Resting face: palette band + identity. Fades out on hover. */}
+        <div className="absolute inset-0 flex flex-col bg-elevated transition-opacity duration-300 group-hover:pointer-events-none group-hover:opacity-0">
+          <div className="flex h-2/5 w-full">
+            {kit.palette.map((s, i) => (
+              <span key={i} className="h-full flex-1" style={{ background: s.value }} title={s.name} />
+            ))}
+          </div>
+          <div className="flex flex-1 flex-col justify-center gap-1.5 px-5">
+            <h3 className="font-display text-2xl font-extrabold tracking-tight">{name}</h3>
+            {tagline && <p className="line-clamp-2 text-sm leading-snug text-muted">{tagline}</p>}
+            <p className="mt-0.5 font-mono text-[11px] uppercase tracking-wide text-faint">
+              {kit.frameworks.join(" · ")}
             </p>
-          )}
-          <p className="flex translate-y-2 items-center gap-1.5 font-mono text-[11px] text-bg/75 transition-transform delay-[40ms] duration-300 group-hover:translate-y-0">
-            {t("card.by")} {kit.author.name}
-            <span className="ms-auto inline-flex items-center gap-1 font-sans font-semibold text-bg">
-              {t("card.view")} <ArrowUpRight className="h-3.5 w-3.5 rtl-flip" />
-            </span>
-          </p>
+          </div>
+          <span className="pointer-events-none absolute bottom-3 end-4 inline-flex items-center gap-1 font-mono text-[11px] text-faint opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            {t("card.view")} <ArrowUpRight className="h-3.5 w-3.5 rtl-flip" />
+          </span>
         </div>
       </div>
 
-      {/* Footer: identity + meta */}
+      {/* Footer: logo + meta */}
       <div className="mt-3.5 flex items-center gap-3 px-1">
         <span
-          className="h-9 w-9 shrink-0 rounded-full ring-2 ring-line"
+          className="grid h-9 w-9 shrink-0 place-items-center overflow-hidden rounded-full ring-2 ring-line"
           style={{ background: `linear-gradient(135deg, ${kit.primaryColor}, ${kit.accentColor})` }}
-        />
+        >
+          {kit.logo && (
+            <img
+              src={kit.logo}
+              alt=""
+              loading="lazy"
+              onError={(e) => e.currentTarget.remove()}
+              className="h-full w-full object-cover"
+            />
+          )}
+        </span>
         <div className="min-w-0">
           <h3 className="truncate font-display text-base font-bold tracking-tight">{name}</h3>
-          <p className="truncate font-mono text-[11px] text-faint">{kit.frameworks.join(" · ")}</p>
+          <p className="truncate font-mono text-[11px] text-faint">{t("card.by")} {kit.author.name}</p>
         </div>
         {kit.source === "official" ? (
           <span className="ms-auto flex shrink-0 items-center gap-1 rounded-full bg-accent/10 px-2.5 py-1 text-[11px] font-medium text-accent-ink">

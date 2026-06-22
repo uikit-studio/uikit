@@ -73,6 +73,8 @@ export interface GalleryKit {
   templates: { name: string; route: string }[];
   installCmd: string | null;
   skillName: string | null;
+  /** Optional brand mark shown on the card identity (else the color dot). */
+  logo?: string | null;
   consumeSteps: string[];
   screenshots: { kind: string; url: string }[];
   /** Optional looping preview clip (webm). Falls back to the first screenshot. */
@@ -93,6 +95,10 @@ export interface GalleryCard {
   author: { name: string };
   thumb: string | null;
   video: string | null;
+  /** Swatches shown on the card's resting face. */
+  palette: Swatch[];
+  /** Kit logo (the demo's favicon) for the card identity; null → color dot. */
+  logo: string | null;
 }
 
 // Baked at build time — each JSON file becomes a bundled module. No runtime fetch.
@@ -133,6 +139,12 @@ function toCard(k: GalleryKit): GalleryCard {
     author: { name: k.author.name },
     thumb: k.screenshots[0]?.url ?? null,
     video: k.video ?? null,
+    // Prefer the named brand palette; fall back to primary/accent.
+    palette: (k.palette?.length ? k.palette : k.brandScale)?.slice(0, 6) ?? [
+      { name: "primary", value: k.primaryColor },
+      { name: "accent", value: k.accentColor },
+    ],
+    logo: k.logo ?? null,
   };
 }
 
